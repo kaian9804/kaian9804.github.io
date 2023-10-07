@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Ka Ian&#39;s Page</title>
+    <link>https://kaian0414.github.io/categories/</link>
+    <description>Recent content in Categories on Ka Ian&#39;s Page</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 05 Oct 2023 22:59:00 +0800</lastBuildDate><atom:link href="https://kaian0414.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go Language</title>
+      <link>https://kaian0414.github.io/categories/go-language/</link>
+      <pubDate>Thu, 05 Oct 2023 22:59:00 +0800</pubDate>
+      
+      <guid>https://kaian0414.github.io/categories/go-language/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
