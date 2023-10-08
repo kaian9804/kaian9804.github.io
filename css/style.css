@@ -494,7 +494,7 @@ a img {
   font-size: 1em;
   margin: 0;
   padding: 0 0 0 1.5em;
-  color: rgb(168, 168, 168);
+  color: white;
   opacity: 0.6;
   -webkit-transition: opacity 0.2s ease;
           transition: opacity 0.2s ease;
@@ -2351,7 +2351,7 @@ li.pingback:first-child {
   color: white;
 }
 .dark-header .site-header.toggled .toggle-navigation {
-  color: rgb(162, 162, 162);
+  color: white;
 }
 .dark-header .site-header.toggled .site-description {
   color: white;

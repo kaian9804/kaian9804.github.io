@@ -2,16 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://kaian9804.github.io/tags/feature/</loc>
-    <lastmod>2023-10-08T21:16:00+08:00</lastmod>
-  </url><url>
     <loc>https://kaian9804.github.io/post/01_stepwise_regression/</loc>
     <lastmod>2023-10-08T21:16:00+08:00</lastmod>
   </url><url>
     <loc>https://kaian9804.github.io/</loc>
-    <lastmod>2023-10-08T21:16:00+08:00</lastmod>
-  </url><url>
-    <loc>https://kaian9804.github.io/tags/original/</loc>
     <lastmod>2023-10-08T21:16:00+08:00</lastmod>
   </url><url>
     <loc>https://kaian9804.github.io/post/</loc>
@@ -26,7 +20,7 @@
     <loc>https://kaian9804.github.io/tags/</loc>
     <lastmod>2023-10-08T21:16:00+08:00</lastmod>
   </url><url>
-    <loc>https://kaian9804.github.io/post/00_my_web/</loc>
+    <loc>https://kaian9804.github.io/post/01_my_web/</loc>
     <lastmod>2023-10-08T01:10:00+08:00</lastmod>
   </url><url>
     <loc>https://kaian9804.github.io/tags/me/</loc>
@@ -34,7 +28,7 @@
   </url><url>
     <loc>https://kaian9804.github.io/about/</loc>
   </url><url>
-    <loc>https://kaian9804.github.io/notes/</loc>
+    <loc>https://kaian9804.github.io/projects/</loc>
   </url><url>
     <loc>https://kaian9804.github.io/search/placeholder/</loc>
   </url><url>
