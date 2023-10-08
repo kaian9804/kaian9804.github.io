@@ -2,36 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://kaian9804.github.io/post/readme/</loc>
+    <lastmod>2023-10-08T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://kaian9804.github.io/</loc>
-    <lastmod>2023-10-08T01:10:00+08:00</lastmod>
+    <lastmod>2023-10-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kaian9804.github.io/categories/</loc>
-    <lastmod>2023-10-08T01:10:00+08:00</lastmod>
+    <loc>https://kaian9804.github.io/tags/me/</loc>
+    <lastmod>2023-10-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://kaian9804.github.io/blog/0_myweb/</loc>
-    <lastmod>2023-10-08T01:10:00+08:00</lastmod>
-  </url><url>
-    <loc>https://kaian9804.github.io/categories/me/</loc>
-    <lastmod>2023-10-08T01:10:00+08:00</lastmod>
-  </url><url>
-    <loc>https://kaian9804.github.io/categories/web/</loc>
-    <lastmod>2023-10-08T01:10:00+08:00</lastmod>
-  </url><url>
-    <loc>https://kaian9804.github.io/about/</loc>
-    <lastmod>2023-10-07T19:51:00+08:00</lastmod>
-  </url><url>
-    <loc>https://kaian9804.github.io/blog/</loc>
-    <lastmod>2019-10-29T13:49:23+06:00</lastmod>
-  </url><url>
-    <loc>https://kaian9804.github.io/contact/</loc>
-    <lastmod>2019-10-29T13:49:23+06:00</lastmod>
-  </url><url>
-    <loc>https://kaian9804.github.io/search/</loc>
-    <lastmod>2019-10-29T13:49:23+06:00</lastmod>
-  </url><url>
-    <loc>https://kaian9804.github.io/blog/post-13/</loc>
-    <lastmod>2019-10-29T10:07:47+06:00</lastmod>
+    <loc>https://kaian9804.github.io/post/</loc>
+    <lastmod>2023-10-08T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://kaian9804.github.io/tags/</loc>
+    <lastmod>2023-10-08T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://kaian9804.github.io/about/</loc>
+  </url><url>
+    <loc>https://kaian9804.github.io/notes/</loc>
+  </url><url>
+    <loc>https://kaian9804.github.io/search/placeholder/</loc>
+  </url><url>
+    <loc>https://kaian9804.github.io/categories/</loc>
+  </url><url>
+    <loc>https://kaian9804.github.io/archive/</loc>
+  </url><url>
+    <loc>https://kaian9804.github.io/search/</loc>
   </url>
 </urlset>

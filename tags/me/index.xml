@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>me on Ka Ian Chan</title>
+    <link>https://kaian9804.github.io/tags/me/</link>
+    <description>Recent content in me on Ka Ian Chan</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 08 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://kaian9804.github.io/tags/me/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Creating my Website</title>
+      <link>https://kaian9804.github.io/post/readme/</link>
+      <pubDate>Sun, 08 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://kaian9804.github.io/post/readme/</guid>
+      <description>I want a website I wanted to have my own personal website for a long time. I have tried to create a website many times. I tried to have my own website on 000webhostapp, hostinger and gihub with HTML and CSS, but these designs are usually so simple and unsatisfactory for me.
+Now I really want to build a new one! I am building this website with Hugo. This is a new way for me to build a website.</description>
+    </item>
+    
+  </channel>
+</rss>

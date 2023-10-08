@@ -1,28 +1,56 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title></title>
+    <title>Ka Ian Chan</title>
     <link>https://kaian9804.github.io/</link>
-    <description>Recent content on </description>
+    <description>Recent content on Ka Ian Chan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 08 Oct 2023 01:10:00 +0800</lastBuildDate><atom:link href="https://kaian9804.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 08 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://kaian9804.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Creating my Website</title>
-      <link>https://kaian9804.github.io/blog/0_myweb/</link>
-      <pubDate>Sun, 08 Oct 2023 01:10:00 +0800</pubDate>
+      <link>https://kaian9804.github.io/post/readme/</link>
+      <pubDate>Sun, 08 Oct 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://kaian9804.github.io/blog/0_myweb/</guid>
-      <description>I want a website I wanted to have my own personal website for a long time.</description>
+      <guid>https://kaian9804.github.io/post/readme/</guid>
+      <description>I want a website I wanted to have my own personal website for a long time. I have tried to create a website many times. I tried to have my own website on 000webhostapp, hostinger and gihub with HTML and CSS, but these designs are usually so simple and unsatisfactory for me.
+Now I really want to build a new one! I am building this website with Hugo. This is a new way for me to build a website.</description>
     </item>
     
     <item>
-      <title>Sample Page</title>
-      <link>https://kaian9804.github.io/blog/post-13/</link>
-      <pubDate>Tue, 29 Oct 2019 10:07:47 +0600</pubDate>
+      <title></title>
+      <link>https://kaian9804.github.io/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://kaian9804.github.io/blog/post-13/</guid>
-      <description>Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Heading 6 Emphasis Emphasis, aka italics, with asterisks or underscores.</description>
+      <guid>https://kaian9804.github.io/about/</guid>
+      <description>關於我 大家好，我希望你是認識我的。若不認識也沒關係，你可以在這裡認識我！ 教育背景 2022-現在 PhD in Computer Applied Technology @ MPU 2020-2022 MSc in Big Data and IoT @ MPU 2016-2020 BSc in Computing - Computer Education</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://kaian9804.github.io/notes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://kaian9804.github.io/notes/</guid>
+      <description>Building in Progress I am still thinking what should I put here. Please wait for me.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://kaian9804.github.io/search/placeholder/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://kaian9804.github.io/search/placeholder/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Posts Archive</title>
+      <link>https://kaian9804.github.io/archive/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://kaian9804.github.io/archive/</guid>
+      <description></description>
     </item>
     
   </channel>
