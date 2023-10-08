@@ -15,9 +15,9 @@
     
 
     
-    <meta name="title" content="" />
-    <meta property="og:title" content="" />
-    <meta property="twitter:title" content="" />
+    <meta name="title" content="Feature Engineering with Stepwise Regression" />
+    <meta property="og:title" content="Feature Engineering with Stepwise Regression" />
+    <meta property="twitter:title" content="Feature Engineering with Stepwise Regression" />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="Ka Ian Chan, blog, website">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Categories | Ka Ian&#39;s Page</title>
+    <title>Feature Engineering with Stepwise Regression | Ka Ian&#39;s Page</title>
 
-    <link rel="canonical" href="/categories/">
+    <link rel="canonical" href="/post/01_stepwise_regression/">
 
     
     
@@ -149,14 +149,49 @@
 
 
 
-<header class="intro-header" style="background-image: url('/img/home_bg.jpg')">
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/home_bg.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Ka Ian Chan </h1>
-                    
-		    <span class="subheading">Everything will be ok!</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/original" title="original">
+                            original
+                        </a>
+                        
+                        <a class="tag" href="/tags/feature" title="feature">
+                            feature
+                        </a>
+                        
+                        <a class="tag" href="/tags/statistics" title="statistics">
+                            statistics
+                        </a>
+                        
+                    </div>
+                    <h1>Feature Engineering with Stepwise Regression</h1>
+                    <h2 class="subheading">Coding about finding the importances of features</h2>
+                    <span class="meta">
+                        
+                            Posted by 
+                            
+                                Ka Ian
+                             
+                            on 
+                            Sunday, October 8, 2023
+                            
+                            
+                            
+                            
+                    </span>
                 </div>
             </div>
         </div>
@@ -171,19 +206,159 @@
 <article>
     <div class="container">
         <div class="row">
+
             
             <div class="
                 col-lg-8 col-lg-offset-2
                 col-md-10 col-md-offset-1
                 post-container">
 
-         	
+                
+                <h3 id="introduction">Introduction</h3>
+<p>When I was studying statistics, I noticed an algorithm called &ldquo;stepwise regression&rdquo;. Generally, this is a method that ranks  features based on their importances and finds out how important each feature is to the prediction.</p>
+<p>The following coding will show the process of finding the features importances. (Assumed that this is a binary classification)</p>
+<p><strong><em>Please note that</em></strong> this is the translated post of my original post in CSDN (Original post on 2023-04-03). The post are all my ideas and thoughts, please do not reproduce my post. Thank you very much!</p>
+<h3 id="import-the-tools">Import the tools</h3>
+<pre tabindex="0"><code>import pandas as pd
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import LabelEncoder
+from sklearn import linear_model
+from sklearn.metrics import roc_auc_score
+ 
+import warnings
+warnings.filterwarnings(&#39;ignore&#39;)
+</code></pre><h3 id="get-data">Get Data</h3>
+<p>Need to select / drop out those unnecessary features.</p>
+<pre tabindex="0"><code>df = pd.read_csv(&#39;df.csv&#39;)
+df = df.drop([&#39;fea1&#39;, &#39;fea3&#39;, &#39;fea4&#39;], axis=1)
+</code></pre><h3 id="define-the-type-of-features">Define the type of features</h3>
+<p>To see if these features belong to CATEGORY or NUMERIC. In this part, only the x features need to be defined, the label is not needed here.</p>
+<pre tabindex="0"><code>CATEGORY = [&#39;fea5&#39;, &#39;fea6&#39;, &#39;fea7&#39;]
+NUMERIC = [&#39;fea2&#39;, &#39;fea8&#39;, &#39;fea9&#39;, &#39;fea10&#39;]
+</code></pre><h3 id="data-preprocessing">Data Preprocessing</h3>
+<p>Use label encoder to CATEGORY data. This is because using a one-hot encoder may result in finding useful features that are all derived from the same original feature, suck kind of result is not matched what I want in finding the important features.</p>
+<p>Use the same scale to scale the features. The common methods are Min-Max Scaler, Standard Scaler, etc.</p>
+<pre tabindex="0"><code>def preprocessing(df):
+  # label encoder
+  labelencoder = LabelEncoder()
+  for c in CATEGORY:
+    df[c] = labelencoder.fit_transform(df[c])
+  
+  # MinMaxScaler
+  scaler = MinMaxScaler()
+  df[NUMERIC] = scaler.fit_transform(df[NUMERIC])
+ 
+  return df
+</code></pre><h3 id="predict-the-probability-and-setting-threshold">Predict the Probability and Setting Threshold</h3>
+<p>Since this coding is applied in binary classification and the prediction resulted in propability, it is needed to changed the result into the binary value. The threshold is setted as 0.5.</p>
+<pre tabindex="0"><code>def y_pred_to_binary(y_pred):
+  y_pred_bin_list = []
+  
+  for i in y_pred:
+    if i &gt;= 0.5:
+      y_pred_bin = 1
+    else:
+      y_pred_bin = 0
+    y_pred_bin_list.append(y_pred_bin)
+    
+  return y_pred_bin_list
+</code></pre><h3 id="calculating-auc-for-selecting-features">Calculating AUC for Selecting Features</h3>
+<pre tabindex="0"><code>def auc(variables, target, basetable):
+  y_pred_binary_list = []
+ 
+  x = basetable[variables]
+  y = basetable[target]
+ 
+  log_reg = linear_model.LogisticRegression()
+  log_reg.fit(x, y)
+ 
+  y_pred = log_reg.predict_proba(x)[:, 1]
+  y_pred_bin = y_pred_to_binary(y_pred) # 轉做binary
+ 
+  auc = roc_auc_score(y, y_pred_bin)
+  return auc
+</code></pre><h3 id="finding-the-best">Finding the BEST</h3>
+<p>Iterating over all candidate_variables and keep track of which var is the best (auc is related to best_var). Finally, combining the current variable to return the next best variable.</p>
+<pre tabindex="0"><code>def next_best(current_variables, candidate_variables, target, basetable):
+  best_auc = -1
+  best_var = None
+  for v in candidate_variables:
+    auc_v = auc(current_variables + [v], target, basetable)
+    # Adjust the best_auc
+    if auc_v &gt;= best_auc:
+      best_auc = auc_v
+      best_var = v
+  return best_var
+</code></pre><h3 id="applying-data-preprocessing-to-the-dataset">Applying Data Preprocessing to the dataset</h3>
+<pre tabindex="0"><code># preprocess the dataset
+df = preprocessing(df)
+ 
+# print the information
+print(f&#39;features in df:\n{df.columns.tolist()}&#39;)
+print(f&#39;num of x_features: {len(df.columns) - 1}&#39;)
+print(f&#39;num of y_features: {1}, and the feature is {df.columns[-1]}&#39;)
+</code></pre><h3 id="implement-the-coding-process">Implement the Coding Process</h3>
+<p>Implementing the functions into the dataset adn finding out the results.</p>
+<pre tabindex="0"><code>candidate_variables = df.columns[:-1].to_list()
+current_variables = []
+target = df.columns[-1]
+ 
+max_num_var = 5 # this value can be decided by myself
+num_iterations = min(max_num_var, len(candidate_variables))
+print(f&#39;num_iterations: {num_iterations}&#39;)
+ 
+for i in range(0, num_iterations):
+  next_var = next_best(current_variables, candidate_variables, target, df)
+  current_variables = current_variables + [next_var]
+  candidate_variables.remove(next_var)
+ 
+# The sorting of important features
+print(f&#39;current_variables: {current_variables}&#39;)
+</code></pre><h3 id="reference">Reference</h3>
+<ol>
+<li>The module &ldquo;Statistics II&rdquo;</li>
+<li>Python Coding from DataCamp</li>
+</ol>
+
+
+                
+
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/readme/" data-toggle="tooltip" data-placement="top" title="Creating my Website">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+                
+
                 
 
 
 
-
             </div>
+
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
+
             
             <div class="
                 col-lg-8 col-lg-offset-2
