@@ -10,14 +10,14 @@
     <meta property="og:type" content="article">
 
     
-    <meta property="og:image" content="https://kaian9804.github.io//img/home_bg.jpg">
-    <meta property="twitter:image" content="https://kaian9804.github.io//img/home_bg.jpg" />
+    <meta property="og:image" content="img/coding_bg.jpg">
+    <meta property="twitter:image" content="img/coding_bg.jpg" />
     
 
     
-    <meta name="title" content="" />
-    <meta property="og:title" content="" />
-    <meta property="twitter:title" content="" />
+    <meta name="title" content="Coding for Multi-layer Perceptron (MLP)" />
+    <meta property="og:title" content="Coding for Multi-layer Perceptron (MLP)" />
+    <meta property="twitter:title" content="Coding for Multi-layer Perceptron (MLP)" />
     
 
     
@@ -34,9 +34,9 @@
     <meta name="keyword"  content="Ka Ian, Ka Ian Chan, website">
     <link rel="shortcut icon" href="/img/little_icon.ico">
 
-    <title>Ka Ian Chan | Website</title>
+    <title>Coding for Multi-layer Perceptron (MLP) | Ka Ian Chan | Website</title>
 
-    <link rel="canonical" href="/projects/">
+    <link rel="canonical" href="/post/02_mlp/">
 
     
     
@@ -151,14 +151,49 @@
 
 
 
-<header class="intro-header" style="background-image: url('/img/home_bg.jpg')">
+
+<style type="text/css">
+    header.intro-header {
+        background-image: url('/img/coding_bg.jpg')
+    }
+</style>
+
+<header class="intro-header" >
+
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Ka Ian Chan </h1>
-                    
-		    <span class="subheading">Everything will be OK!</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/deep-learning" title="deep learning">
+                            deep learning
+                        </a>
+                        
+                        <a class="tag" href="/tags/keras" title="keras">
+                            keras
+                        </a>
+                        
+                        <a class="tag" href="/tags/coding" title="coding">
+                            coding
+                        </a>
+                        
+                    </div>
+                    <h1>Coding for Multi-layer Perceptron (MLP)</h1>
+                    <h2 class="subheading">This is only the coding introduction for MLP. No theory will be illustrated here.</h2>
+                    <span class="meta">
+                        
+                            By 
+                            
+                                Ka Ian
+                             
+                            on 
+                            2023-10-10
+                            
+                            
+                            
+                            
+                    </span>
                 </div>
             </div>
         </div>
@@ -171,199 +206,142 @@
 <article>
     <div class="container">
         <div class="row">
+
             
             <div class="
-            col-lg-8 col-lg-offset-1
-            col-md-8 col-md-offset-1
-            col-sm-12
-            col-xs-12
-            post-container">
-            
-                <h2 id="phd-thesis">PhD Thesis</h2>
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                
+                <h2 id="1-loading-the-library">1. Loading the Library</h2>
+<pre tabindex="0"><code>from numpy import loadtxt
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import BatchNormalization, Dense
+</code></pre><h2 id="2-loading-dataset">2. Loading Dataset</h2>
+<pre tabindex="0"><code>df = loadtxt(&#34;dataset.csv&#34;, delimiter=&#39;,&#39;)
+</code></pre><h2 id="3-spliting-features-and-label">3. Spliting Features and label</h2>
+<p>For example, the data includes 5 features and 1 label.</p>
+<pre tabindex="0"><code>x = df[:, 0:5]
+y = df[:, 5]
+</code></pre><h2 id="4-define-neural-network-architecture">4. Define Neural Network Architecture</h2>
+<pre tabindex="0"><code>model = Sequential()
+model.add(Dense(12, input_dim=5, activation=&#39;relu&#39;))
+model.add(BatchNormalization())
+model.add(Dense(8, activation=&#39;relu&#39;))
+model.add(BatchNormalization())
+model.add(Dense(1, activation=&#39;sigmoid&#39;))
+</code></pre><h2 id="5-compile-the-model">5. Compile the Model</h2>
+<pre tabindex="0"><code>model.compile(
+    loss = &#39;binary_crossentropy&#39;, # this is a binary problem
+    optimizer = &#39;adam&#39;,
+    metrics = [&#39;accuracy&#39;]
+)
+</code></pre><h2 id="6-fit-the-model">6. Fit the Model</h2>
 <blockquote>
-<p>Sep 2022 - Present</p>
+<p>epochs means how many times it runs</p>
 </blockquote>
-<p><strong>Research Direction</strong>: Exploring the Potential Vaue of Educational Data</p>
-<p><strong>Publication(s)</strong>:</p>
-<ul>
-<li>A Literature Review on Educational Data Mining with Secondary School Data</li>
-<li>Exploring the Factors and Moderators Influencing the Use of Radar Visualisation of Student Performance from Parents’ Perspective</li>
-</ul>
-<p>~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~</p>
-<h2 id="master-dissertation">Master Dissertation</h2>
-<blockquote>
-<p>Sep 2021 - Jun 2022</p>
-</blockquote>
-<p><strong>Title</strong>: Tracing Students&rsquo; Learning Performance on Multiple Skills using Bayesian Methods</p>
-<p><strong>Publication(s)</strong>: <a href="https://doi.org/10.1145/3551708.3556202">Tracing Students&rsquo; Learning Performance on Multiple Skills using Bayesian Methods</a></p>
-<p><strong>Award(s)</strong>: <em>Best Presentation</em> in ICEMT 2022</p>
-<p>~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~</p>
-<h2 id="final-year-project">Final Year Project</h2>
-<blockquote>
-<p>Sep 2019 - Jun 2020</p>
-</blockquote>
-<p><strong>Title</strong>: An Android tool to stimulate students in learning Portuguese</p>
-<p><strong>Publication(s)</strong>: <a href="https://www.doi.org/10.1109/ICIET51873.2021.9419612">Applying Gamification in Portuguese Learning</a> (with some extensions)</p>
-<p>~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~</p>
-<h2 id="other-project---thermal-recognition">Other Project - Thermal Recognition</h2>
-<blockquote>
-<p>Sep2019 - Jun 2021</p>
-</blockquote>
-<p><strong>Publication(s)</strong>: <a href="https://doi.org/10.1117/12.2599271">ReSPEcT: privacy respecting thermal-based specific person recognition</a></p>
-<p><strong>Awards(s)</strong>:</p>
-<ul>
-<li><em>Gold Award</em> in the 24th Moscow International Salon of Inventions and Innovative Technologies &laquo;ARCHIMEDES&raquo;</li>
-<li><em>Third Prize</em> in the 6th China International College Students&rsquo; &lsquo;Internet+&rsquo; Innovation and Entrepreneurship Competition</li>
-<li><em>First Prize</em> in the 2020 Pan-Peral River Delta Region Universities IT Project Competition</li>
-<li><em>Practical Value Award</em> in the 2020 Pan-Peral River Delta Region Universities IT Project Competition</li>
-</ul>
+<pre tabindex="0"><code>model.fit(x, y, epochs=10, batch_size=100)
+</code></pre><h2 id="7-evaluate-the-model-eg-finding-the-accuracy">7. Evaluate the model (e.g. finding the accuracy)</h2>
+<pre tabindex="0"><code>_, accuracy = model.evaluate(x, y)
+print(f&#34;accuracy: %.2f&#34; % (accuracy * 100))
+</code></pre>
 
-            
-             
-            
+                
 
-
-
-            
-            </div>
-            
-            
-
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-	
-    <section class="visible-md visible-lg">
-	
-        <div class="short-about">
-            
-            <a href="/about">
-               <img src="/img/kaian_icon.jpg" alt="avatar" style="cursor: pointer" />
-            </a>
-            
-
-            
-                <p>PhD in progress</p>
-            
-
-            
-                <p>Macao Polytechnic University</p>
-            
-
-            
-                <p>Macao SAR</p>
-            
-           
-           <ul class="list-inline">
-               
-               <li>
-                   <a href="mailto:kaian9804@gmail.com">
-                      <span class="fa-stack fa-lg">
-                          <i class="fa fa-circle fa-stack-2x"></i>
-                          <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
-                      </span>
-                   </a>
-               </li>
-               
-               
-               
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://github.com/kaian9804">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-               
-               <li>
-                   <a target="_blank" href="https://www.linkedin.com/in/kaian9804">
-                       <span class="fa-stack fa-lg">
-                           <i class="fas fa-circle fa-stack-2x"></i>
-                           <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
-                       </span>
-                   </a>
-               </li>
-               
-               
-               
-            
-            
-               
-               
-               
-               
+                
+                <hr>
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/post/01_stepwise_regression/" data-toggle="tooltip" data-placement="top" title="Feature Engineering with Stepwise Regression">&larr;
+                            Previous Post</a>
+                    </li>
+                    
+                    
                 </ul>
+                
+
+                
+
+
+
             </div>
-    </section>
-	
-    
-    
-    
-    
-    <section>
-        <hr class="hidden-sm hidden-xs">
-        <h5>FEATURED TAGS</h5>
-        <div class="tags">
-            
-            
-               
-                    <a href="/tags/coding" title="coding">
-                        coding
-                    </a>
-               
-            
-               
-                    <a href="/tags/deep-learning" title="deep-learning">
-                        deep-learning
-                    </a>
-               
-            
-               
-                    <a href="/tags/keras" title="keras">
-                        keras
-                    </a>
-               
-            
-               
-                    <a href="/tags/me" title="me">
-                        me
-                    </a>
-               
-            
-               
-                    <a href="/tags/python" title="python">
-                        python
-                    </a>
-               
-            
-               
-                    <a href="/tags/statistics" title="statistics">
-                        statistics
-                    </a>
-               
-            
-        </div>
-    </section>
-    
 
-    
-    
-    
-</div>
+            
+            
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+            
 
+            
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                        
+                        
+                        
+                        <a href="/tags/coding" title="coding">
+                            coding
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/deep-learning" title="deep-learning">
+                            deep-learning
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/keras" title="keras">
+                            keras
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/me" title="me">
+                            me
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/python" title="python">
+                            python
+                        </a>
+                        
+                        
+                        
+                        <a href="/tags/statistics" title="statistics">
+                            statistics
+                        </a>
+                        
+                        
+                    </div>
+                </section>
+                
+
+                
+                
+            </div>
         </div>
     </div>
 </article>

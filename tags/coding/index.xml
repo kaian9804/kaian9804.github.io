@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>coding on Ka Ian Chan</title>
+    <link>https://kaian9804.github.io/tags/coding/</link>
+    <description>Recent content in coding on Ka Ian Chan</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Oct 2023 00:42:00 +0800</lastBuildDate><atom:link href="https://kaian9804.github.io/tags/coding/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Coding for Multi-layer Perceptron (MLP)</title>
+      <link>https://kaian9804.github.io/post/02_mlp/</link>
+      <pubDate>Tue, 10 Oct 2023 00:42:00 +0800</pubDate>
+      
+      <guid>https://kaian9804.github.io/post/02_mlp/</guid>
+      <description>1. Loading the Library from numpy import loadtxtfrom tensorflow.keras.models import Sequentialfrom tensorflow.keras.layers import BatchNormalization, Dense 2. Loading Dataset df = loadtxt(&amp;#34;dataset.csv&amp;#34;, delimiter=&amp;#39;,&amp;#39;) 3. Spliting Features and label For example, the data includes 5 features and 1 label.
+x = df[:, 0:5]y = df[:, 5] 4. Define Neural Network Architecture model = Sequential()model.add(Dense(12, input_dim=5, activation=&amp;#39;relu&amp;#39;))model.add(BatchNormalization())model.add(Dense(8, activation=&amp;#39;relu&amp;#39;))model.add(BatchNormalization())model.add(Dense(1, activation=&amp;#39;sigmoid&amp;#39;)) 5. Compile the Model model.compile(loss = &amp;#39;binary_crossentropy&amp;#39;, # this is a binary problemoptimizer = &amp;#39;adam&amp;#39;,metrics = [&amp;#39;accuracy&amp;#39;]) 6.</description>
+    </item>
+    
+  </channel>
+</rss>
