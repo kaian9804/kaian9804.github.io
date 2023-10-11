@@ -29,5 +29,14 @@ Remember Gate: Have not forget the LTM information, STM and Event are combined i
 x = df[:, 0:5]y = df[:, 5] 4. Define Neural Network Architecture model = Sequential()model.add(Dense(12, input_dim=5, activation=&amp;#39;relu&amp;#39;))model.add(BatchNormalization())model.add(Dense(8, activation=&amp;#39;relu&amp;#39;))model.add(BatchNormalization())model.add(Dense(1, activation=&amp;#39;sigmoid&amp;#39;)) 5. Compile the Model model.compile(loss = &amp;#39;binary_crossentropy&amp;#39;, # this is a binary problemoptimizer = &amp;#39;adam&amp;#39;,metrics = [&amp;#39;accuracy&amp;#39;]) 6.</description>
     </item>
     
+    <item>
+      <title>Feature Engineering with Stepwise Regression</title>
+      <link>https://kaian9804.github.io/post/01_stepwise_regression/</link>
+      <pubDate>Sun, 08 Oct 2023 21:16:00 +0800</pubDate>
+      
+      <guid>https://kaian9804.github.io/post/01_stepwise_regression/</guid>
+      <description>When I was studying statistics, I noticed an algorithm called &amp;ldquo;stepwise regression&amp;rdquo;. Generally, this is a method that ranks features based on their importances and finds out how important each feature is to the prediction. The following coding will show the process of finding the features importances. (Assumed that this is a binary classification) Import the tools import pandas as pd from sklearn.preprocessing import MinMaxScaler from sklearn.preprocessing import LabelEncoder from</description>
+    </item>
+    
   </channel>
 </rss>
