@@ -6,7 +6,21 @@
     <description>Recent content in python on Ka Ian Chan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 11 Oct 2023 18:22:08 +0800</lastBuildDate><atom:link href="https://kaian9804.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 Oct 2023 00:42:00 +0800</lastBuildDate><atom:link href="https://kaian9804.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CNN &#43; Transfer Learning</title>
+      <link>https://kaian9804.github.io/post/05_transfer_learning/</link>
+      <pubDate>Thu, 12 Oct 2023 00:42:00 +0800</pubDate>
+      
+      <guid>https://kaian9804.github.io/post/05_transfer_learning/</guid>
+      <description>The Working Concepts of Transfer Learning Use previous trained leverage knowledge (e.g. features, weights) to train new models
+Tackle problems like having less data for the newer task
+The more related the tasks is, the better the metricks of the hybrid model
+Generally, inputs are fed to the base model
+Usually omit the last layer when the base model features / weights are transferred
+The embeddings from the penultimate layer of the base model are then transferred to another model which extracts different parts according to its needs</description>
+    </item>
+    
     <item>
       <title>Concolutional Neural Networks (CNNs)</title>
       <link>https://kaian9804.github.io/post/04_cnn/</link>
