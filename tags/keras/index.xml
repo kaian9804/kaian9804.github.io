@@ -15,7 +15,7 @@
       <guid>https://kaian9804.github.io/post/05_transfer_learning/</guid>
       <description>The Working Concepts of Transfer Learning Use previous trained leverage knowledge (e.g. features, weights) to train new models
 Tackle problems like having less data for the newer task
-The more related the tasks is, the better the metricks of the hybrid model
+The more related the tasks is, the better the metrics of the hybrid model
 Generally, inputs are fed to the base model
 Usually omit the last layer when the base model features / weights are transferred
 The embeddings from the penultimate layer of the base model are then transferred to another model which extracts different parts according to its needs</description>
