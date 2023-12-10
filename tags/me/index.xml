@@ -6,14 +6,26 @@
     <description>Recent content in me on Ka Ian Chan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 08 Oct 2023 01:10:00 +0800</lastBuildDate><atom:link href="https://kaian9804.github.io/tags/me/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 01 Dec 2023 23:30:00 +0800</lastBuildDate><atom:link href="https://kaian9804.github.io/tags/me/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Attending TALE2023</title>
+      <link>https://kaian9804.github.io/post/06_tale2023/</link>
+      <pubDate>Fri, 01 Dec 2023 23:30:00 +0800</pubDate>
+      
+      <guid>https://kaian9804.github.io/post/06_tale2023/</guid>
+      <description>Go to Auckland One of my conference papers has been accepted by TALE2023. This conference was held in Auckland from 28-Nov to 1-Dec. This is the first time I can attend a conference in person.
+Accepted paper: Exploring the Factors and Moderators Influencing the Use of Radar Visualisation of Student Performance from Parents’ Perspective
+Attending the Conference I attended the workshop session, keynote and other presentations, and my presentation was scheduled for the last day.</description>
+    </item>
+    
     <item>
       <title>Creating my Website</title>
       <link>https://kaian9804.github.io/post/00_my_web/</link>
       <pubDate>Sun, 08 Oct 2023 01:10:00 +0800</pubDate>
       
       <guid>https://kaian9804.github.io/post/00_my_web/</guid>
-      <description>I want a website I wanted to have my own personal website for a long time. I have tried to create a website many times. I tried to have my own website on 000webhostapp, hostinger and gihub with HTML and CSS, but these designs are usually so simple and unsatisfied for me. Now I really want to build a new one! I am building this website with Hugo. This is</description>
+      <description>I want a website I wanted to have my own personal website for a long time. I have tried to create a website many times. I tried to have my own website on 000webhostapp, hostinger and gihub with HTML and CSS, but these designs are usually so simple and unsatisfied for me.
+Now I really want to build a new one! I am building this website with Hugo. This is a new way for me to build a website.</description>
     </item>
     
   </channel>
