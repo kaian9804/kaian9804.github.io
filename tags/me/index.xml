@@ -18,7 +18,7 @@ Go to the GitHub and Hugo file
 Start cmd
 Enter &amp;ldquo;hugo&amp;rdquo; and press enter
 The HTML codes will be generated in the &amp;ldquo;public&amp;rdquo; folder
-Copy the codes to the GitHub folder where it can be uploaded via GitHub Desktop (\GitHub\username.github.io)
+Copy the codes to the GitHub folder where it can be uploaded via GitHub Desktop (C:\Users\user\Documents\GitHub\username.github.io)
 The changes will be showed in GitHub Desktop
 Write down summary and descriptions of changes, commit to main, and push the changes to GitHub</description>
     </item>
