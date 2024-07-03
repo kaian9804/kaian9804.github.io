@@ -6,7 +6,20 @@
     <description>Recent content on Ka Ian Chan</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 29 Mar 2024 22:00:00 +0800</lastBuildDate><atom:link href="https://kaian9804.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 Jul 2024 13:12:00 +0800</lastBuildDate><atom:link href="https://kaian9804.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AMOS License Issue</title>
+      <link>https://kaian9804.github.io/post/09_amos_issue/</link>
+      <pubDate>Wed, 03 Jul 2024 13:12:00 +0800</pubDate>
+      
+      <guid>https://kaian9804.github.io/post/09_amos_issue/</guid>
+      <description>License Issue of AMOS After a period of time, the AMOS software may raised the following issue. &amp;ldquo;the temporary period for running amos without a license has expired use the license authorization wizard to contact spss for a license code&amp;rdquo;
+Here is the solution to solve this problem.
+Go to &amp;ldquo;C:\Program Files (x86)\IBM\SPSS\Amos\26&amp;rdquo;
+Delete the file called &amp;ldquo;lservrc&amp;rdquo; (also please save a copy as a backup)
+Go to &amp;ldquo;C:\ProgramData\SafeNet Sentinel\Sentinel RMS Development Kit\System&amp;rdquo; and delete all the files inside this folder</description>
+    </item>
+    
     <item>
       <title>Being a volunteer in Boao Forum For Asia (BFA)</title>
       <link>https://kaian9804.github.io/post/08_bfa2024/</link>
