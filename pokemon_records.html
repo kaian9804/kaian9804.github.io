@@ -2012,7 +2012,7 @@
         }
 
         /* ============================================================
-           備份/還原按鈕（不顯眼）
+           備份/還原/刪除所有記錄（不顯眼）
            ============================================================ */
         .backup-section {
             margin-top: 1.5rem;
@@ -2042,6 +2042,10 @@
         }
         .backup-section .backup-btn i {
             font-size: 0.6rem;
+        }
+        .backup-section .backup-btn.danger:hover {
+            color: #dc3545;
+            background: #fce4e4;
         }
         #restoreFileInput {
             display: none;
@@ -2108,7 +2112,7 @@
                         <label>結果 <span class="required">*</span></label>
                         <div class="result-btn-group" id="resultBtnGroup">
                             <button class="result-btn win" data-result="win"><i class="fas fa-check-circle fa-icon"></i> 嬴</button>
-                            <button class="result-btn lose active" data-result="lose"><i class="fas fa-times-circle fa-icon"></i> 輸</button>
+                            <button class="result-btn lose" data-result="lose"><i class="fas fa-times-circle fa-icon"></i> 輸</button>
                             <button class="result-btn draw" data-result="draw"><i class="fas fa-minus-circle fa-icon"></i> 和</button>
                         </div>
                     </div>
@@ -2261,10 +2265,11 @@
             </div>
         </div>
 
-        <!-- 備份/還原（不顯眼） -->
+        <!-- 備份/還原/刪除所有記錄 -->
         <div class="backup-section">
             <button class="backup-btn" id="exportDbBtn"><i class="fas fa-download"></i> 匯出資料庫</button>
             <button class="backup-btn" id="importDbBtn"><i class="fas fa-upload"></i> 匯入資料庫</button>
+            <button class="backup-btn danger" id="deleteAllBtn"><i class="fas fa-trash"></i> 刪除所有記錄</button>
             <input type="file" id="restoreFileInput" accept=".db">
         </div>
     </div>
@@ -2349,7 +2354,6 @@
         // 資料操作函式
         // ============================================================
         function getBattles() {
-            // 按日期降序排列（最新日期在前）
             return [...appData.battles].sort((a, b) => {
                 if (a.date > b.date) return -1;
                 if (a.date < b.date) return 1;
@@ -2397,6 +2401,11 @@
 
         function deleteBattle(id) {
             appData.battles = appData.battles.filter(b => b.id !== id);
+            saveData();
+        }
+
+        function deleteAllBattles() {
+            appData.battles = [];
             saveData();
         }
 
@@ -2496,12 +2505,12 @@
         let opponentDecks = [];
         let eventTypes = [];
         let username = '使用者';
-        let selectedResult = 'lose';
+        let selectedResult = null; // 預設不選
         let selectedTags = [];
         let selectedTurn = '';
         let currentChart = 'list';
 
-        let lastSelectedResult = 'lose';
+        let lastSelectedResult = null;
         let lastSelectedTurn = '';
         let lastEventType = '個人玩';
 
@@ -2576,6 +2585,7 @@
         const exportDbBtn = document.getElementById('exportDbBtn');
         const importDbBtn = document.getElementById('importDbBtn');
         const restoreFileInput = document.getElementById('restoreFileInput');
+        const deleteAllBtn = document.getElementById('deleteAllBtn');
 
         // ============================================================
         // 圖表切換
@@ -2612,7 +2622,7 @@
         });
 
         // ============================================================
-        // 結果按鈕
+        // 結果按鈕 - 預設都不選
         // ============================================================
         resultBtnGroup.querySelectorAll('.result-btn').forEach(btn => {
             btn.addEventListener('click', function() {
@@ -3226,6 +3236,27 @@
             loadDataFromStorage(); };
 
         // ============================================================
+        // 刪除所有記錄
+        // ============================================================
+        deleteAllBtn.addEventListener('click', function() {
+            if (battles.length === 0) {
+                alert('目前沒有任何記錄可以刪除');
+                return;
+            }
+            // 第一次確認
+            if (!confirm(`⚠️ 確定要刪除全部 ${battles.length} 筆對戰記錄嗎？\n此操作無法復原！`)) {
+                return;
+            }
+            // 第二次確認
+            if (!confirm('再次確認：真的要刪除所有記錄嗎？')) {
+                return;
+            }
+            deleteAllBattles();
+            loadDataFromStorage();
+            alert('已刪除所有記錄');
+        });
+
+        // ============================================================
         // 從 localStorage 載入資料到記憶體
         // ============================================================
         function loadDataFromStorage() {
@@ -3755,42 +3786,38 @@
 
             addBattle({ date, result: selectedResult, myTeam: myTeamVal, event: eventVal, opponentDeck: opponentDeckVal,
                 note, tag, turn });
-            
+
             // 重新載入資料
             loadDataFromStorage();
-            
+
             // 清空對手牌組、結果、先後攻、標籤、備註
-            // 對手牌組：重置為第一個選項
             if (opponentDecks.length > 0) {
                 opponentDeckSelect.value = opponentDecks[0];
             } else {
                 opponentDeckSelect.value = '';
             }
-            
-            // 結果：重置為「輸」（預設）
+
+            // 結果：全部取消選取
             resultBtnGroup.querySelectorAll('.result-btn').forEach(b => {
                 b.classList.remove('active');
-                if (b.dataset.result === 'lose') {
-                    b.classList.add('active');
-                    selectedResult = 'lose';
-                    lastSelectedResult = 'lose';
-                }
             });
-            
+            selectedResult = null;
+            lastSelectedResult = null;
+
             // 先後攻：取消選擇
             turnBtnGroup.querySelectorAll('.turn-btn').forEach(b => {
                 b.classList.remove('active-first', 'active-last');
             });
             selectedTurn = '';
             lastSelectedTurn = '';
-            
+
             // 標籤：清除所有
             tagSelectGroup.querySelectorAll('.tag-select-btn').forEach(b => b.classList.remove('active'));
             selectedTags = [];
-            
+
             // 備註：清空
             battleNote.value = '';
-            
+
             // 日期保留為今天
             setDefaultDate();
         });
@@ -3928,13 +3955,13 @@
                 updateYearOptions();
                 updateFilterDeckOptions();
 
+                // 結果：全部取消選取（預設都不選）
                 resultBtnGroup.querySelectorAll('.result-btn').forEach(b => {
                     b.classList.remove('active');
-                    if (b.dataset.result === lastSelectedResult) {
-                        b.classList.add('active');
-                        selectedResult = lastSelectedResult;
-                    }
                 });
+                selectedResult = null;
+                lastSelectedResult = null;
+
                 turnBtnGroup.querySelectorAll('.turn-btn').forEach(b => {
                     b.classList.remove('active-first', 'active-last');
                     if (b.dataset.turn === lastSelectedTurn) {
