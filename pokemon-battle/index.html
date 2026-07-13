@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>寶可夢對戰 · 牌組勝率</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="shortcut icon" type="image/png" href="icon.png">
+    <link rel="apple-touch-icon" type="image/png" href="icon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
     </script>
     <style>
         /* ============================================================
-           基礎樣式（電腦版預設）
+           基礎樣式
            ============================================================ */
         * {
             margin: 0;
@@ -21,15 +25,15 @@
             background: #f0f4f8;
             display: flex;
             justify-content: center;
-            padding: 2rem 1rem;
+            padding: 1rem 0.5rem;
         }
         .app {
             max-width: 820px;
             width: 100%;
             background: white;
-            border-radius: 32px;
+            border-radius: 24px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-            padding: 2rem 2rem 3rem;
+            padding: 1.2rem 1rem 2rem;
         }
 
         /* ============================================================
@@ -37,12 +41,13 @@
            ============================================================ */
         @media (max-width: 767px) {
             body {
-                padding: 0.5rem 0.5rem 1rem;
+                padding: 0.3rem 0.3rem 0.6rem;
             }
             .app {
-                padding: 0.8rem 0.6rem 1.2rem;
-                border-radius: 20px;
+                padding: 0.6rem 0.5rem 1.2rem;
+                border-radius: 16px;
             }
+
             button,
             .btn,
             .result-btn,
@@ -52,228 +57,424 @@
             .btn-more,
             .share-btn,
             .btn-add-deck,
-            .download-btn,
             .filter-reset,
             .btn-manage {
-                min-height: 40px;
-                min-width: 40px;
+                min-height: 44px;
                 touch-action: manipulation;
             }
-            .result-btn {
-                min-height: 42px;
-                padding: 0.3rem 0.6rem;
-                font-size: 0.8rem;
-            }
-            .turn-btn {
-                min-height: 40px;
-                padding: 0.3rem 0.8rem;
-                font-size: 0.75rem;
-            }
-            .tag-select-btn {
-                min-height: 32px;
-                padding: 0.15rem 0.5rem;
-                font-size: 0.7rem;
-            }
-            .tag-clear-btn {
-                min-height: 32px;
-                font-size: 0.65rem;
-                padding: 0.15rem 0.5rem;
-            }
-            .btn {
-                min-height: 40px;
-                padding: 0.3rem 0.8rem;
-                font-size: 0.8rem;
-            }
-            .share-btn {
-                min-height: 44px;
-                padding: 0.5rem 1rem;
-                font-size: 0.85rem;
-                width: 100%;
-                justify-content: center;
-            }
-            .btn-add-deck {
-                min-height: 36px;
-                padding: 0.25rem 0.7rem;
-                font-size: 0.75rem;
-            }
-            .btn-manage {
-                min-height: 32px;
-                padding: 0.15rem 0.5rem;
-                font-size: 0.65rem;
-            }
-            .btn-more {
-                min-height: 32px;
-                padding: 0.15rem 0.8rem;
-                font-size: 0.7rem;
-            }
+
             .header {
                 flex-direction: column;
                 align-items: stretch;
-                gap: 0.3rem;
-                margin-bottom: 1rem;
+                gap: 0.4rem;
+                margin-bottom: 0.8rem;
             }
             .logo h1 {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
                 text-align: center;
             }
             .user-profile {
                 justify-content: center;
-                padding: 0.15rem 0.5rem;
+                padding: 0.1rem 0.5rem;
+                gap: 0.4rem;
+                flex-wrap: wrap;
             }
             .user-profile .username-edit {
-                width: 80px;
-                font-size: 0.75rem;
+                width: 70px;
+                font-size: 0.7rem;
+                min-height: 28px;
             }
             .user-profile .record-badge {
                 font-size: 0.6rem;
                 padding: 0.05rem 0.4rem;
             }
+
             .deck-selector {
-                padding: 0.6rem 0.7rem;
-                gap: 0.4rem;
-                border-radius: 16px;
+                padding: 0.5rem 0.6rem;
+                gap: 0.3rem;
+                border-radius: 14px;
+                flex-direction: column;
+                align-items: stretch;
             }
             .deck-selector .select-wrapper {
-                min-width: 100px;
+                display: flex;
+                gap: 0.3rem;
                 flex-wrap: wrap;
+                width: 100%;
             }
             .deck-selector select {
+                flex: 1;
                 font-size: 0.8rem;
-                padding: 0.35rem 0.6rem;
-                min-height: 36px;
-                min-width: 80px;
+                padding: 0.3rem 0.5rem;
+                min-height: 40px;
+                min-width: 60px;
+            }
+            .deck-selector .btn-add-deck {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.6rem;
+                min-height: 40px;
+            }
+            .deck-selector .btn-manage {
+                font-size: 0.65rem;
+                padding: 0.15rem 0.5rem;
+                min-height: 40px;
             }
             .deck-selector .deck-stats-mini {
-                font-size: 0.7rem;
-                width: 100%;
+                font-size: 0.65rem;
                 text-align: center;
+                width: 100%;
             }
+
             .card {
-                padding: 0.8rem 0.7rem;
-                border-radius: 16px;
+                padding: 0.6rem 0.5rem;
+                border-radius: 14px;
             }
             .card-title {
-                font-size: 0.9rem;
-                margin-bottom: 0.6rem;
+                font-size: 0.85rem;
+                margin-bottom: 0.5rem;
             }
             .current-deck-indicator {
-                font-size: 0.6rem;
-                padding: 0.05rem 0.5rem;
-            }
-            .form-row {
-                grid-template-columns: 1fr;
-                gap: 0.3rem;
+                font-size: 0.55rem;
+                padding: 0.05rem 0.4rem;
             }
             .form-group {
                 margin-bottom: 0.4rem;
             }
             .form-group label {
-                font-size: 0.7rem;
+                font-size: 0.65rem;
+                margin-bottom: 2px;
             }
             .form-group input,
             .form-group select,
             .form-group textarea {
-                padding: 0.35rem 0.5rem;
+                padding: 0.3rem 0.5rem;
                 font-size: 15px !important;
-                min-height: 36px;
+                min-height: 38px;
                 border-radius: 10px;
             }
             .form-group textarea {
-                min-height: 30px;
+                min-height: 28px;
             }
-            .result-btn-group {
-                gap: 0.3rem;
-            }
-            .turn-btn-group {
-                gap: 0.3rem;
-            }
-            .btn-group {
-                gap: 0.3rem;
-            }
-            .tag-select-group {
-                gap: 0.3rem;
-            }
-            .battle-item {
-                padding: 0.4rem 0.5rem;
-                border-left-width: 4px;
-                border-radius: 10px;
+            .form-row {
+                grid-template-columns: 1fr;
                 gap: 0.2rem;
             }
-            .battle-info .result {
+
+            /* 結果按鈕 - 三個等寬 */
+            .result-btn-group {
+                display: flex;
+                gap: 0.3rem;
+                flex-wrap: nowrap;
+                width: 100%;
+            }
+            .result-btn-group .result-btn {
+                flex: 1 1 0;
+                min-width: 0;
+                padding: 0.3rem 0.15rem;
+                font-size: 0.7rem;
+                white-space: nowrap;
+                min-height: 40px;
+                border-radius: 30px;
+            }
+
+            /* 先後攻按鈕 - 三個等寬 */
+            .turn-btn-group {
+                display: flex;
+                gap: 0.3rem;
+                flex-wrap: nowrap;
+                width: 100%;
+            }
+            .turn-btn {
+                flex: 1 1 0;
+                min-width: 0;
+                min-height: 44px;
+                padding: 0.3rem 0.15rem;
+                font-size: 0.7rem;
+                border-radius: 30px;
+                white-space: nowrap;
+                width: 33.333%;
+                text-align: center;
+                background: white;
+                color: #4a5b6e;
+                border: 2px solid #dce2ec;
+                cursor: pointer;
+                transition: 0.15s;
+            }
+            .turn-btn:hover {
+                background: #f0f4fc;
+                border-color: #b7c9e8;
+            }
+            /* 所有選中狀態統一紫色 */
+            .turn-btn.active-first,
+            .turn-btn.active-last,
+            .turn-btn.active-forgot {
+                background: #6f42c1 !important;
+                border-color: #5a32a3 !important;
+                color: white !important;
+            }
+
+            .tag-select-group {
+                gap: 0.25rem;
+            }
+            .tag-select-btn {
+                font-size: 0.6rem;
+                padding: 0.1rem 0.4rem;
+                min-height: 32px;
+            }
+            .tag-clear-btn {
+                font-size: 0.6rem;
+                padding: 0.1rem 0.4rem;
+                min-height: 32px;
+            }
+
+            .btn-group .btn {
+                min-height: 44px;
+                padding: 0.3rem 0.8rem;
                 font-size: 0.8rem;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .section-header h3 {
+                font-size: 0.85rem;
+            }
+            .btn-more {
+                font-size: 0.65rem;
+                padding: 0.15rem 0.6rem;
+                min-height: 32px;
+            }
+            .battle-item {
+                padding: 0.3rem 0.4rem;
+                border-left-width: 4px;
+                border-radius: 10px;
+                gap: 0.15rem;
+            }
+            .battle-info .result {
+                font-size: 0.75rem;
             }
             .battle-meta {
-                font-size: 0.65rem;
-                gap: 0.15rem 0.4rem;
+                font-size: 0.6rem;
+                gap: 0.1rem 0.3rem;
             }
             .battle-meta .note-full {
-                font-size: 0.6rem;
-                padding: 0.02rem 0.4rem;
+                font-size: 0.55rem;
+                padding: 0.02rem 0.3rem;
             }
             .result-tag {
-                font-size: 0.55rem;
-                padding: 0.02rem 0.4rem;
+                font-size: 0.5rem;
+                padding: 0.02rem 0.3rem;
             }
             .turn-badge {
-                font-size: 0.55rem;
-                padding: 0.02rem 0.35rem;
+                font-size: 0.5rem;
+                padding: 0.02rem 0.3rem;
             }
             .battle-actions i {
                 padding: 3px 4px;
-                font-size: 0.8rem;
+                font-size: 0.75rem;
             }
+
             .my-deck-stats {
-                padding: 0.6rem 0.7rem;
-                border-radius: 14px;
+                padding: 0.5rem 0.5rem;
+                border-radius: 12px;
             }
             .my-deck-stats-header {
-                gap: 0.3rem;
-                margin-bottom: 0.3rem;
+                flex-direction: column;
+                gap: 0.2rem;
+                align-items: stretch;
             }
             .my-deck-stats-title {
-                font-size: 0.8rem;
+                font-size: 0.75rem;
+                text-align: center;
+            }
+            .chart-toggle-group {
+                display: flex;
+                gap: 0.15rem;
+                justify-content: center;
+                flex-wrap: wrap;
             }
             .chart-toggle-btn {
                 font-size: 0.55rem;
                 padding: 0.1rem 0.4rem;
-                min-height: 26px;
+                min-height: 30px;
+                flex: 1;
+                text-align: center;
+                min-width: 60px;
             }
             .my-deck-row {
-                font-size: 0.75rem;
-                padding: 0.25rem 0;
+                font-size: 0.7rem;
+                padding: 0.2rem 0;
             }
             .my-deck-record {
-                font-size: 0.7rem;
-                padding: 0.05rem 0.5rem;
+                font-size: 0.65rem;
+                padding: 0.05rem 0.4rem;
             }
-            .grouped-bar-row {
-                display: flex;
-                flex-direction: column;
-                align-items: stretch;
-                gap: 0.2rem;
-                padding: 0.4rem 0;
-                border-bottom: 1px solid #f0f4f8;
+
+            /* 管理列表 - 零間距 */
+            .deck-manage-row {
+                padding: 0.06rem 0.1rem !important;
+                min-height: 28px !important;
+                margin: 0 !important;
+                gap: 0.15rem;
+                border-bottom: 1px solid #eef2f8;
             }
-            .grouped-bar-row:last-child {
-                border-bottom: none;
+            .deck-manage-row .drag-handle {
+                font-size: 0.6rem;
+                padding: 0 1px;
             }
-            .grouped-bar-label {
+            .deck-manage-row .deck-name {
                 font-size: 0.75rem;
-                font-weight: 600;
-                color: #1f2b41;
-                padding: 0.1rem 0;
+                padding: 0.05rem 0;
+            }
+            .deck-manage-row .deck-actions button {
+                min-height: 24px;
+                min-width: 24px;
+                padding: 0.03rem 0.15rem;
+                font-size: 0.6rem;
+            }
+
+            .modal-box {
+                padding: 0.8rem 0.8rem 1rem;
+                border-radius: 16px;
+                max-height: 90vh;
+            }
+            .modal-box h3 {
+                font-size: 0.85rem;
+                margin-bottom: 0.4rem;
+            }
+            .modal-box .btn-close-modal {
+                font-size: 1.2rem;
+                min-height: 36px;
+                min-width: 36px;
+            }
+            .modal-box .modal-body {
+                font-size: 0.75rem;
+            }
+            .modal-box .form-group input {
+                padding: 0.25rem 0.4rem;
+                min-height: 36px;
+                font-size: 0.8rem;
+            }
+            .modal-box .btn {
+                padding: 0.2rem 0.6rem;
+                font-size: 0.75rem;
+                min-height: 36px;
+            }
+            .modal-box .deck-manage-row {
+                padding: 0.04rem 0.1rem !important;
+                min-height: 26px !important;
+                margin: 0 !important;
+            }
+            .modal-box .deck-manage-row .deck-actions button {
+                min-height: 22px;
+                min-width: 22px;
+                padding: 0.02rem 0.12rem;
+                font-size: 0.55rem;
+            }
+            .sort-hint {
+                font-size: 0.6rem;
+                padding: 0.1rem 0 0.15rem 0;
+                margin-bottom: 0.15rem;
+            }
+
+            .share-btn {
+                min-height: 48px;
+                padding: 0.4rem 1rem;
+                font-size: 0.8rem;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .footer-meta {
+                font-size: 0.6rem;
+                padding-top: 0.6rem;
+                margin-top: 0.8rem;
+            }
+            .my-deck-stats-footer {
+                font-size: 0.55rem;
+                padding-top: 0.2rem;
+                margin-top: 0.2rem;
+            }
+            .designer-credit {
+                font-size: 0.6rem;
+                margin-top: 0.5rem;
+            }
+
+            .filter-bar {
+                gap: 0.2rem;
+                padding: 0.15rem 0 0.2rem 0;
+                flex-wrap: wrap;
+            }
+            .filter-bar .filter-group label {
+                font-size: 0.55rem;
+            }
+            .filter-bar select {
+                font-size: 0.55rem;
+                padding: 0.1rem 0.25rem;
+                min-width: 50px;
+                min-height: 28px;
+                border-radius: 16px;
+            }
+            .filter-bar .filter-stats {
+                font-size: 0.55rem;
+                width: 100%;
                 text-align: center;
             }
-            .grouped-bar-stats {
-                display: flex;
+            .filter-reset {
+                font-size: 0.55rem;
+                padding: 0.1rem 0.3rem;
+                min-height: 28px;
+            }
+
+            .all-battle-item {
+                padding: 0.25rem 0.3rem;
+                font-size: 0.65rem;
+                border-left-width: 3px;
+                border-radius: 8px;
+            }
+            .all-battle-meta {
+                font-size: 0.55rem;
+                gap: 0.05rem 0.2rem;
+            }
+            .all-battle-item .result-tag {
+                font-size: 0.45rem;
+                padding: 0.01rem 0.25rem;
+            }
+            .all-battle-item .turn-badge {
+                font-size: 0.45rem;
+                padding: 0.01rem 0.25rem;
+            }
+            .all-battle-actions i {
+                padding: 2px 3px;
+                font-size: 0.65rem;
+            }
+
+            /* ============================================================
+               先後攻對比圖表 - 手機版：牌組名稱在上方，bar佔滿寬度
+               ============================================================ */
+            .grouped-bar-row {
+                padding: 0.6rem 0;
+                gap: 0.2rem;
                 flex-direction: column;
-                gap: 0.15rem;
+                align-items: stretch;
+                border-bottom: 1px solid #f0f4f8;
+            }
+            .grouped-bar-label {
+                font-size: 0.8rem;
+                font-weight: 700;
+                color: #1f2b41;
+                text-align: center;
+                padding: 0.05rem 0;
                 width: 100%;
+            }
+            .grouped-bar-stats {
+                width: 100%;
+                gap: 0.2rem;
             }
             .grouped-bar-stat-row {
                 display: flex;
                 align-items: center;
                 gap: 0.3rem;
+                width: 100%;
             }
             .grouped-bar-stat-row .stat-label {
                 font-size: 0.55rem;
@@ -285,12 +486,13 @@
             }
             .grouped-bar-track {
                 flex: 1;
-                height: 14px;
+                height: 16px;
                 background: #eef2f8;
                 border-radius: 30px;
                 overflow: hidden;
                 position: relative;
-                min-width: 50px;
+                min-width: 40px;
+                width: 100%;
             }
             .grouped-bar-fill {
                 height: 100%;
@@ -303,219 +505,73 @@
                 font-size: 0.45rem;
                 font-weight: 700;
                 color: white;
-                min-width: 14px;
-            }
-            .grouped-bar-fill.total-fill {
-                background: linear-gradient(90deg, #FFB347, #FF8C42);
-            }
-            .grouped-bar-fill.first-fill {
-                background: linear-gradient(90deg, #FF6B6B, #EE5A24);
-            }
-            .grouped-bar-fill.last-fill {
-                background: linear-gradient(90deg, #4ECDC4, #45B7D1);
+                min-width: 16px;
             }
             .grouped-bar-percent {
                 font-size: 0.6rem;
                 font-weight: 700;
                 color: #2d4059;
-                min-width: 30px;
+                min-width: 32px;
                 flex-shrink: 0;
                 text-align: right;
             }
-            .grouped-bar-legend {
-                display: flex;
-                gap: 0.4rem;
-                justify-content: center;
-                padding: 0.2rem 0 0.3rem 0;
-                font-size: 0.55rem;
-                color: #4a5b6e;
-                flex-wrap: wrap;
-            }
-            .grouped-bar-legend span {
-                display: flex;
-                align-items: center;
-                gap: 0.2rem;
-            }
-            .grouped-bar-legend .dot {
-                display: inline-block;
-                width: 8px;
-                height: 8px;
-                border-radius: 3px;
-            }
-            .dot-first {
-                background: #FF6B6B;
-            }
-            .dot-last {
-                background: #4ECDC4;
-            }
-            .dot-total {
-                background: #FFB347;
-            }
             .grouped-bar-summary {
-                font-size: 0.55rem;
+                font-size: 0.6rem;
                 color: #6f7d93;
-                margin-top: 0.15rem;
+                margin-top: 0.1rem;
                 padding: 0.1rem 0;
                 border-top: 1px dashed #eef2f8;
                 text-align: left;
+                width: 100%;
             }
-            .chart-pie-container {
-                width: 120px;
-                height: 120px;
+            .grouped-bar-legend {
+                display: flex;
+                gap: 0.5rem;
+                justify-content: center;
+                padding: 0.25rem 0 0.3rem 0;
+                font-size: 0.6rem;
+                color: #4a5b6e;
+                flex-wrap: wrap;
             }
-            .chart-pie-legend-item {
-                font-size: 0.65rem;
-            }
-            .chart-pie-legend-item .color-dot {
+            .grouped-bar-legend .dot {
+                display: inline-block;
                 width: 10px;
                 height: 10px;
+                border-radius: 3px;
             }
-            .share-image-overlay {
-                padding: 0.5rem;
+
+            /* ===== 圓餅圖 - 手機版加大尺寸 ===== */
+            .chart-pie-container {
+                width: 140px;
+                height: 140px;
             }
-            .share-image-overlay .share-image-box {
-                padding: 0.6rem;
-                border-radius: 12px;
-            }
-            .share-image-overlay .share-image-box .download-btn {
-                width: 100%;
-                padding: 0.5rem 1rem;
-                font-size: 0.8rem;
-                min-height: 40px;
-            }
-            .modal-box {
-                padding: 1rem 1rem 1.2rem;
-                border-radius: 20px;
-            }
-            .modal-box h3 {
-                font-size: 0.9rem;
-                margin-bottom: 0.5rem;
-            }
-            .modal-box .modal-body {
-                font-size: 0.8rem;
-            }
-            .modal-box .btn-close-modal {
-                font-size: 1.3rem;
-                min-height: 36px;
-                min-width: 36px;
-            }
-            .filter-bar {
-                gap: 0.3rem;
-                padding: 0.2rem 0 0.3rem 0;
-            }
-            .filter-bar .filter-group label {
-                font-size: 0.6rem;
-            }
-            .filter-bar select {
-                font-size: 0.6rem;
-                padding: 0.15rem 0.3rem;
-                min-width: 55px;
-                min-height: 28px;
-                border-radius: 20px;
-            }
-            .filter-bar .filter-stats {
-                font-size: 0.6rem;
-                width: 100%;
-                text-align: left;
-                margin-left: 0;
-            }
-            .filter-reset {
-                font-size: 0.6rem;
-                padding: 0.15rem 0.4rem;
-                min-height: 28px;
-            }
-            .all-battle-item {
-                padding: 0.35rem 0.4rem;
-                font-size: 0.7rem;
-                border-left-width: 3px;
-                border-radius: 8px;
-            }
-            .all-battle-meta {
-                font-size: 0.6rem;
-                gap: 0.1rem 0.3rem;
-            }
-            .all-battle-item .result-tag {
-                font-size: 0.5rem;
-                padding: 0.02rem 0.3rem;
-            }
-            .all-battle-item .turn-badge {
-                font-size: 0.5rem;
-                padding: 0.02rem 0.3rem;
-            }
-            .all-battle-actions i {
-                padding: 2px 3px;
+            .chart-pie-legend-item {
                 font-size: 0.7rem;
             }
-            .deck-manage-row {
-                padding: 0.2rem 0;
-                font-size: 0.75rem;
-            }
-            .deck-manage-row .deck-actions button {
-                padding: 0.1rem 0.3rem;
-                font-size: 0.65rem;
-            }
-            .empty-state {
-                font-size: 0.75rem;
-                padding: 0.8rem 0;
-            }
-            .empty-state i {
-                font-size: 1.5rem;
-            }
-            .footer-meta {
-                font-size: 0.65rem;
-                padding-top: 0.6rem;
-                margin-top: 0.8rem;
-            }
-            .section {
-                margin-bottom: 1rem;
-            }
-            .share-section {
-                padding: 0.6rem 0 0.3rem 0;
-                margin-top: 1rem;
-            }
-            .my-deck-stats-footer {
-                font-size: 0.6rem;
-                padding-top: 0.3rem;
-                margin-top: 0.3rem;
-            }
-            select,
-            input,
-            textarea {
-                font-size: 16px !important;
+            .chart-pie-legend-item .color-dot {
+                width: 12px;
+                height: 12px;
             }
             .chart-pie-wrapper {
-                gap: 0.8rem;
+                gap: 1rem;
             }
-            .chart-pie-legend {
-                gap: 0.15rem;
-            }
-            /* 管理 Modal - 手機版更緊湊 */
-            .modal-box .form-group {
-                margin-bottom: 0.4rem;
-            }
-            .modal-box .form-group input {
-                padding: 0.3rem 0.5rem;
-                min-height: 36px;
-                font-size: 0.85rem;
-            }
-            .modal-box .btn-group {
+
+            .backup-section {
                 gap: 0.3rem;
+                padding-top: 0.4rem;
+                margin-top: 0.8rem;
             }
-            .modal-box .btn {
-                padding: 0.3rem 0.8rem;
-                font-size: 0.8rem;
-                min-height: 36px;
+            .backup-section .backup-btn {
+                font-size: 0.55rem;
+                padding: 0.1rem 0.4rem;
             }
-            .modal-box .deck-manage-row {
-                padding: 0.15rem 0;
-                font-size: 0.75rem;
+
+            .empty-state {
+                font-size: 0.7rem;
+                padding: 0.6rem 0;
             }
-            .modal-box .deck-manage-row .deck-actions button {
-                padding: 0.1rem 0.25rem;
-                font-size: 0.65rem;
-            }
-            .modal-box .modal-body {
-                padding: 0 0.2rem;
+            .empty-state i {
+                font-size: 1.2rem;
             }
         }
 
@@ -527,10 +583,10 @@
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
         .logo h1 {
-            font-size: 1.7rem;
+            font-size: 1.5rem;
             font-weight: 700;
             background: linear-gradient(145deg, #3b4cca, #2a3a9e);
             -webkit-background-clip: text;
@@ -540,26 +596,26 @@
         .user-profile {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: 0.5rem;
             background: #f8fafc;
-            padding: 0.25rem 0.8rem 0.25rem 0.7rem;
+            padding: 0.2rem 0.6rem 0.2rem 0.5rem;
             border-radius: 40px;
             border: 1px solid #e2e8f0;
         }
         .user-profile i {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #3b4cca;
         }
         .user-profile .username-edit {
             font-weight: 600;
             color: #1e2b41;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             background: transparent;
             border: none;
             border-bottom: 1.5px dashed #b7c9e8;
             padding: 0 0.1rem;
-            min-width: 36px;
-            width: 70px;
+            min-width: 30px;
+            width: 60px;
             outline: none;
             cursor: pointer;
             transition: 0.15s;
@@ -574,42 +630,43 @@
         }
         .user-profile .record-badge {
             background: #dce3f0;
-            padding: 0.1rem 0.6rem;
+            padding: 0.05rem 0.5rem;
             border-radius: 30px;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 600;
             color: #1e2a4a;
             white-space: nowrap;
         }
         .deck-selector {
             background: #f9fbfd;
-            padding: 1.2rem 1.5rem;
-            border-radius: 24px;
+            padding: 1rem 1.2rem;
+            border-radius: 20px;
             border: 1px solid #eef2f7;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 1rem;
+            gap: 0.8rem;
         }
         .deck-selector .select-wrapper {
             flex: 1;
-            min-width: 180px;
+            min-width: 160px;
             display: flex;
-            gap: 0.5rem;
+            gap: 0.4rem;
             align-items: center;
             flex-wrap: wrap;
         }
         .deck-selector select {
             flex: 1;
-            padding: 0.6rem 1rem;
+            padding: 0.5rem 0.8rem;
             border: 1px solid #dce2ec;
-            border-radius: 14px;
-            font-size: 0.95rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
             background: white;
             appearance: auto;
             cursor: pointer;
-            min-width: 120px;
+            min-width: 100px;
+            min-height: 38px;
         }
         .deck-selector select:focus {
             outline: 2px solid #b3c7f0;
@@ -619,22 +676,23 @@
             background: #3b4cca;
             color: white;
             border: none;
-            padding: 0.5rem 1.2rem;
+            padding: 0.4rem 1rem;
             border-radius: 40px;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
             white-space: nowrap;
+            min-height: 38px;
             transition: 0.15s;
         }
         .deck-selector .btn-add-deck:hover {
             background: #2f3db0;
         }
         .deck-selector .deck-stats-mini {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #5f718a;
             margin-left: auto;
             white-space: nowrap;
@@ -649,36 +707,36 @@
             color: #3b4cca;
         }
         .section {
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
         .card {
             background: #ffffff;
-            border-radius: 24px;
-            padding: 1.4rem 1.6rem;
+            border-radius: 20px;
+            padding: 1.2rem 1.2rem;
             border: 1px solid #eef2f8;
         }
         .card-title {
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #1e2b41;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
         }
         .card-title i {
             color: #3b4cca;
         }
         .form-group {
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
         .form-group label {
             display: block;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
             color: #2d4059;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
         .form-group label .required {
             color: #dc3545;
@@ -689,11 +747,12 @@
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 0.6rem 0.9rem;
+            padding: 0.5rem 0.7rem;
             border: 1px solid #dce2ec;
-            border-radius: 14px;
-            font-size: 0.9rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
             background: #fafcff;
+            min-height: 38px;
         }
         .form-group input:focus,
         .form-group select:focus,
@@ -704,32 +763,38 @@
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 0.8rem;
+            gap: 0.6rem;
         }
         @media (max-width: 500px) {
             .form-row {
                 grid-template-columns: 1fr;
             }
         }
+
+        /* ============================================================
+           結果按鈕
+           ============================================================ */
         .result-btn-group {
             display: flex;
-            gap: 0.8rem;
+            gap: 0.5rem;
             flex-wrap: wrap;
-            margin-top: 0.2rem;
+            margin-top: 0.15rem;
         }
         .result-btn {
-            padding: 0.6rem 1.8rem;
+            padding: 0.5rem 1rem;
             border-radius: 40px;
             border: 2px solid transparent;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             cursor: pointer;
             transition: 0.15s;
             background: #f0f2f5;
             color: #4a5b6e;
             flex: 1;
-            min-width: 80px;
+            min-width: 70px;
             text-align: center;
+            white-space: nowrap;
+            min-height: 38px;
         }
         .result-btn:hover {
             transform: translateY(-2px);
@@ -769,57 +834,73 @@
             box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
         }
         .result-btn .fa-icon {
-            margin-right: 6px;
+            margin-right: 4px;
         }
 
+        /* ============================================================
+           先後攻按鈕 - 選中顏色統一為紫色
+           ============================================================ */
         .turn-btn-group {
             display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-            margin-top: 0.2rem;
+            gap: 0.5rem;
+            flex-wrap: nowrap;
+            margin-top: 0.15rem;
         }
         .turn-btn {
-            padding: 0.4rem 1.8rem;
+            padding: 0.4rem 0.6rem;
             border-radius: 40px;
             border: 2px solid #dce2ec;
             font-weight: 700;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             cursor: pointer;
             transition: 0.15s;
             background: white;
             color: #4a5b6e;
             flex: 1;
-            min-width: 60px;
+            min-width: 0;
             text-align: center;
+            white-space: nowrap;
+            min-height: 38px;
         }
+        /* 所有按鈕 hover 統一 */
         .turn-btn:hover {
             background: #f0f4fc;
             border-color: #b7c9e8;
         }
-        .turn-btn.active-first {
-            background: #6f42c1;
-            border-color: #5a32a3;
-            color: white;
+        /* 所有選中狀態統一紫色（包含忘了） */
+        .turn-btn.active-first,
+        .turn-btn.active-last,
+        .turn-btn.active-forgot {
+            background: #6f42c1 !important;
+            border-color: #5a32a3 !important;
+            color: white !important;
         }
-        .turn-btn.active-last {
-            background: #6f42c1;
-            border-color: #5a32a3;
-            color: white;
+        /* 忘了按鈕預設與其他一致 */
+        .turn-btn.forgot {
+            background: white;
+            color: #4a5b6e;
+            border-color: #dce2ec;
+        }
+        /* 忘了的 hover 與其他一致 */
+        .turn-btn.forgot:hover {
+            background: #f0f4fc;
+            border-color: #b7c9e8;
         }
 
         .btn {
             background: #eef3fc;
             border: none;
-            padding: 0.6rem 1.4rem;
+            padding: 0.5rem 1.2rem;
             border-radius: 40px;
             font-weight: 600;
             color: #1b2b4a;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 4px;
             border: 1px solid transparent;
             cursor: pointer;
             transition: 0.15s;
+            min-height: 38px;
         }
         .btn:hover {
             opacity: 0.85;
@@ -841,19 +922,106 @@
         }
         .btn-group {
             display: flex;
-            gap: 0.6rem;
+            gap: 0.5rem;
             flex-wrap: wrap;
-            margin-top: 0.3rem;
+            margin-top: 0.2rem;
         }
+
+        /* ============================================================
+           管理列表 - 零間距
+           ============================================================ */
+        .deck-manage-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.08rem 0.2rem !important;
+            border-bottom: 1px solid #f0f4f8;
+            gap: 0.2rem;
+            cursor: grab;
+            transition: background 0.15s;
+            min-height: 30px !important;
+            margin: 0 !important;
+        }
+        .deck-manage-row:hover {
+            background: #f5f8ff;
+        }
+        .deck-manage-row:active {
+            cursor: grabbing;
+        }
+        .deck-manage-row.dragging {
+            opacity: 0.5;
+            background: #e9effa;
+        }
+        .deck-manage-row:last-child {
+            border-bottom: none;
+        }
+        .deck-manage-row .drag-handle {
+            color: #b0c0d0;
+            font-size: 0.7rem;
+            cursor: grab;
+            padding: 0 2px;
+            flex-shrink: 0;
+        }
+        .deck-manage-row .drag-handle:active {
+            cursor: grabbing;
+        }
+        .deck-manage-row .deck-name {
+            font-weight: 500;
+            color: #1f2b41;
+            flex: 1;
+            font-size: 0.85rem;
+            padding: 0.1rem 0;
+        }
+        .deck-manage-row .deck-actions {
+            display: flex;
+            gap: 0.1rem;
+            flex-shrink: 0;
+        }
+        .deck-manage-row .deck-actions button {
+            background: transparent;
+            border: none;
+            color: #8a9bb0;
+            cursor: pointer;
+            padding: 0.05rem 0.25rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            transition: 0.15s;
+            min-height: 26px;
+            min-width: 26px;
+        }
+        .deck-manage-row .deck-actions button:hover {
+            color: #3b4cca;
+            background: #e9effa;
+        }
+        .deck-manage-row .deck-actions button.delete:hover {
+            color: #dc3545;
+            background: #fce4e4;
+        }
+
+        .modal-box .deck-manage-row {
+            padding: 0.06rem 0.15rem !important;
+            min-height: 28px !important;
+            margin: 0 !important;
+        }
+        .modal-box .deck-manage-row .deck-actions button {
+            min-height: 24px;
+            min-width: 24px;
+            padding: 0.03rem 0.15rem;
+            font-size: 0.65rem;
+        }
+
+        /* ============================================================
+           其他共用樣式
+           ============================================================ */
         .battle-list {
             display: flex;
             flex-direction: column;
-            gap: 0.8rem;
+            gap: 0.6rem;
         }
         .battle-item {
             background: #fafcfe;
-            border-radius: 16px;
-            padding: 0.8rem 1rem;
+            border-radius: 14px;
+            padding: 0.6rem 0.8rem;
             border-left: 6px solid #b2c6e6;
             display: flex;
             flex-wrap: wrap;
@@ -886,18 +1054,18 @@
         }
         .battle-info {
             flex: 1;
-            min-width: 180px;
+            min-width: 150px;
         }
         .battle-info .result-line {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 0.4rem 0.8rem;
+            gap: 0.3rem 0.6rem;
             margin-bottom: 0.1rem;
         }
         .battle-info .result {
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
         .battle-info .result.win {
             color: #28a745;
@@ -910,14 +1078,14 @@
         }
         .result-tag {
             display: inline-block;
-            padding: 0.05rem 0.7rem;
+            padding: 0.03rem 0.5rem;
             border-radius: 30px;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 600;
             background: #dce3f0;
             color: #1e2a4a;
             border: 1px solid #b7c9e8;
-            line-height: 1.5;
+            line-height: 1.4;
         }
         .result-tag.tag-luck-good {
             background: #d4edda;
@@ -942,20 +1110,20 @@
         .battle-meta {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.4rem 1rem;
-            font-size: 0.8rem;
+            gap: 0.3rem 0.8rem;
+            font-size: 0.75rem;
             color: #43566e;
         }
         .battle-meta i {
-            margin-right: 3px;
+            margin-right: 2px;
             color: #62748e;
         }
         .battle-meta .note-full {
             color: #2d4059;
             background: #eef2f8;
-            padding: 0.05rem 0.6rem;
+            padding: 0.03rem 0.5rem;
             border-radius: 30px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             display: inline-block;
             max-width: 100%;
             word-break: break-word;
@@ -964,15 +1132,15 @@
         .battle-actions {
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 3px;
             flex-shrink: 0;
         }
         .battle-actions i {
-            padding: 6px 8px;
+            padding: 5px 6px;
             color: #8a9bb0;
             cursor: pointer;
             transition: 0.15s;
-            border-radius: 8px;
+            border-radius: 6px;
         }
         .battle-actions i:hover {
             color: #dc3545;
@@ -981,8 +1149,8 @@
 
         .my-deck-stats {
             background: #fafdff;
-            border-radius: 20px;
-            padding: 1.2rem 1.4rem;
+            border-radius: 18px;
+            padding: 1rem 1.2rem;
             border: 1px solid #e3eaf3;
         }
         .my-deck-stats-header {
@@ -990,34 +1158,35 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 0.8rem;
+            gap: 0.4rem;
+            margin-bottom: 0.6rem;
         }
         .my-deck-stats-title {
             font-weight: 600;
             color: #1a2639;
             display: flex;
             align-items: center;
-            gap: 6px;
-            font-size: 1rem;
+            gap: 4px;
+            font-size: 0.95rem;
         }
         .chart-toggle-group {
             display: flex;
-            gap: 0.3rem;
+            gap: 0.2rem;
             background: #eef2f8;
-            padding: 0.15rem;
+            padding: 0.1rem;
             border-radius: 30px;
         }
         .chart-toggle-btn {
-            padding: 0.2rem 1rem;
+            padding: 0.15rem 0.8rem;
             border: none;
             border-radius: 30px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 600;
             cursor: pointer;
             background: transparent;
             color: #6f7d93;
             transition: 0.15s;
+            min-height: 30px;
         }
         .chart-toggle-btn:hover {
             color: #1a2639;
@@ -1032,9 +1201,9 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0.4rem 0;
+            padding: 0.3rem 0;
             border-bottom: 1px solid #eef2f8;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
         .my-deck-row:last-child {
             border-bottom: none;
@@ -1044,11 +1213,11 @@
             color: #1f2b41;
         }
         .my-deck-record {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             color: #1a2b4a;
             background: #eef2f8;
-            padding: 0.1rem 0.9rem;
+            padding: 0.05rem 0.7rem;
             border-radius: 30px;
         }
         .my-deck-record .wins {
@@ -1061,214 +1230,29 @@
             color: #b8860b;
         }
 
-        .chart-grouped-bars {
-            padding: 0.5rem 0;
-        }
-        .grouped-bar-row {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #f0f4f8;
-        }
-        .grouped-bar-row:last-child {
-            border-bottom: none;
-        }
-        .grouped-bar-label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: #1f2b41;
-            min-width: 100px;
-            flex-shrink: 0;
-        }
-        .grouped-bar-stats {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 0.15rem;
-            min-width: 0;
-        }
-        .grouped-bar-stat-row {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .grouped-bar-stat-row .stat-label {
-            font-size: 0.65rem;
-            font-weight: 600;
-            color: #4a5b6e;
-            min-width: 70px;
-            flex-shrink: 0;
-            text-align: right;
-        }
-        .grouped-bar-track {
-            flex: 1;
-            height: 16px;
-            background: #eef2f8;
-            border-radius: 30px;
-            overflow: hidden;
-            position: relative;
-            min-width: 100px;
-            max-width: 300px;
-        }
-        .grouped-bar-fill {
-            height: 100%;
-            border-radius: 30px;
-            transition: width 0.5s ease;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            padding-right: 4px;
-            font-size: 0.55rem;
-            font-weight: 700;
-            color: white;
-            min-width: 20px;
-        }
-        .grouped-bar-fill.total-fill {
-            background: linear-gradient(90deg, #FFB347, #FF8C42);
-        }
-        .grouped-bar-fill.first-fill {
-            background: linear-gradient(90deg, #FF6B6B, #EE5A24);
-        }
-        .grouped-bar-fill.last-fill {
-            background: linear-gradient(90deg, #4ECDC4, #45B7D1);
-        }
-        .grouped-bar-percent {
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: #2d4059;
-            min-width: 40px;
-            flex-shrink: 0;
-            text-align: right;
-        }
-        .grouped-bar-summary {
-            font-size: 0.7rem;
-            color: #6f7d93;
-            margin-top: 0.1rem;
-            padding-left: 0;
-        }
-        .grouped-bar-summary strong {
-            color: #1a2639;
-        }
-        .grouped-bar-legend {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            padding: 0.5rem 0 0.3rem 0;
-            font-size: 0.7rem;
-            color: #4a5b6e;
-            flex-wrap: wrap;
-        }
-        .grouped-bar-legend span {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-        .grouped-bar-legend .dot {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 4px;
-        }
-        .dot-first {
-            background: #FF6B6B;
-        }
-        .dot-last {
-            background: #4ECDC4;
-        }
-        .dot-total {
-            background: #FFB347;
-        }
-
-        .chart-pie-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            gap: 1.5rem;
-            padding: 0.3rem 0;
-        }
-        .chart-pie-container {
-            position: relative;
-            width: 150px;
-            height: 150px;
-        }
-        .chart-pie {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-        }
-        .chart-pie-center {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-        }
-        .chart-pie-center .total {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #1a2639;
-        }
-        .chart-pie-center .label {
-            font-size: 0.55rem;
-            color: #6f7d93;
-        }
-        .chart-pie-legend {
-            display: flex;
-            flex-direction: column;
-            gap: 0.3rem;
-        }
-        .chart-pie-legend-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .current-deck-indicator {
             font-size: 0.75rem;
-            color: #1f2b41;
-        }
-        .chart-pie-legend-item .color-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 4px;
-            flex-shrink: 0;
-        }
-        .chart-pie-legend-item .legend-label {
+            color: #3b4cca;
             font-weight: 500;
-        }
-        .chart-pie-legend-item .legend-value {
-            color: #6f7d93;
-            font-size: 0.7rem;
-            margin-left: auto;
-        }
-
-        .badge {
-            background: #e4ecf7;
+            background: #e9effa;
             padding: 0.1rem 0.8rem;
             border-radius: 30px;
-            font-size: 0.7rem;
-            font-weight: 600;
+            display: inline-block;
         }
+
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.6rem;
         }
         .section-header h3 {
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: #17212b;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
         .section-header h3 i {
             color: #3b4cca;
@@ -1276,43 +1260,66 @@
         .section-header .header-actions {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
+            gap: 0.5rem;
         }
         .btn-more {
             background: transparent;
             border: 1px solid #cdd8ea;
-            padding: 0.2rem 1.2rem;
+            padding: 0.15rem 1rem;
             border-radius: 30px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
             color: #3b4cca;
             cursor: pointer;
             transition: 0.15s;
+            min-height: 32px;
         }
         .btn-more:hover {
             background: #e9effa;
             border-color: #3b4cca;
         }
-        .footer-meta {
-            margin-top: 2rem;
-            text-align: center;
-            color: #76879e;
-            font-size: 0.8rem;
-            border-top: 1px solid #e4ebf3;
-            padding-top: 1.5rem;
+
+        .btn-manage {
+            background: transparent;
+            border: 1px solid #cdd8ea;
+            padding: 0.15rem 0.7rem;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #3b4cca;
+            cursor: pointer;
+            transition: 0.15s;
+            min-height: 34px;
+            white-space: nowrap;
         }
-        .empty-state {
-            text-align: center;
-            padding: 1.5rem 0;
-            color: #8a9bb0;
-            font-size: 0.9rem;
+        .btn-manage:hover {
+            background: #e9effa;
+            border-color: #3b4cca;
         }
-        .empty-state i {
-            font-size: 2rem;
-            display: block;
-            margin-bottom: 0.5rem;
-            opacity: 0.5;
+
+        .turn-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            background: #6f42c1;
+            color: white;
+            padding: 0.03rem 0.4rem;
+            border-radius: 30px;
+            border: 1px solid #5a32a3;
+            line-height: 1.4;
         }
+        .turn-badge.first {
+            background: #6f42c1;
+            border-color: #5a32a3;
+        }
+        .turn-badge.last {
+            background: #6f42c1;
+            border-color: #5a32a3;
+        }
+        .turn-badge.forgot {
+            background: #6f42c1;
+            border-color: #5a32a3;
+        }
+
         .modal-overlay {
             display: none;
             position: fixed;
@@ -1324,15 +1331,15 @@
             justify-content: center;
             align-items: center;
             z-index: 999;
-            padding: 1rem;
+            padding: 0.8rem;
         }
         .modal-overlay.active {
             display: flex;
         }
         .modal-box {
             background: white;
-            border-radius: 28px;
-            padding: 2rem 2rem 1.8rem;
+            border-radius: 24px;
+            padding: 1.5rem 1.5rem 1.5rem;
             max-width: 720px;
             width: 100%;
             max-height: 85vh;
@@ -1353,19 +1360,22 @@
         }
         .modal-box h3 {
             font-weight: 600;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             color: #1a2639;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            font-size: 0.95rem;
         }
         .modal-box .btn-close-modal {
             background: transparent;
             border: none;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             cursor: pointer;
             color: #8a9bb0;
-            padding: 0 0.5rem;
+            padding: 0 0.4rem;
+            min-height: 36px;
+            min-width: 36px;
         }
         .modal-box .btn-close-modal:hover {
             color: #3b4cca;
@@ -1373,365 +1383,149 @@
         .modal-box .modal-body {
             overflow-y: auto;
             flex: 1;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #1e2b41;
-            white-space: pre-wrap;
-            word-break: break-word;
-        }
-        .current-deck-indicator {
-            font-size: 0.85rem;
-            color: #3b4cca;
-            font-weight: 500;
-            background: #e9effa;
-            padding: 0.2rem 1rem;
-            border-radius: 30px;
-            display: inline-block;
-        }
-        .all-battle-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-        }
-        .all-battle-item {
-            background: #fafcfe;
-            border-radius: 12px;
-            padding: 0.6rem 0.9rem;
-            border-left: 4px solid #b2c6e6;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid #ecf1f8;
-            font-size: 0.85rem;
-        }
-        .all-battle-item.win {
-            border-left-color: #28a745;
-            background: #f3faf6;
-        }
-        .all-battle-item.lose {
-            border-left-color: #dc3545;
-            background: #fcf5f5;
-        }
-        .all-battle-item.draw {
-            border-left-color: #ffc107;
-            background: #fffbee;
-        }
-        .all-battle-item .result-line {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 0.3rem 0.6rem;
-        }
-        .all-battle-item .result {
-            font-weight: 700;
-        }
-        .all-battle-item .result.win {
-            color: #28a745;
-        }
-        .all-battle-item .result.lose {
-            color: #dc3545;
-        }
-        .all-battle-item .result.draw {
-            color: #b8860b;
-        }
-        .all-battle-item .result-tag {
-            display: inline-block;
-            padding: 0.05rem 0.6rem;
-            border-radius: 30px;
-            font-size: 0.65rem;
-            font-weight: 600;
-            background: #dce3f0;
-            color: #1e2a4a;
-            border: 1px solid #b7c9e8;
+            font-size: 0.9rem;
             line-height: 1.5;
+            color: #1e2b41;
         }
-        .all-battle-item .result-tag.tag-luck-good {
-            background: #d4edda;
-            color: #155724;
-            border-color: #b7d7c1;
+        .modal-box .form-group {
+            margin-bottom: 0.4rem;
         }
-        .all-battle-item .result-tag.tag-luck-bad {
-            background: #f8d7da;
-            color: #721c24;
-            border-color: #f5c6cb;
+        .modal-box .form-group input {
+            padding: 0.3rem 0.5rem;
+            font-size: 0.85rem;
+            border-radius: 10px;
+            min-height: 36px;
         }
-        .all-battle-item .result-tag.tag-challenge {
-            background: #cce5ff;
-            color: #004085;
-            border-color: #b8daff;
+        .modal-box .btn-group {
+            gap: 0.3rem;
+            margin-top: 0.15rem;
         }
-        .all-battle-item .result-tag.tag-weakness {
-            background: #fff3cd;
-            color: #856404;
-            border-color: #ffc107;
-        }
-        .all-battle-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.3rem 0.8rem;
-            color: #43566e;
-            flex: 1;
-        }
-        .all-battle-meta i {
-            margin-right: 2px;
-            color: #62748e;
-        }
-        .all-battle-meta .note-full {
-            color: #2d4059;
-            background: #eef2f8;
-            padding: 0.05rem 0.6rem;
-            border-radius: 30px;
+        .modal-box .btn {
+            padding: 0.3rem 0.7rem;
             font-size: 0.75rem;
-            display: inline-block;
-            max-width: 100%;
-            word-break: break-word;
-            white-space: normal;
+            min-height: 34px;
         }
-        .all-battle-actions {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            flex-shrink: 0;
-        }
-        .all-battle-actions i {
-            padding: 4px 6px;
-            color: #8a9bb0;
-            cursor: pointer;
-            transition: 0.15s;
-            border-radius: 6px;
-        }
-        .all-battle-actions i:hover {
-            color: #dc3545;
-            background: #fce4e4;
-        }
-        .modal-empty {
-            text-align: center;
-            padding: 2rem 0;
-            color: #8a9bb0;
-        }
-        .modal-empty i {
-            font-size: 2rem;
-            display: block;
-            margin-bottom: 0.5rem;
-            opacity: 0.5;
-        }
-        .opponent-select-wrapper {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
-        .opponent-select-wrapper select {
-            flex: 1;
-        }
-        .loading-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.7);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            font-size: 1.2rem;
-            color: #3b4cca;
-        }
-        .loading-overlay.active {
-            display: flex;
-        }
-        .loading-overlay i {
-            margin-right: 10px;
-        }
-        .tag-select-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 0.2rem;
-        }
-        .tag-select-btn {
-            padding: 0.3rem 1rem;
-            border-radius: 30px;
-            border: 2px solid #dce2ec;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            background: white;
-            color: #4a5b6e;
-            transition: 0.15s;
-        }
-        .tag-select-btn:hover {
-            background: #f0f4fc;
-            border-color: #b7c9e8;
-        }
-        .tag-select-btn.active {
-            border-color: #3b4cca;
-            background: #e9effa;
-            color: #1f2b6b;
-        }
-        .tag-select-btn.tag-luck-good.active {
-            background: #d4edda;
-            border-color: #28a745;
-            color: #155724;
-        }
-        .tag-select-btn.tag-luck-bad.active {
-            background: #f8d7da;
-            border-color: #dc3545;
-            color: #721c24;
-        }
-        .tag-select-btn.tag-challenge.active {
-            background: #cce5ff;
-            border-color: #007bff;
-            color: #004085;
-        }
-        .tag-select-btn.tag-weakness.active {
-            background: #fff3cd;
-            border-color: #ffc107;
-            color: #856404;
-        }
-        .tag-select-btn .tag-hash {
-            font-weight: 700;
-            margin-right: 2px;
-        }
-        .tag-clear-btn {
-            padding: 0.3rem 0.8rem;
-            border-radius: 30px;
-            border: none;
-            font-size: 0.75rem;
-            font-weight: 600;
-            cursor: pointer;
-            background: transparent;
-            color: #8a9bb0;
-            transition: 0.15s;
-        }
-        .tag-clear-btn:hover {
-            color: #dc3545;
+        .modal-box .modal-body {
+            padding-top: 0.15rem;
         }
 
-        .filter-bar {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            padding: 0.4rem 0 0.6rem 0;
-            border-bottom: 1px solid #eef2f8;
-            margin-bottom: 0.8rem;
-            align-items: center;
-        }
-        .filter-bar .filter-group {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            flex-wrap: wrap;
-        }
-        .filter-bar .filter-group label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #2d4059;
-            margin-right: 0.2rem;
-        }
-        .filter-bar select,
-        .filter-bar input {
-            padding: 0.25rem 0.6rem;
-            border: 1px solid #dce2ec;
-            border-radius: 30px;
-            font-size: 0.75rem;
-            background: white;
-            color: #1e2b41;
-            outline: none;
-            min-width: 100px;
-        }
-        .filter-bar select:focus,
-        .filter-bar input:focus {
-            border-color: #3b4cca;
-            box-shadow: 0 0 0 2px rgba(59, 76, 202, 0.1);
-        }
-        .filter-bar select {
-            min-width: 100px;
-        }
-        .filter-bar .filter-reset {
-            background: transparent;
-            border: none;
+        .sort-hint {
+            font-size: 0.65rem;
             color: #8a9bb0;
-            font-size: 0.75rem;
-            cursor: pointer;
-            padding: 0.2rem 0.8rem;
-            border-radius: 30px;
-            transition: 0.15s;
+            text-align: center;
+            padding: 0.1rem 0 0.2rem 0;
+            border-bottom: 1px dashed #eef2f8;
+            margin-bottom: 0.2rem;
         }
-        .filter-bar .filter-reset:hover {
-            color: #dc3545;
-            background: #fce4e4;
+        .sort-hint i {
+            margin-right: 3px;
         }
-        .filter-bar .filter-stats {
-            font-size: 0.75rem;
-            color: #6f7d93;
-            margin-left: auto;
-            white-space: nowrap;
-        }
-        @media (max-width: 600px) {
-            .filter-bar .filter-stats {
-                margin-left: 0;
-                width: 100%;
-                text-align: left;
-            }
-        }
-        .filter-bar .filter-date-group {
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-            flex-wrap: wrap;
-        }
-        .filter-bar .filter-date-group select {
-            min-width: 70px;
-            padding: 0.25rem 0.5rem;
-        }
-        .filter-bar .filter-date-group select:first-child {
-            min-width: 80px;
-        }
-        .filter-bar .filter-date-group .date-sep {
+
+        .empty-state {
+            text-align: center;
+            padding: 1.2rem 0;
             color: #8a9bb0;
-            font-size: 0.75rem;
+            font-size: 0.85rem;
         }
-        .filter-bar .filter-date-group select:disabled {
-            background: #f0f2f5;
-            color: #8a9bb0;
-            cursor: not-allowed;
-            opacity: 0.6;
+        .empty-state i {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 0.4rem;
+            opacity: 0.5;
         }
 
         .share-section {
-            margin-top: 2rem;
+            margin-top: 1.5rem;
             text-align: center;
-            padding: 1rem 0 0.5rem 0;
+            padding: 0.8rem 0 0.3rem 0;
             border-top: 2px solid #eef2f8;
         }
         .share-btn {
             background: linear-gradient(145deg, #3b4cca, #2a3a9e);
             color: white;
             border: none;
-            padding: 0.8rem 2.5rem;
+            padding: 0.6rem 2rem;
             border-radius: 40px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
             cursor: pointer;
             transition: 0.2s;
             box-shadow: 0 4px 15px rgba(59, 76, 202, 0.3);
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            min-height: 44px;
         }
         .share-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 25px rgba(59, 76, 202, 0.4);
         }
-        .share-btn:active {
-            transform: scale(0.96);
+
+        .footer-meta {
+            margin-top: 1.5rem;
+            text-align: center;
+            color: #76879e;
+            font-size: 0.75rem;
+            border-top: 1px solid #e4ebf3;
+            padding-top: 1.2rem;
+        }
+        .my-deck-stats-footer {
+            font-size: 0.7rem;
+            color: #5f718a;
+            border-top: 1px dashed #dce2ec;
+            padding-top: 0.4rem;
+            margin-top: 0.4rem;
         }
 
-        /* ============================================================
-           分享圖片彈窗
-           ============================================================ */
+        .backup-section {
+            margin-top: 1.2rem;
+            padding-top: 0.6rem;
+            border-top: 1px solid #eef2f8;
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+        .backup-section .backup-btn {
+            background: transparent;
+            border: none;
+            color: #b0c0d0;
+            font-size: 0.65rem;
+            cursor: pointer;
+            padding: 0.15rem 0.6rem;
+            border-radius: 20px;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            min-height: 30px;
+        }
+        .backup-section .backup-btn:hover {
+            color: #3b4cca;
+            background: #e9effa;
+        }
+        .backup-section .backup-btn.danger:hover {
+            color: #dc3545;
+            background: #fce4e4;
+        }
+
+        .designer-credit {
+            text-align: center;
+            margin-top: 0.6rem;
+            font-size: 0.7rem;
+            color: #8a9bb0;
+        }
+        .designer-credit a {
+            color: #3b4cca;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.15s;
+        }
+        .designer-credit a:hover {
+            color: #2a3a9e;
+            text-decoration: underline;
+        }
+
         .share-image-overlay {
             display: none;
             position: fixed;
@@ -1743,7 +1537,7 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            padding: 2rem;
+            padding: 1.5rem;
             cursor: pointer;
         }
         .share-image-overlay.active {
@@ -1751,9 +1545,9 @@
         }
         .share-image-overlay .share-image-box {
             background: white;
-            border-radius: 16px;
-            padding: 1rem;
-            max-width: 700px;
+            border-radius: 14px;
+            padding: 0.8rem;
+            max-width: 650px;
             width: 100%;
             max-height: 90vh;
             overflow: auto;
@@ -1764,28 +1558,34 @@
             width: 100%;
             height: auto;
             display: block;
-            border-radius: 8px;
-        }
-        .share-image-overlay .share-image-box .download-btn {
-            display: block;
-            margin: 0.8rem auto 0 auto;
-            background: #FFB347;
-            color: white;
-            border: none;
-            padding: 0.6rem 2rem;
-            border-radius: 40px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .share-image-overlay .share-image-box .download-btn:hover {
-            background: #FF8C42;
+            border-radius: 6px;
         }
 
-        /* ============================================================
-           分享圖片容器
-           ============================================================ */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            font-size: 1.1rem;
+            color: #3b4cca;
+        }
+        .loading-overlay.active {
+            display: flex;
+        }
+        .loading-overlay i {
+            margin-right: 8px;
+        }
+
+        #restoreFileInput {
+            display: none;
+        }
+
         #shareCaptureArea {
             position: fixed;
             left: -9999px;
@@ -1885,6 +1685,10 @@
             padding: 0.04rem 0.6rem;
             border-radius: 30px;
         }
+        #shareCaptureArea .share-battle-item .turn-tag.forgot {
+            background: #6f42c1;
+            color: white;
+        }
         #shareCaptureArea .share-battle-item .tag-tag {
             font-size: 0.55rem;
             background: #dce3f0;
@@ -1950,197 +1754,429 @@
             padding-top: 8px;
             border-top: 1px solid #eef2f8;
         }
-        #shareCaptureArea .share-pie-container {
+
+        /* ============================================================
+           圖表樣式 - 先後攻對比 (牌組名稱在上方，bar佔滿寬度)
+           ============================================================ */
+        .chart-pie-wrapper {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
             justify-content: center;
+            gap: 1.2rem;
+            padding: 0.2rem 0;
         }
-        #shareCaptureArea .share-pie-container svg {
-            display: block;
+        .chart-pie-container {
+            position: relative;
+            width: 140px;
+            height: 140px;
         }
-
-        .turn-badge {
-            display: inline-block;
-            font-size: 0.7rem;
-            background: #6f42c1;
-            color: white;
-            padding: 0.05rem 0.5rem;
-            border-radius: 30px;
-            border: 1px solid #5a32a3;
-            line-height: 1.5;
+        .chart-pie {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #f0f2f5;
         }
-        .turn-badge.first {
-            background: #6f42c1;
-            border-color: #5a32a3;
+        .chart-pie-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
         }
-        .turn-badge.last {
-            background: #6f42c1;
-            border-color: #5a32a3;
+        .chart-pie-center .total {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #1a2639;
         }
-        .all-battle-item .turn-badge {
-            font-size: 0.6rem;
-            padding: 0.02rem 0.4rem;
+        .chart-pie-center .label {
+            font-size: 0.5rem;
+            color: #6f7d93;
         }
-
-        .btn-manage {
-            background: transparent;
-            border: 1px solid #cdd8ea;
-            padding: 0.2rem 0.8rem;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: #3b4cca;
-            cursor: pointer;
-            transition: 0.15s;
-            min-height: 34px;
-            white-space: nowrap;
+        .chart-pie-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
         }
-        .btn-manage:hover {
-            background: #e9effa;
-            border-color: #3b4cca;
-        }
-
-        .deck-manage-row {
+        .chart-pie-legend-item {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 0.4rem 0;
-            border-bottom: 1px solid #eef2f8;
-            gap: 0.5rem;
+            gap: 0.4rem;
+            font-size: 0.7rem;
+            color: #1f2b41;
         }
-        .deck-manage-row:last-child {
+        .chart-pie-legend-item .color-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+        .chart-pie-legend-item .legend-label {
+            font-weight: 500;
+        }
+        .chart-pie-legend-item .legend-value {
+            color: #6f7d93;
+            font-size: 0.65rem;
+            margin-left: auto;
+        }
+        .chart-pie-legend .avg-rate-note {
+            font-size: 0.55rem;
+            color: #8a9bb0;
+            margin-top: 0.15rem;
+            padding-top: 0.15rem;
+            border-top: 1px solid #eef2f8;
+            text-align: center;
+        }
+
+        /* 先後攻對比 - 牌組名稱在上方，bar佔滿寬度 */
+        .chart-grouped-bars {
+            padding: 0.3rem 0;
+        }
+        .grouped-bar-row {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f4f8;
+            gap: 0.2rem;
+        }
+        .grouped-bar-row:last-child {
             border-bottom: none;
         }
-        .deck-manage-row .deck-name {
-            font-weight: 500;
+        .grouped-bar-label {
+            font-size: 0.85rem;
+            font-weight: 700;
             color: #1f2b41;
-            flex: 1;
+            text-align: center;
+            padding: 0.1rem 0;
+            width: 100%;
         }
-        .deck-manage-row .deck-actions {
+        .grouped-bar-stats {
+            width: 100%;
             display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+        .grouped-bar-stat-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            width: 100%;
+        }
+        .grouped-bar-stat-row .stat-label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #4a5b6e;
+            min-width: 70px;
+            flex-shrink: 0;
+            text-align: right;
+        }
+        .grouped-bar-track {
+            flex: 1;
+            height: 16px;
+            background: #eef2f8;
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+            min-width: 60px;
+            width: 100%;
+        }
+        .grouped-bar-fill {
+            height: 100%;
+            border-radius: 30px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 4px;
+            font-size: 0.55rem;
+            font-weight: 700;
+            color: white;
+            min-width: 20px;
+        }
+        .grouped-bar-fill.total-fill {
+            background: linear-gradient(90deg, #FFB347, #FF8C42);
+        }
+        .grouped-bar-fill.first-fill {
+            background: linear-gradient(90deg, #FF6B6B, #EE5A24);
+        }
+        .grouped-bar-fill.last-fill {
+            background: linear-gradient(90deg, #4ECDC4, #45B7D1);
+        }
+        .grouped-bar-percent {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #2d4059;
+            min-width: 40px;
+            flex-shrink: 0;
+            text-align: right;
+        }
+        .grouped-bar-summary {
+            font-size: 0.7rem;
+            color: #6f7d93;
+            margin-top: 0.1rem;
+            padding: 0.1rem 0;
+            border-top: 1px dashed #eef2f8;
+            text-align: left;
+            width: 100%;
+        }
+        .grouped-bar-summary strong {
+            color: #1a2639;
+        }
+        .grouped-bar-legend {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            padding: 0.5rem 0 0.3rem 0;
+            font-size: 0.7rem;
+            color: #4a5b6e;
+            flex-wrap: wrap;
+        }
+        .grouped-bar-legend span {
+            display: flex;
+            align-items: center;
             gap: 0.3rem;
         }
-        .deck-manage-row .deck-actions button {
+        .grouped-bar-legend .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 4px;
+        }
+        .dot-first {
+            background: #FF6B6B;
+        }
+        .dot-last {
+            background: #4ECDC4;
+        }
+        .dot-total {
+            background: #FFB347;
+        }
+
+        .all-battle-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .all-battle-item {
+            background: #fafcfe;
+            border-radius: 10px;
+            padding: 0.4rem 0.6rem;
+            border-left: 4px solid #b2c6e6;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #ecf1f8;
+            font-size: 0.8rem;
+        }
+        .all-battle-item.win {
+            border-left-color: #28a745;
+            background: #f3faf6;
+        }
+        .all-battle-item.lose {
+            border-left-color: #dc3545;
+            background: #fcf5f5;
+        }
+        .all-battle-item.draw {
+            border-left-color: #ffc107;
+            background: #fffbee;
+        }
+        .all-battle-item .result-line {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.2rem 0.4rem;
+        }
+        .all-battle-item .result {
+            font-weight: 700;
+        }
+        .all-battle-item .result.win {
+            color: #28a745;
+        }
+        .all-battle-item .result.lose {
+            color: #dc3545;
+        }
+        .all-battle-item .result.draw {
+            color: #b8860b;
+        }
+        .all-battle-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.2rem 0.6rem;
+            color: #43566e;
+            flex: 1;
+            font-size: 0.7rem;
+        }
+        .all-battle-meta i {
+            margin-right: 2px;
+            color: #62748e;
+        }
+        .all-battle-actions {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            flex-shrink: 0;
+        }
+        .all-battle-actions i {
+            padding: 3px 5px;
+            color: #8a9bb0;
+            cursor: pointer;
+            transition: 0.15s;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+        .all-battle-actions i:hover {
+            color: #dc3545;
+            background: #fce4e4;
+        }
+
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            padding: 0.3rem 0 0.4rem 0;
+            border-bottom: 1px solid #eef2f8;
+            margin-bottom: 0.6rem;
+            align-items: center;
+        }
+        .filter-bar .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+            flex-wrap: wrap;
+        }
+        .filter-bar .filter-group label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #2d4059;
+        }
+        .filter-bar select {
+            padding: 0.15rem 0.4rem;
+            border: 1px solid #dce2ec;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            background: white;
+            color: #1e2b41;
+            outline: none;
+            min-width: 70px;
+            min-height: 30px;
+        }
+        .filter-bar select:focus {
+            border-color: #3b4cca;
+            box-shadow: 0 0 0 2px rgba(59, 76, 202, 0.1);
+        }
+        .filter-bar .filter-reset {
             background: transparent;
             border: none;
             color: #8a9bb0;
+            font-size: 0.7rem;
             cursor: pointer;
-            padding: 0.2rem 0.5rem;
-            border-radius: 6px;
-            font-size: 0.8rem;
+            padding: 0.1rem 0.6rem;
+            border-radius: 30px;
             transition: 0.15s;
+            min-height: 30px;
         }
-        .deck-manage-row .deck-actions button:hover {
-            color: #3b4cca;
-            background: #e9effa;
-        }
-        .deck-manage-row .deck-actions button.delete:hover {
+        .filter-bar .filter-reset:hover {
             color: #dc3545;
             background: #fce4e4;
         }
-
-        /* ============================================================
-           管理 Modal - 緊湊版
-           ============================================================ */
-        .modal-box .modal-body {
-            padding: 0 0.3rem;
-        }
-        .modal-box .form-group {
-            margin-bottom: 0.5rem;
-        }
-        .modal-box .form-group input {
-            padding: 0.4rem 0.6rem;
-            font-size: 0.85rem;
-            border-radius: 10px;
-            min-height: 38px;
-        }
-        .modal-box .btn-group {
-            gap: 0.4rem;
-            margin-top: 0.2rem;
-        }
-        .modal-box .btn {
-            padding: 0.35rem 0.8rem;
-            font-size: 0.8rem;
-            min-height: 36px;
-        }
-        .modal-box .deck-manage-row {
-            padding: 0.2rem 0;
-            font-size: 0.8rem;
-            gap: 0.3rem;
-        }
-        .modal-box .deck-manage-row .deck-actions button {
-            padding: 0.1rem 0.3rem;
+        .filter-bar .filter-stats {
             font-size: 0.7rem;
-            min-height: 28px;
-            min-width: 28px;
+            color: #6f7d93;
+            margin-left: auto;
+            white-space: nowrap;
         }
-        .modal-box .empty-state {
-            padding: 0.5rem 0;
-            font-size: 0.8rem;
-        }
-        .modal-box .modal-body {
-            padding-top: 0.2rem;
-        }
-        /* 電腦版管理 Modal 內距調整 */
-        @media (min-width: 768px) {
-            .modal-box {
-                padding: 1.2rem 1.2rem 1.2rem;
-            }
-            .modal-box h3 {
-                margin-bottom: 0.6rem;
-                font-size: 1rem;
-            }
-            .modal-box .form-group input {
-                padding: 0.3rem 0.5rem;
-                font-size: 0.85rem;
-                min-height: 34px;
-            }
-            .modal-box .btn {
-                padding: 0.25rem 0.7rem;
-                font-size: 0.75rem;
-                min-height: 32px;
-            }
-            .modal-box .deck-manage-row {
-                padding: 0.15rem 0;
-                font-size: 0.75rem;
+        @media (max-width: 600px) {
+            .filter-bar .filter-stats {
+                margin-left: 0;
+                width: 100%;
+                text-align: center;
             }
         }
 
-        /* ============================================================
-           備份/還原/刪除所有記錄（不顯眼）
-           ============================================================ */
-        .backup-section {
-            margin-top: 1.5rem;
-            padding-top: 0.8rem;
-            border-top: 1px solid #eef2f8;
+        .tag-select-group {
             display: flex;
-            justify-content: center;
-            gap: 1rem;
             flex-wrap: wrap;
+            gap: 0.3rem;
+            margin-top: 0.15rem;
         }
-        .backup-section .backup-btn {
-            background: transparent;
-            border: none;
-            color: #b0c0d0;
-            font-size: 0.7rem;
-            cursor: pointer;
+        .tag-select-btn {
             padding: 0.2rem 0.8rem;
-            border-radius: 20px;
-            transition: 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
+            border-radius: 30px;
+            border: 2px solid #dce2ec;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            background: white;
+            color: #4a5b6e;
+            transition: 0.15s;
+            min-height: 34px;
         }
-        .backup-section .backup-btn:hover {
-            color: #3b4cca;
+        .tag-select-btn:hover {
+            background: #f0f4fc;
+            border-color: #b7c9e8;
+        }
+        .tag-select-btn.active {
+            border-color: #3b4cca;
             background: #e9effa;
+            color: #1f2b6b;
         }
-        .backup-section .backup-btn.danger:hover {
+        .tag-select-btn.tag-luck-good.active {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        .tag-select-btn.tag-luck-bad.active {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        .tag-select-btn.tag-challenge.active {
+            background: #cce5ff;
+            border-color: #007bff;
+            color: #004085;
+        }
+        .tag-select-btn.tag-weakness.active {
+            background: #fff3cd;
+            border-color: #ffc107;
+            color: #856404;
+        }
+        .tag-select-btn .tag-hash {
+            font-weight: 700;
+            margin-right: 2px;
+        }
+        .tag-clear-btn {
+            padding: 0.2rem 0.6rem;
+            border-radius: 30px;
+            border: none;
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: pointer;
+            background: transparent;
+            color: #8a9bb0;
+            transition: 0.15s;
+            min-height: 34px;
+        }
+        .tag-clear-btn:hover {
             color: #dc3545;
-            background: #fce4e4;
         }
-        #restoreFileInput {
-            display: none;
+
+        .opponent-select-wrapper {
+            display: flex;
+            gap: 0.3rem;
+            align-items: center;
+        }
+        .opponent-select-wrapper select {
+            flex: 1;
         }
     </style>
 </head>
@@ -2197,7 +2233,7 @@
                         <label>對手牌組 <span class="required">*</span></label>
                         <div class="opponent-select-wrapper">
                             <select id="opponentDeck"></select>
-                            <button class="btn-manage" id="manageOppDeckBtn" style="padding:0.2rem 0.6rem; font-size:0.65rem;"><i class="fas fa-cog"></i></button>
+                            <button class="btn-manage" id="manageOppDeckBtn" style="padding:0.15rem 0.5rem; font-size:0.6rem; min-height:30px;"><i class="fas fa-cog"></i></button>
                         </div>
                     </div>
                     <div class="form-group">
@@ -2215,6 +2251,7 @@
                         <div class="turn-btn-group" id="turnBtnGroup">
                             <button class="turn-btn" data-turn="first">⚔️ 先攻</button>
                             <button class="turn-btn" data-turn="last">🛡️ 後攻</button>
+                            <button class="turn-btn forgot" data-turn="forgot">❓ 忘了</button>
                         </div>
                     </div>
                     <div class="form-group" style="display:flex; align-items:flex-end;">
@@ -2265,8 +2302,8 @@
                         <button class="chart-toggle-btn" data-chart="pie"><i class="fas fa-chart-pie"></i> 圓餅圖</button>
                     </div>
                 </div>
-                <div id="myDeckStatsList"><div class="empty-state" style="padding:0.8rem 0; font-size:0.85rem;"><i class="fas fa-spinner fa-spin" style="font-size:1.2rem;"></i> 載入中...</div></div>
-                <div style="margin-top: 0.6rem; font-size:0.75rem; color:#5f718a; border-top:1px dashed #dce2ec; padding-top:0.5rem;" id="myDeckStatsFooter">基於 0 場數據</div>
+                <div id="myDeckStatsList"><div class="empty-state" style="padding:0.6rem 0; font-size:0.8rem;"><i class="fas fa-spinner fa-spin" style="font-size:1rem;"></i> 載入中...</div></div>
+                <div id="myDeckStatsFooter" style="margin-top:0.4rem; font-size:0.7rem; color:#5f718a; border-top:1px dashed #dce2ec; padding-top:0.3rem;">基於 0 場數據</div>
             </div>
         </div>
 
@@ -2277,16 +2314,23 @@
 
         <div class="footer-meta" id="footerMeta"><i class="fas fa-database"></i> 共 0 場 · 載入中...</div>
 
+        <!-- 設計者 Credit -->
+        <div class="designer-credit">
+            Designed by <a href="https://kaian9804.github.io/" target="_blank">Ka Ian</a>
+        </div>
+
         <!-- Modals -->
         <div class="modal-overlay" id="addDeckModal"><div class="modal-box" style="max-width:400px;"><h3><i class="fas fa-plus-circle" style="color:#3b4cca;"></i> 新增牌組</h3><div class="form-group"><label>牌組名稱</label><input type="text" id="newDeckName" placeholder="輸入新牌組名稱" maxlength="30"></div><div class="btn-group" style="justify-content:flex-end;"><button class="btn btn-outline" id="cancelDeckBtn">取消</button><button class="btn btn-primary" id="confirmDeckBtn"><i class="fas fa-check"></i> 新增</button></div></div></div>
 
         <div class="modal-overlay" id="manageMyDeckModal">
             <div class="modal-box" style="max-width:500px;">
                 <h3><span><i class="fas fa-thumbs-up" style="color:#3b4cca;"></i> 管理我的牌組</span><button class="btn-close-modal" id="closeManageMyDeck">&times;</button></h3>
-                <div class="modal-body"><div id="myDeckManageList"></div>
-                    <div style="margin-top:0.5rem; display:flex; gap:0.4rem;">
-                        <input type="text" id="newMyDeckName" placeholder="輸入新牌組名稱" style="flex:1; padding:0.3rem 0.5rem; border:1px solid #dce2ec; border-radius:10px; font-size:0.85rem;">
-                        <button class="btn btn-primary" id="addMyDeckBtn" style="flex-shrink:0; padding:0.3rem 0.8rem; font-size:0.8rem;"><i class="fas fa-plus"></i> 新增</button>
+                <div class="modal-body">
+                    <div class="sort-hint"><i class="fas fa-arrows-alt-v"></i> 拖曳 ☰ 圖示可調整牌組順序</div>
+                    <div id="myDeckManageList"></div>
+                    <div style="margin-top:0.3rem; display:flex; gap:0.3rem;">
+                        <input type="text" id="newMyDeckName" placeholder="輸入新牌組名稱" style="flex:1; padding:0.25rem 0.4rem; border:1px solid #dce2ec; border-radius:8px; font-size:0.8rem; min-height:34px;">
+                        <button class="btn btn-primary" id="addMyDeckBtn" style="flex-shrink:0; padding:0.2rem 0.6rem; font-size:0.75rem; min-height:34px;"><i class="fas fa-plus"></i> 新增</button>
                     </div>
                 </div>
             </div>
@@ -2295,10 +2339,12 @@
         <div class="modal-overlay" id="manageOppDeckModal">
             <div class="modal-box" style="max-width:500px;">
                 <h3><span><i class="fas fa-layer-group" style="color:#3b4cca;"></i> 管理對手牌組</span><button class="btn-close-modal" id="closeManageOppDeck">&times;</button></h3>
-                <div class="modal-body"><div id="oppDeckManageList"></div>
-                    <div style="margin-top:0.5rem; display:flex; gap:0.4rem;">
-                        <input type="text" id="newOppDeckName" placeholder="輸入新對手牌組名稱" style="flex:1; padding:0.3rem 0.5rem; border:1px solid #dce2ec; border-radius:10px; font-size:0.85rem;">
-                        <button class="btn btn-primary" id="addOppDeckBtn" style="flex-shrink:0; padding:0.3rem 0.8rem; font-size:0.8rem;"><i class="fas fa-plus"></i> 新增</button>
+                <div class="modal-body">
+                    <div class="sort-hint"><i class="fas fa-arrows-alt-v"></i> 拖曳 ☰ 圖示可調整牌組順序</div>
+                    <div id="oppDeckManageList"></div>
+                    <div style="margin-top:0.3rem; display:flex; gap:0.3rem;">
+                        <input type="text" id="newOppDeckName" placeholder="輸入新對手牌組名稱" style="flex:1; padding:0.25rem 0.4rem; border:1px solid #dce2ec; border-radius:8px; font-size:0.8rem; min-height:34px;">
+                        <button class="btn btn-primary" id="addOppDeckBtn" style="flex-shrink:0; padding:0.2rem 0.6rem; font-size:0.75rem; min-height:34px;"><i class="fas fa-plus"></i> 新增</button>
                     </div>
                 </div>
             </div>
@@ -2308,9 +2354,9 @@
             <div class="modal-box" style="max-width:500px;">
                 <h3><span><i class="fas fa-trophy" style="color:#3b4cca;"></i> 管理賽事</span><button class="btn-close-modal" id="closeManageEvent">&times;</button></h3>
                 <div class="modal-body"><div id="eventManageList"></div>
-                    <div style="margin-top:0.5rem; display:flex; gap:0.4rem;">
-                        <input type="text" id="newEventName" placeholder="輸入新賽事名稱" style="flex:1; padding:0.3rem 0.5rem; border:1px solid #dce2ec; border-radius:10px; font-size:0.85rem;">
-                        <button class="btn btn-primary" id="addEventBtn" style="flex-shrink:0; padding:0.3rem 0.8rem; font-size:0.8rem;"><i class="fas fa-plus"></i> 新增</button>
+                    <div style="margin-top:0.3rem; display:flex; gap:0.3rem;">
+                        <input type="text" id="newEventName" placeholder="輸入新賽事名稱" style="flex:1; padding:0.25rem 0.4rem; border:1px solid #dce2ec; border-radius:8px; font-size:0.8rem; min-height:34px;">
+                        <button class="btn btn-primary" id="addEventBtn" style="flex-shrink:0; padding:0.2rem 0.6rem; font-size:0.75rem; min-height:34px;"><i class="fas fa-plus"></i> 新增</button>
                     </div>
                 </div>
             </div>
@@ -2353,7 +2399,6 @@
         <div class="share-image-overlay" id="shareImageOverlay">
             <div class="share-image-box" id="shareImageBox">
                 <img id="shareResultImg" src="" alt="分享圖片">
-                <button class="download-btn" id="downloadShareImgBtn"><i class="fas fa-download"></i> 下載圖片</button>
             </div>
         </div>
 
@@ -2390,7 +2435,7 @@
             </div>
             <div class="share-avg-rate" id="shareAvgRate">平均勝率：0%</div>
         </div>
-        <div class="share-footer">Generated by Pokemon Card Games · Designed by Ka Ian</div>
+        <div class="share-footer">Generated by Pokemon Card Games</div>
     </div>
 
     <script>
@@ -2491,7 +2536,6 @@
             return newBattle;
         }
 
-        // 修正：刪除記錄函數 - 確保正確刪除
         function deleteBattleById(id) {
             const index = appData.battles.findIndex(b => b.id === id);
             if (index === -1) {
@@ -2672,7 +2716,6 @@
         const shareImageOverlay = document.getElementById('shareImageOverlay');
         const shareImageBox = document.getElementById('shareImageBox');
         const shareResultImg = document.getElementById('shareResultImg');
-        const downloadShareImgBtn = document.getElementById('downloadShareImgBtn');
 
         const filterYearSelect = document.getElementById('filterYear');
         const filterMonthSelect = document.getElementById('filterMonth');
@@ -2705,23 +2748,27 @@
         turnBtnGroup.querySelectorAll('.turn-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 turnBtnGroup.querySelectorAll('.turn-btn').forEach(b => {
-                    b.classList.remove('active-first', 'active-last');
+                    b.classList.remove('active-first', 'active-last', 'active-forgot');
                 });
                 const turn = this.dataset.turn;
                 if (turn === 'first') {
                     this.classList.add('active-first');
                     selectedTurn = 'first';
                     lastSelectedTurn = 'first';
-                } else {
+                } else if (turn === 'last') {
                     this.classList.add('active-last');
                     selectedTurn = 'last';
                     lastSelectedTurn = 'last';
+                } else if (turn === 'forgot') {
+                    this.classList.add('active-forgot');
+                    selectedTurn = 'forgot';
+                    lastSelectedTurn = 'forgot';
                 }
             });
         });
 
         // ============================================================
-        // 結果按鈕 - 預設都不選
+        // 結果按鈕
         // ============================================================
         resultBtnGroup.querySelectorAll('.result-btn').forEach(btn => {
             btn.addEventListener('click', function() {
@@ -2754,6 +2801,92 @@
             tagSelectGroup.querySelectorAll('.tag-select-btn').forEach(b => b.classList.remove('active'));
             selectedTags = [];
         });
+
+        // ============================================================
+        // 通用拖曳排序函數
+        // ============================================================
+        function initDragSort(containerId, dataArray, updateCallback) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            const rows = container.querySelectorAll('.deck-manage-row');
+            let dragIndex = null;
+
+            rows.forEach((row, index) => {
+                row.setAttribute('data-index', index);
+                row.draggable = true;
+
+                row.addEventListener('dragstart', function(e) {
+                    dragIndex = parseInt(this.dataset.index);
+                    this.classList.add('dragging');
+                    e.dataTransfer.effectAllowed = 'move';
+                });
+
+                row.addEventListener('dragend', function(e) {
+                    this.classList.remove('dragging');
+                });
+
+                row.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                    const targetIndex = parseInt(this.dataset.index);
+                    if (dragIndex !== null && dragIndex !== targetIndex) {
+                        const item = dataArray.splice(dragIndex, 1)[0];
+                        dataArray.splice(targetIndex, 0, item);
+                        updateCallback();
+                        setTimeout(() => {
+                            renderMyDeckManageList();
+                            renderOppDeckManageList();
+                        }, 50);
+                        dragIndex = null;
+                    }
+                });
+
+                // 手機觸控支援
+                let touchStartY = 0;
+                let touchStartIndex = 0;
+                let touchTimeout = null;
+
+                row.addEventListener('touchstart', function(e) {
+                    touchStartY = e.touches[0].clientY;
+                    touchStartIndex = parseInt(this.dataset.index);
+                    touchTimeout = setTimeout(() => {
+                        this.style.opacity = '0.5';
+                    }, 300);
+                });
+
+                row.addEventListener('touchmove', function(e) {
+                    e.preventDefault();
+                    const touchY = e.touches[0].clientY;
+                    const deltaY = touchY - touchStartY;
+                    const rowHeight = this.offsetHeight || 40;
+                    const moveSteps = Math.round(deltaY / rowHeight);
+
+                    if (moveSteps !== 0) {
+                        const newIndex = Math.max(0, Math.min(dataArray.length - 1, touchStartIndex + moveSteps));
+                        if (newIndex !== touchStartIndex) {
+                            const item = dataArray.splice(touchStartIndex, 1)[0];
+                            dataArray.splice(newIndex, 0, item);
+                            updateCallback();
+                            setTimeout(() => {
+                                renderMyDeckManageList();
+                                renderOppDeckManageList();
+                            }, 50);
+                            touchStartIndex = newIndex;
+                        }
+                    }
+                });
+
+                row.addEventListener('touchend', function(e) {
+                    clearTimeout(touchTimeout);
+                    this.style.opacity = '1';
+                });
+
+                row.addEventListener('touchcancel', function(e) {
+                    clearTimeout(touchTimeout);
+                    this.style.opacity = '1';
+                });
+            });
+        }
 
         // ============================================================
         // 工具函式
@@ -2868,8 +3001,11 @@
                     myDeckSelector.appendChild(opt);
                 });
             }
-            if (myDecks.includes(currentVal)) myDeckSelector.value = currentVal;
-            else if (myDecks.length > 0) myDeckSelector.value = myDecks[0];
+            if (myDecks.includes(currentVal)) {
+                myDeckSelector.value = currentVal;
+            } else if (myDecks.length > 0) {
+                myDeckSelector.value = myDecks[0];
+            }
             updateCurrentDeckIndicator();
             updateStatsDisplay();
         }
@@ -2890,8 +3026,11 @@
                     opponentDeckSelect.appendChild(opt);
                 });
             }
-            if (opponentDecks.includes(currentVal)) opponentDeckSelect.value = currentVal;
-            else if (opponentDecks.length > 0) opponentDeckSelect.value = opponentDecks[0];
+            if (opponentDecks.includes(currentVal)) {
+                opponentDeckSelect.value = currentVal;
+            } else if (opponentDecks.length > 0) {
+                opponentDeckSelect.value = opponentDecks[0];
+            }
         }
 
         function syncEventSelect() {
@@ -2990,7 +3129,7 @@
 
             if (!hasData) {
                 myDeckStatsListEl.innerHTML =
-                    `<div class="empty-state" style="padding:0.8rem 0; font-size:0.85rem;"><i class="fas fa-chart-pie" style="font-size:1.2rem;"></i>尚無數據</div>`;
+                    `<div class="empty-state" style="padding:0.6rem 0; font-size:0.8rem;"><i class="fas fa-chart-pie" style="font-size:1rem;"></i>尚無數據</div>`;
                 return;
             }
 
@@ -3017,6 +3156,7 @@
                         <span><span class="dot dot-first"></span> 先攻勝率</span>
                         <span><span class="dot dot-last"></span> 後攻勝率</span>
                         <span><span class="dot dot-total"></span> 總勝率</span>
+                        <span style="color:#6c757d; font-size:0.6rem;"><i class="fas fa-info-circle"></i> 「忘了」不計入先後攻</span>
                     </div>`;
 
                 sortedDecks.forEach(deck => {
@@ -3048,9 +3188,12 @@
                         analysis = '📌 僅後攻數據';
                     }
 
+                    const forgotCount = stat.total - first.total - last.total;
+                    const forgotText = forgotCount > 0 ? ` (${forgotCount}場忘了)` : '';
+
                     html += `
                             <div class="grouped-bar-row">
-                                <span class="grouped-bar-label">${deck}</span>
+                                <div class="grouped-bar-label">${deck}</div>
                                 <div class="grouped-bar-stats">
                                     <div class="grouped-bar-stat-row">
                                         <span class="stat-label">總勝率</span>
@@ -3074,7 +3217,7 @@
                                         <span class="grouped-bar-percent">${lastWinRate}%</span>
                                     </div>
                                     <div class="grouped-bar-summary">
-                                        總勝率 <strong>${winRate}%</strong> · 先攻佔 ${firstPercent}% (勝率 ${firstWinRate}%) · 後攻佔 ${lastPercent}% (勝率 ${lastWinRate}%) 
+                                        總勝率 <strong>${winRate}%</strong> · 先攻佔 ${firstPercent}% (勝率 ${firstWinRate}%) · 後攻佔 ${lastPercent}% (勝率 ${lastWinRate}%)${forgotText}
                                         ${analysis ? ` · ${analysis}` : ''}
                                     </div>
                                 </div>
@@ -3120,6 +3263,13 @@
                     if (angle > 0.5) {
                         pieSegments +=
                             `<path d="M ${centerX} ${centerY} L ${x1} ${y1} A ${radius} ${radius} 0 ${largeArc} 1 ${x2} ${y2} Z" fill="${color}" stroke="white" stroke-width="2"/>`;
+                    } else if (percentage > 0) {
+                        const midAngle = (startAngle + endAngle) / 2;
+                        const radMid = (midAngle - 90) * Math.PI / 180;
+                        const midX = centerX + (radius * 0.5) * Math.cos(radMid);
+                        const midY = centerY + (radius * 0.5) * Math.sin(radMid);
+                        pieSegments +=
+                            `<circle cx="${midX}" cy="${midY}" r="4" fill="${color}" stroke="white" stroke-width="1"/>`;
                     }
 
                     legendHtml += `
@@ -3131,16 +3281,28 @@
                         `;
                 });
 
-                const avgRate = sortedDecks.length > 0 ? Math.round(sortedDecks.reduce((sum, d) => {
+                if (pieSegments === '' && total > 0) {
+                    pieSegments = `<circle cx="${centerX}" cy="${centerY}" r="${radius}" fill="${colors[0]}" stroke="white" stroke-width="2"/>`;
+                }
+
+                let avgRate = 0;
+                const decksWithData = sortedDecks.filter(d => {
                     const stat = stats[d];
-                    const valid = stat.total - stat.draws;
-                    return sum + (valid > 0 ? (stat.wins / valid) * 100 : 0);
-                }, 0) / sortedDecks.length) : 0;
+                    return (stat.total - stat.draws) > 0;
+                });
+                if (decksWithData.length > 0) {
+                    avgRate = Math.round(decksWithData.reduce((sum, d) => {
+                        const stat = stats[d];
+                        const valid = stat.total - stat.draws;
+                        return sum + (stat.wins / valid) * 100;
+                    }, 0) / decksWithData.length);
+                }
 
                 myDeckStatsListEl.innerHTML = `
                         <div class="chart-pie-wrapper">
                             <div class="chart-pie-container">
-                                <svg class="chart-pie" viewBox="0 0 150 150">
+                                <svg class="chart-pie" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="75" cy="75" r="65" fill="#f0f2f5"/>
                                     ${pieSegments}
                                     <circle cx="75" cy="75" r="32" fill="white" stroke="#eef2f8" stroke-width="1"/>
                                 </svg>
@@ -3151,8 +3313,11 @@
                             </div>
                             <div class="chart-pie-legend">
                                 ${legendHtml}
-                                <div style="margin-top:0.3rem; font-size:0.65rem; color:#6f7d93; border-top:1px solid #eef2f8; padding-top:0.3rem;">
+                                <div style="margin-top:0.2rem; font-size:0.6rem; color:#6f7d93; border-top:1px solid #eef2f8; padding-top:0.2rem;">
                                     平均勝率：${avgRate}%
+                                </div>
+                                <div class="avg-rate-note">
+                                    <i class="fas fa-info-circle"></i> 排除和局，各牌組勝率加總 ÷ 牌組數
                                 </div>
                             </div>
                         </div>
@@ -3169,23 +3334,22 @@
                 'fa-minus-circle');
             const resultText = b.result === 'win' ? '嬴' : (b.result === 'lose' ? '輸' : '和');
 
-            // 修正：使用正確的 onclick 語法，傳入 id
-            const deleteAttr = isCompact ?
-                `onclick="window.deleteBattleEntry(${b.id})"` :
-                `onclick="window.deleteBattleEntry(${b.id})"`;
+            const deleteAttr = `onclick="window.deleteBattleEntry(${b.id})"`;
 
             let turnHtml = '';
             if (b.turn === 'first') {
                 turnHtml = ' <span class="turn-badge first">⚔️ 先攻</span>';
             } else if (b.turn === 'last') {
                 turnHtml = ' <span class="turn-badge last">🛡️ 後攻</span>';
+            } else if (b.turn === 'forgot') {
+                turnHtml = ' <span class="turn-badge forgot">❓ 忘了</span>';
             }
 
             let noteHtml = '';
             if (b.note) {
                 const noteEscaped = b.note.replace(/</g, '&lt;').replace(/>/g, '&gt;');
                 noteHtml =
-                    ` <span class="note-full"><i class="fas fa-pen" style="font-size:0.6rem; margin-right:4px;"></i> ${noteEscaped}</span>`;
+                    ` <span class="note-full"><i class="fas fa-pen" style="font-size:0.55rem; margin-right:3px;"></i> ${noteEscaped}</span>`;
             }
 
             let tagHtml = '';
@@ -3325,9 +3489,8 @@
         }
 
         // ============================================================
-        // 刪除記錄 - 修正版
+        // 刪除記錄
         // ============================================================
-        // 定義一個統一的刪除函數，掛載到 window 上
         window.deleteBattleEntry = function(id) {
             if (!confirm('確定要刪除這筆記錄嗎？')) return;
             const success = deleteBattleById(id);
@@ -3378,19 +3541,20 @@
         }
 
         // ============================================================
-        // 管理牌組功能 - 使用緊湊的渲染函式
+        // 管理牌組功能
         // ============================================================
         function renderMyDeckManageList() {
             const decks = getMyDecks();
             if (decks.length === 0) {
                 myDeckManageList.innerHTML =
-                    '<div class="empty-state" style="padding:0.3rem 0; font-size:0.8rem;">尚無牌組，請新增</div>';
+                    '<div class="empty-state" style="padding:0.2rem 0; font-size:0.75rem;">尚無牌組，請新增</div>';
                 return;
             }
             let html = '';
-            decks.forEach(name => {
+            decks.forEach((name, index) => {
                 html += `
-                        <div class="deck-manage-row">
+                        <div class="deck-manage-row" data-index="${index}">
+                            <span class="drag-handle"><i class="fas fa-grip-lines"></i></span>
                             <span class="deck-name">${name}</span>
                             <div class="deck-actions">
                                 <button class="edit" data-name="${name}" title="修改名稱"><i class="fas fa-pen"></i></button>
@@ -3433,19 +3597,27 @@
                     renderMyDeckManageList();
                 });
             });
+
+            initDragSort('myDeckManageList', myDecks, function() {
+                appData.myDecks = myDecks;
+                saveData();
+                syncDeckSelectors();
+                renderDeckStats();
+            });
         }
 
         function renderOppDeckManageList() {
             const decks = getOpponentDecks();
             if (decks.length === 0) {
                 oppDeckManageList.innerHTML =
-                    '<div class="empty-state" style="padding:0.3rem 0; font-size:0.8rem;">尚無對手牌組，請新增</div>';
+                    '<div class="empty-state" style="padding:0.2rem 0; font-size:0.75rem;">尚無對手牌組，請新增</div>';
                 return;
             }
             let html = '';
-            decks.forEach(name => {
+            decks.forEach((name, index) => {
                 html += `
-                        <div class="deck-manage-row">
+                        <div class="deck-manage-row" data-index="${index}">
+                            <span class="drag-handle"><i class="fas fa-grip-lines"></i></span>
                             <span class="deck-name">${name}</span>
                             <div class="deck-actions">
                                 <button class="edit" data-name="${name}" title="修改名稱"><i class="fas fa-pen"></i></button>
@@ -3488,13 +3660,19 @@
                     renderOppDeckManageList();
                 });
             });
+
+            initDragSort('oppDeckManageList', opponentDecks, function() {
+                appData.opponentDecks = opponentDecks;
+                saveData();
+                syncOpponentSelect();
+            });
         }
 
         function renderEventManageList() {
             const events = getEvents();
             if (events.length === 0) {
                 eventManageList.innerHTML =
-                    '<div class="empty-state" style="padding:0.3rem 0; font-size:0.8rem;">尚無賽事，請新增</div>';
+                    '<div class="empty-state" style="padding:0.2rem 0; font-size:0.75rem;">尚無賽事，請新增</div>';
                 return;
             }
             let html = '';
@@ -3568,8 +3746,11 @@
             if (myDecks.includes(name)) { alert('這個牌組已經存在了'); return; }
             if (addMyDeck(name)) {
                 loadDataFromStorage();
+                myDeckSelector.value = name;
+                updateCurrentDeckIndicator();
                 renderMyDeckManageList();
                 newMyDeckName.value = '';
+                refreshUI();
             } else {
                 alert('新增牌組失敗');
             }
@@ -3599,8 +3780,10 @@
             if (opponentDecks.includes(name)) { alert('這個對手牌組已經存在了'); return; }
             if (addOpponentDeck(name)) {
                 loadDataFromStorage();
+                opponentDeckSelect.value = name;
                 renderOppDeckManageList();
                 newOppDeckName.value = '';
+                refreshUI();
             } else {
                 alert('新增對手牌組失敗');
             }
@@ -3632,6 +3815,8 @@
                 loadDataFromStorage();
                 renderEventManageList();
                 newEventName.value = '';
+                eventType.value = name;
+                refreshUI();
             } else {
                 alert('新增賽事失敗');
             }
@@ -3677,10 +3862,22 @@
                 if (angle > 0.5) {
                     segments +=
                         `<path d="M ${centerX} ${centerY} L ${x1} ${y1} A ${radius} ${radius} 0 ${largeArc} 1 ${x2} ${y2} Z" fill="${color}" stroke="white" stroke-width="2"/>`;
+                } else if (percentage > 0) {
+                    const midAngle = (startAngle + endAngle) / 2;
+                    const radMid = (midAngle - 90) * Math.PI / 180;
+                    const midX = centerX + (radius * 0.5) * Math.cos(radMid);
+                    const midY = centerY + (radius * 0.5) * Math.sin(radMid);
+                    segments +=
+                        `<circle cx="${midX}" cy="${midY}" r="4" fill="${color}" stroke="white" stroke-width="1"/>`;
                 }
             });
 
+            if (segments === '' && total > 0) {
+                segments = `<circle cx="${centerX}" cy="${centerY}" r="${radius}" fill="${colors[0]}" stroke="white" stroke-width="2"/>`;
+            }
+
             return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="45" fill="#f0f2f5"/>
                     ${segments}
                     <circle cx="50" cy="50" r="20" fill="white" stroke="#eef2f8" stroke-width="1.5"/>
                     <text x="50" y="48" text-anchor="middle" font-size="11" font-weight="700" fill="#1a2639">${total}</text>
@@ -3710,12 +3907,13 @@
         function getAvgRate() {
             const stats = computeDeckStats();
             const sortedDecks = [...myDecks].filter(deck => stats[deck] && stats[deck].total > 0);
-            if (sortedDecks.length === 0) return 0;
-            const avg = sortedDecks.reduce((sum, d) => {
+            const decksWithData = sortedDecks.filter(d => (stats[d].total - stats[d].draws) > 0);
+            if (decksWithData.length === 0) return 0;
+            const avg = decksWithData.reduce((sum, d) => {
                 const stat = stats[d];
                 const valid = stat.total - stat.draws;
-                return sum + (valid > 0 ? (stat.wins / valid) * 100 : 0);
-            }, 0) / sortedDecks.length;
+                return sum + (stat.wins / valid) * 100;
+            }, 0) / decksWithData.length;
             return Math.round(avg);
         }
 
@@ -3730,7 +3928,11 @@
                 recent.forEach(b => {
                     const resultText = b.result === 'win' ? '嬴' : (b.result === 'lose' ? '輸' : '和');
                     const resultClass = b.result;
-                    const turnText = b.turn === 'first' ? '先攻' : (b.turn === 'last' ? '後攻' : '');
+                    let turnText = '';
+                    if (b.turn === 'first') turnText = '先攻';
+                    else if (b.turn === 'last') turnText = '後攻';
+                    else if (b.turn === 'forgot') turnText = '忘了';
+                    const turnClass = b.turn === 'forgot' ? 'forgot' : '';
                     const tags = stringToTags(b.tag);
                     const tagHtml = tags.length > 0 ? tags.map(t =>
                         `<span class="tag-tag">#${t}</span>`).join('') : '';
@@ -3738,7 +3940,7 @@
                             <div class="share-battle-item">
                                 <span class="result-badge ${resultClass}">${resultText}</span>
                                 <span>${formatDate(b.date)}</span>
-                                ${turnText ? `<span class="turn-tag">${turnText}</span>` : ''}
+                                ${turnText ? `<span class="turn-tag ${turnClass}">${turnText}</span>` : ''}
                                 <span>${b.myTeam} vs ${b.opponentDeck}</span>
                                 ${tagHtml}
                             </div>
@@ -3814,16 +4016,6 @@
         shareImageOverlay.addEventListener('click', function(e) {
             if (e.target === this) {
                 this.classList.remove('active');
-            }
-        });
-
-        downloadShareImgBtn.addEventListener('click', function() {
-            if (currentImageData) {
-                const link = document.createElement('a');
-                link.download =
-                    `PokemonCardGames_分享_${username}_${new Date().toISOString().slice(0,10)}.png`;
-                link.href = currentImageData;
-                link.click();
             }
         });
 
@@ -3903,7 +4095,7 @@
             lastSelectedResult = null;
 
             turnBtnGroup.querySelectorAll('.turn-btn').forEach(b => {
-                b.classList.remove('active-first', 'active-last');
+                b.classList.remove('active-first', 'active-last', 'active-forgot');
             });
             selectedTurn = '';
             lastSelectedTurn = '';
@@ -3935,8 +4127,11 @@
             if (myDecks.includes(name)) { alert('這個牌組已經存在了'); return; }
             if (addMyDeck(name)) {
                 loadDataFromStorage();
+                myDeckSelector.value = name;
+                updateCurrentDeckIndicator();
                 newDeckName.value = '';
                 addDeckModal.classList.remove('active');
+                refreshUI();
             } else {
                 alert('新增牌組失敗');
             }
@@ -4055,12 +4250,14 @@
                 lastSelectedResult = null;
 
                 turnBtnGroup.querySelectorAll('.turn-btn').forEach(b => {
-                    b.classList.remove('active-first', 'active-last');
+                    b.classList.remove('active-first', 'active-last', 'active-forgot');
                     if (b.dataset.turn === lastSelectedTurn) {
                         if (lastSelectedTurn === 'first') {
                             b.classList.add('active-first');
                         } else if (lastSelectedTurn === 'last') {
                             b.classList.add('active-last');
+                        } else if (lastSelectedTurn === 'forgot') {
+                            b.classList.add('active-forgot');
                         }
                         selectedTurn = lastSelectedTurn;
                     }
