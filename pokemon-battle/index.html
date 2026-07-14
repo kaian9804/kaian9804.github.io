@@ -4,10 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>寶可夢對戰 · 牌組勝率</title>
-    <!-- Favicon -->
+    
+    <!-- ===== Favicon - 瀏覽器標籤圖示 ===== -->
     <link rel="icon" type="image/png" href="icon.png">
     <link rel="shortcut icon" type="image/png" href="icon.png">
-    <link rel="apple-touch-icon" type="image/png" href="icon.png">
+    
+    <!-- ===== iPhone / iPad 桌面圖示 ===== -->
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icon.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icon.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="icon.png">
+    
+    <!-- ===== iPhone 全螢幕模式 ===== -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="寶可夢對戰">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
     </script>
@@ -72,6 +85,14 @@
             .logo h1 {
                 font-size: 1.1rem;
                 text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 4px;
+            }
+            .logo h1 img {
+                height: 40px;
+                vertical-align: middle;
             }
             .user-profile {
                 justify-content: center;
@@ -108,11 +129,6 @@
                 padding: 0.3rem 0.5rem;
                 min-height: 40px;
                 min-width: 60px;
-            }
-            .deck-selector .btn-add-deck {
-                font-size: 0.7rem;
-                padding: 0.2rem 0.6rem;
-                min-height: 40px;
             }
             .deck-selector .btn-manage {
                 font-size: 0.65rem;
@@ -259,6 +275,9 @@
             .battle-meta .note-full {
                 font-size: 0.55rem;
                 padding: 0.02rem 0.3rem;
+                white-space: normal;
+                word-break: break-word;
+                background: transparent;
             }
             .result-tag {
                 font-size: 0.5rem;
@@ -309,27 +328,51 @@
                 padding: 0.05rem 0.4rem;
             }
 
-            /* 管理列表 - 零間距 */
+            /* 管理列表 - 零間距，整行可拖曳 */
             .deck-manage-row {
                 padding: 0.06rem 0.1rem !important;
                 min-height: 28px !important;
                 margin: 0 !important;
                 gap: 0.15rem;
                 border-bottom: 1px solid #eef2f8;
+                cursor: grab;
+                user-select: none;
+                -webkit-user-select: none;
+                touch-action: none;
             }
             .deck-manage-row .drag-handle {
                 font-size: 0.6rem;
                 padding: 0 1px;
+                color: #b0c0d0;
+                cursor: grab;
+                flex-shrink: 0;
+            }
+            .deck-manage-row .drag-handle:active {
+                cursor: grabbing;
             }
             .deck-manage-row .deck-name {
                 font-size: 0.75rem;
                 padding: 0.05rem 0;
+                flex: 1;
+                pointer-events: none;
             }
             .deck-manage-row .deck-actions button {
                 min-height: 24px;
                 min-width: 24px;
                 padding: 0.03rem 0.15rem;
                 font-size: 0.6rem;
+                position: relative;
+                z-index: 10;
+            }
+            /* 拖曳狀態 */
+            .deck-manage-row.dragging {
+                opacity: 0.3 !important;
+                background: #e9effa !important;
+                transform: scale(0.98);
+            }
+            .deck-manage-row.drag-over {
+                border-bottom: 3px solid #3b4cca !important;
+                background: #f0f4ff !important;
             }
 
             .modal-box {
@@ -363,6 +406,8 @@
                 padding: 0.04rem 0.1rem !important;
                 min-height: 26px !important;
                 margin: 0 !important;
+                cursor: grab;
+                touch-action: none;
             }
             .modal-box .deck-manage-row .deck-actions button {
                 min-height: 22px;
@@ -434,6 +479,9 @@
             .all-battle-meta {
                 font-size: 0.55rem;
                 gap: 0.05rem 0.2rem;
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
             }
             .all-battle-item .result-tag {
                 font-size: 0.45rem;
@@ -447,9 +495,18 @@
                 padding: 2px 3px;
                 font-size: 0.65rem;
             }
+            .all-battle-item .note-full {
+                font-size: 0.5rem;
+                padding: 0.05rem 0;
+                white-space: normal;
+                word-break: break-word;
+                width: 100%;
+                display: block;
+                background: transparent;
+            }
 
             /* ============================================================
-               先後攻對比圖表 - 手機版：牌組名稱在上方，bar佔滿寬度
+               先後攻對比圖表 - 手機版
                ============================================================ */
             .grouped-bar-row {
                 padding: 0.6rem 0;
@@ -588,6 +645,15 @@
         .logo h1 {
             font-size: 1.5rem;
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo h1 img {
+            height: 64px;
+            vertical-align: middle;
+        }
+        .logo h1 .logo-text {
             background: linear-gradient(145deg, #3b4cca, #2a3a9e);
             -webkit-background-clip: text;
             background-clip: text;
@@ -672,7 +738,7 @@
             outline: 2px solid #b3c7f0;
             border-color: transparent;
         }
-        .deck-selector .btn-add-deck {
+        .deck-selector .btn-manage {
             background: #3b4cca;
             color: white;
             border: none;
@@ -688,7 +754,7 @@
             min-height: 38px;
             transition: 0.15s;
         }
-        .deck-selector .btn-add-deck:hover {
+        .deck-selector .btn-manage:hover {
             background: #2f3db0;
         }
         .deck-selector .deck-stats-mini {
@@ -928,7 +994,7 @@
         }
 
         /* ============================================================
-           管理列表 - 零間距
+           管理列表 - 零間距，整行可拖曳
            ============================================================ */
         .deck-manage-row {
             display: flex;
@@ -941,6 +1007,9 @@
             transition: background 0.15s;
             min-height: 30px !important;
             margin: 0 !important;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: none;
         }
         .deck-manage-row:hover {
             background: #f5f8ff;
@@ -949,8 +1018,13 @@
             cursor: grabbing;
         }
         .deck-manage-row.dragging {
-            opacity: 0.5;
-            background: #e9effa;
+            opacity: 0.3 !important;
+            background: #e9effa !important;
+            transform: scale(0.98);
+        }
+        .deck-manage-row.drag-over {
+            border-bottom: 3px solid #3b4cca !important;
+            background: #f0f4ff !important;
         }
         .deck-manage-row:last-child {
             border-bottom: none;
@@ -971,11 +1045,14 @@
             flex: 1;
             font-size: 0.85rem;
             padding: 0.1rem 0;
+            pointer-events: none;
         }
         .deck-manage-row .deck-actions {
             display: flex;
             gap: 0.1rem;
             flex-shrink: 0;
+            position: relative;
+            z-index: 10;
         }
         .deck-manage-row .deck-actions button {
             background: transparent;
@@ -1002,6 +1079,8 @@
             padding: 0.06rem 0.15rem !important;
             min-height: 28px !important;
             margin: 0 !important;
+            cursor: grab;
+            touch-action: none;
         }
         .modal-box .deck-manage-row .deck-actions button {
             min-height: 24px;
@@ -1118,11 +1197,12 @@
             margin-right: 2px;
             color: #62748e;
         }
+        /* 備註欄 - 移除灰色底色 */
         .battle-meta .note-full {
             color: #2d4059;
-            background: #eef2f8;
-            padding: 0.03rem 0.5rem;
-            border-radius: 30px;
+            background: transparent;
+            padding: 0.03rem 0;
+            border-radius: 0;
             font-size: 0.7rem;
             display: inline-block;
             max-width: 100%;
@@ -1611,6 +1691,13 @@
         #shareCaptureArea .share-title {
             font-size: 1.4rem;
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        #shareCaptureArea .share-title img {
+            height: 56px;
+            vertical-align: middle;
         }
         #shareCaptureArea .share-title span {
             background: white;
@@ -1659,6 +1746,7 @@
             color: #43566e;
             border-bottom: 1px solid #f0f4f8;
             text-align: left;
+            flex-wrap: wrap;
         }
         #shareCaptureArea .share-battle-item .result-badge {
             padding: 0.08rem 0.7rem;
@@ -1696,6 +1784,16 @@
             padding: 0.02rem 0.4rem;
             border-radius: 30px;
             margin-left: 2px;
+        }
+        #shareCaptureArea .share-battle-item .share-note {
+            font-size: 0.7rem;
+            color: #2d4059;
+            background: transparent;
+            padding: 0.02rem 0;
+            white-space: normal;
+            word-break: break-word;
+            width: 100%;
+            margin-top: 2px;
         }
         #shareCaptureArea .share-pie-area {
             display: flex;
@@ -1756,7 +1854,7 @@
         }
 
         /* ============================================================
-           圖表樣式 - 先後攻對比 (牌組名稱在上方，bar佔滿寬度)
+           圖表樣式 - 先後攻對比
            ============================================================ */
         .chart-pie-wrapper {
             display: flex;
@@ -1836,7 +1934,6 @@
             text-align: center;
         }
 
-        /* 先後攻對比 - 牌組名稱在上方，bar佔滿寬度 */
         .chart-grouped-bars {
             padding: 0.3rem 0;
         }
@@ -1961,34 +2058,38 @@
             background: #FFB347;
         }
 
-        .all-battle-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
+        /* ============================================================
+           全部對戰記錄 - 備忘錄換行顯示，移除灰色底色
+           ============================================================ */
+        .all-battle-item .note-full {
+            color: #2d4059;
+            background: transparent;
+            padding: 0.05rem 0;
+            border-radius: 0;
+            font-size: 0.7rem;
+            display: block;
+            max-width: 100%;
+            word-break: break-word;
+            white-space: normal;
+            line-height: 1.5;
+            margin-top: 0.15rem;
+            width: 100%;
         }
-        .all-battle-item {
-            background: #fafcfe;
-            border-radius: 10px;
-            padding: 0.4rem 0.6rem;
-            border-left: 4px solid #b2c6e6;
+        .all-battle-meta {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
+            gap: 0.2rem 0.6rem;
+            color: #43566e;
+            flex: 1;
+            font-size: 0.7rem;
+            align-items: flex-start;
+        }
+        .all-battle-meta .result-line {
+            display: flex;
+            flex-wrap: wrap;
             align-items: center;
-            border: 1px solid #ecf1f8;
-            font-size: 0.8rem;
-        }
-        .all-battle-item.win {
-            border-left-color: #28a745;
-            background: #f3faf6;
-        }
-        .all-battle-item.lose {
-            border-left-color: #dc3545;
-            background: #fcf5f5;
-        }
-        .all-battle-item.draw {
-            border-left-color: #ffc107;
-            background: #fffbee;
+            gap: 0.2rem 0.4rem;
+            width: 100%;
         }
         .all-battle-item .result-line {
             display: flex;
@@ -2008,14 +2109,37 @@
         .all-battle-item .result.draw {
             color: #b8860b;
         }
-        .all-battle-meta {
+
+        .all-battle-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .all-battle-item {
+            background: #fafcfe;
+            border-radius: 10px;
+            padding: 0.4rem 0.6rem;
+            border-left: 4px solid #b2c6e6;
             display: flex;
             flex-wrap: wrap;
-            gap: 0.2rem 0.6rem;
-            color: #43566e;
-            flex: 1;
-            font-size: 0.7rem;
+            justify-content: space-between;
+            align-items: flex-start;
+            border: 1px solid #ecf1f8;
+            font-size: 0.8rem;
         }
+        .all-battle-item.win {
+            border-left-color: #28a745;
+            background: #f3faf6;
+        }
+        .all-battle-item.lose {
+            border-left-color: #dc3545;
+            background: #fcf5f5;
+        }
+        .all-battle-item.draw {
+            border-left-color: #ffc107;
+            background: #fffbee;
+        }
+
         .all-battle-meta i {
             margin-right: 2px;
             color: #62748e;
@@ -2025,6 +2149,7 @@
             align-items: center;
             gap: 3px;
             flex-shrink: 0;
+            margin-top: 0.1rem;
         }
         .all-battle-actions i {
             padding: 3px 5px;
@@ -2185,9 +2310,14 @@
     <div class="loading-overlay" id="loadingOverlay"><i class="fas fa-spinner fa-spin"></i> 載入資料中...</div>
 
     <div class="app">
-        <!-- HEADER -->
+        <!-- HEADER - 加入 icon.png -->
         <div class="header">
-            <div class="logo"><h1><i class="fas fa-pokeball" style="color:#3b4cca; margin-right: 4px;"></i>Pokemon Card Games</h1></div>
+            <div class="logo">
+                <h1>
+                    <img src="icon.png" alt="icon">
+                    <span class="logo-text">Pokemon Card Games</span>
+                </h1>
+            </div>
             <div class="user-profile">
                 <i class="fas fa-user-circle"></i>
                 <input type="text" class="username-edit" id="usernameInput" value="使用者" maxlength="16" placeholder="名稱">
@@ -2195,12 +2325,11 @@
             </div>
         </div>
 
-        <!-- 牌組選擇器 -->
+        <!-- 牌組選擇器 - 移除「新增」按鈕 -->
         <div class="deck-selector">
             <div class="select-wrapper">
                 <i class="fas fa-thumbs-up" style="color:#62748e; font-size:1.1rem; margin-right:4px;"></i>
                 <select id="myDeckSelector"><option value="">載入中...</option></select>
-                <button class="btn-add-deck" id="addDeckBtn"><i class="fas fa-plus"></i> 新增</button>
                 <button class="btn-manage" id="manageMyDeckBtn"><i class="fas fa-cog"></i> 管理</button>
             </div>
             <div class="deck-stats-mini">
@@ -2297,9 +2426,9 @@
                 <div class="my-deck-stats-header">
                     <div class="my-deck-stats-title"><i class="fas fa-chart-pie" style="color:#3b4cca;"></i> 我的牌組勝率</div>
                     <div class="chart-toggle-group" id="chartToggleGroup">
-                        <button class="chart-toggle-btn active" data-chart="list"><i class="fas fa-list"></i> 嬴輸和記錄</button>
-                        <button class="chart-toggle-btn" data-chart="grouped"><i class="fas fa-chart-bar"></i> 先後攻對比</button>
-                        <button class="chart-toggle-btn" data-chart="pie"><i class="fas fa-chart-pie"></i> 圓餅圖</button>
+                        <button class="chart-toggle-btn active" data-chart="list"><i class="fas fa-list"></i> 嬴輸和</button>
+                        <button class="chart-toggle-btn" data-chart="grouped"><i class="fas fa-chart-bar"></i> 先後對比</button>
+                        <button class="chart-toggle-btn" data-chart="pie"><i class="fas fa-chart-pie"></i> 勝率圓餅</button>
                     </div>
                 </div>
                 <div id="myDeckStatsList"><div class="empty-state" style="padding:0.6rem 0; font-size:0.8rem;"><i class="fas fa-spinner fa-spin" style="font-size:1rem;"></i> 載入中...</div></div>
@@ -2322,11 +2451,12 @@
         <!-- Modals -->
         <div class="modal-overlay" id="addDeckModal"><div class="modal-box" style="max-width:400px;"><h3><i class="fas fa-plus-circle" style="color:#3b4cca;"></i> 新增牌組</h3><div class="form-group"><label>牌組名稱</label><input type="text" id="newDeckName" placeholder="輸入新牌組名稱" maxlength="30"></div><div class="btn-group" style="justify-content:flex-end;"><button class="btn btn-outline" id="cancelDeckBtn">取消</button><button class="btn btn-primary" id="confirmDeckBtn"><i class="fas fa-check"></i> 新增</button></div></div></div>
 
+        <!-- ===== 管理我的牌組 ===== -->
         <div class="modal-overlay" id="manageMyDeckModal">
             <div class="modal-box" style="max-width:500px;">
                 <h3><span><i class="fas fa-thumbs-up" style="color:#3b4cca;"></i> 管理我的牌組</span><button class="btn-close-modal" id="closeManageMyDeck">&times;</button></h3>
                 <div class="modal-body">
-                    <div class="sort-hint"><i class="fas fa-arrows-alt-v"></i> 拖曳 ☰ 圖示可調整牌組順序</div>
+                    <div class="sort-hint"><i class="fas fa-arrows-alt-v"></i> 按住整行拖曳可調整牌組順序</div>
                     <div id="myDeckManageList"></div>
                     <div style="margin-top:0.3rem; display:flex; gap:0.3rem;">
                         <input type="text" id="newMyDeckName" placeholder="輸入新牌組名稱" style="flex:1; padding:0.25rem 0.4rem; border:1px solid #dce2ec; border-radius:8px; font-size:0.8rem; min-height:34px;">
@@ -2336,11 +2466,12 @@
             </div>
         </div>
 
+        <!-- ===== 管理對手牌組 ===== -->
         <div class="modal-overlay" id="manageOppDeckModal">
             <div class="modal-box" style="max-width:500px;">
                 <h3><span><i class="fas fa-layer-group" style="color:#3b4cca;"></i> 管理對手牌組</span><button class="btn-close-modal" id="closeManageOppDeck">&times;</button></h3>
                 <div class="modal-body">
-                    <div class="sort-hint"><i class="fas fa-arrows-alt-v"></i> 拖曳 ☰ 圖示可調整牌組順序</div>
+                    <div class="sort-hint"><i class="fas fa-arrows-alt-v"></i> 按住整行拖曳可調整牌組順序</div>
                     <div id="oppDeckManageList"></div>
                     <div style="margin-top:0.3rem; display:flex; gap:0.3rem;">
                         <input type="text" id="newOppDeckName" placeholder="輸入新對手牌組名稱" style="flex:1; padding:0.25rem 0.4rem; border:1px solid #dce2ec; border-radius:8px; font-size:0.8rem; min-height:34px;">
@@ -2350,10 +2481,12 @@
             </div>
         </div>
 
+        <!-- ===== 管理賽事 ===== -->
         <div class="modal-overlay" id="manageEventModal">
             <div class="modal-box" style="max-width:500px;">
                 <h3><span><i class="fas fa-trophy" style="color:#3b4cca;"></i> 管理賽事</span><button class="btn-close-modal" id="closeManageEvent">&times;</button></h3>
-                <div class="modal-body"><div id="eventManageList"></div>
+                <div class="modal-body">
+                    <div id="eventManageList"></div>
                     <div style="margin-top:0.3rem; display:flex; gap:0.3rem;">
                         <input type="text" id="newEventName" placeholder="輸入新賽事名稱" style="flex:1; padding:0.25rem 0.4rem; border:1px solid #dce2ec; border-radius:8px; font-size:0.8rem; min-height:34px;">
                         <button class="btn btn-primary" id="addEventBtn" style="flex-shrink:0; padding:0.2rem 0.6rem; font-size:0.75rem; min-height:34px;"><i class="fas fa-plus"></i> 新增</button>
@@ -2406,7 +2539,7 @@
         <div class="backup-section">
             <button class="backup-btn" id="exportDbBtn"><i class="fas fa-download"></i> 匯出資料庫</button>
             <button class="backup-btn" id="importDbBtn"><i class="fas fa-upload"></i> 匯入資料庫</button>
-            <button class="backup-btn danger" id="deleteAllBtn"><i class="fas fa-trash"></i> 刪除所有記錄</button>
+            <button class="backup-btn danger" id="deleteAllBtn"><i class="fas fa-trash"></i> 刪除所有對戰記錄</button>
             <input type="file" id="restoreFileInput" accept=".db">
         </div>
     </div>
@@ -2415,9 +2548,8 @@
     <div id="shareCaptureArea">
         <div class="share-header">
             <div class="share-title">
-                <span>
-                    <i class="fas fa-pokeball" style="color:#3b4cca; margin-right:6px;"></i>Pokemon Card Games
-                </span>
+                <img src="icon.png" alt="icon" style="height:28px;">
+                <span>Pokemon Card Games</span>
             </div>
             <div class="share-username" id="shareCaptureUsername">使用者</div>
         </div>
@@ -2801,92 +2933,6 @@
             tagSelectGroup.querySelectorAll('.tag-select-btn').forEach(b => b.classList.remove('active'));
             selectedTags = [];
         });
-
-        // ============================================================
-        // 通用拖曳排序函數
-        // ============================================================
-        function initDragSort(containerId, dataArray, updateCallback) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-
-            const rows = container.querySelectorAll('.deck-manage-row');
-            let dragIndex = null;
-
-            rows.forEach((row, index) => {
-                row.setAttribute('data-index', index);
-                row.draggable = true;
-
-                row.addEventListener('dragstart', function(e) {
-                    dragIndex = parseInt(this.dataset.index);
-                    this.classList.add('dragging');
-                    e.dataTransfer.effectAllowed = 'move';
-                });
-
-                row.addEventListener('dragend', function(e) {
-                    this.classList.remove('dragging');
-                });
-
-                row.addEventListener('dragover', function(e) {
-                    e.preventDefault();
-                    const targetIndex = parseInt(this.dataset.index);
-                    if (dragIndex !== null && dragIndex !== targetIndex) {
-                        const item = dataArray.splice(dragIndex, 1)[0];
-                        dataArray.splice(targetIndex, 0, item);
-                        updateCallback();
-                        setTimeout(() => {
-                            renderMyDeckManageList();
-                            renderOppDeckManageList();
-                        }, 50);
-                        dragIndex = null;
-                    }
-                });
-
-                // 手機觸控支援
-                let touchStartY = 0;
-                let touchStartIndex = 0;
-                let touchTimeout = null;
-
-                row.addEventListener('touchstart', function(e) {
-                    touchStartY = e.touches[0].clientY;
-                    touchStartIndex = parseInt(this.dataset.index);
-                    touchTimeout = setTimeout(() => {
-                        this.style.opacity = '0.5';
-                    }, 300);
-                });
-
-                row.addEventListener('touchmove', function(e) {
-                    e.preventDefault();
-                    const touchY = e.touches[0].clientY;
-                    const deltaY = touchY - touchStartY;
-                    const rowHeight = this.offsetHeight || 40;
-                    const moveSteps = Math.round(deltaY / rowHeight);
-
-                    if (moveSteps !== 0) {
-                        const newIndex = Math.max(0, Math.min(dataArray.length - 1, touchStartIndex + moveSteps));
-                        if (newIndex !== touchStartIndex) {
-                            const item = dataArray.splice(touchStartIndex, 1)[0];
-                            dataArray.splice(newIndex, 0, item);
-                            updateCallback();
-                            setTimeout(() => {
-                                renderMyDeckManageList();
-                                renderOppDeckManageList();
-                            }, 50);
-                            touchStartIndex = newIndex;
-                        }
-                    }
-                });
-
-                row.addEventListener('touchend', function(e) {
-                    clearTimeout(touchTimeout);
-                    this.style.opacity = '1';
-                });
-
-                row.addEventListener('touchcancel', function(e) {
-                    clearTimeout(touchTimeout);
-                    this.style.opacity = '1';
-                });
-            });
-        }
 
         // ============================================================
         // 工具函式
@@ -3326,7 +3372,7 @@
         }
 
         // ============================================================
-        // 渲染單筆記錄
+        // 渲染單筆記錄 - 備註完整換行顯示
         // ============================================================
         function renderBattleItem(b, isCompact = false) {
             const resultClass = b.result;
@@ -3334,7 +3380,7 @@
                 'fa-minus-circle');
             const resultText = b.result === 'win' ? '嬴' : (b.result === 'lose' ? '輸' : '和');
 
-            const deleteAttr = `onclick="window.deleteBattleEntry(${b.id})"`;
+            const deleteAttr = `onclick="window.deleteBattleEntry(${b.id}, 'allRecords')"`;
 
             let turnHtml = '';
             if (b.turn === 'first') {
@@ -3348,8 +3394,14 @@
             let noteHtml = '';
             if (b.note) {
                 const noteEscaped = b.note.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                noteHtml =
-                    ` <span class="note-full"><i class="fas fa-pen" style="font-size:0.55rem; margin-right:3px;"></i> ${noteEscaped}</span>`;
+                // 在全部記錄中用完整區塊顯示，在近期記錄中用行內顯示
+                if (isCompact) {
+                    noteHtml =
+                        `<span class="note-full"><i class="fas fa-pen" style="font-size:0.55rem; margin-right:3px;"></i> ${noteEscaped}</span>`;
+                } else {
+                    noteHtml =
+                        ` <span class="note-full"><i class="fas fa-pen" style="font-size:0.55rem; margin-right:3px;"></i> ${noteEscaped}</span>`;
+                }
             }
 
             let tagHtml = '';
@@ -3489,13 +3541,17 @@
         }
 
         // ============================================================
-        // 刪除記錄
+        // 刪除記錄 - 修正版，刪除後立即刷新全部記錄列表
         // ============================================================
-        window.deleteBattleEntry = function(id) {
+        window.deleteBattleEntry = function(id, source) {
             if (!confirm('確定要刪除這筆記錄嗎？')) return;
             const success = deleteBattleById(id);
             if (success) {
                 loadDataFromStorage();
+                // 如果當前全部記錄 Modal 是打開的，立即刷新
+                if (allRecordsModal.classList.contains('active')) {
+                    renderAllRecords();
+                }
             } else {
                 alert('刪除失敗，請重新整理頁面再試');
             }
@@ -3517,7 +3573,7 @@
             }
             deleteAllBattles();
             loadDataFromStorage();
-            alert('已刪除所有記錄');
+            alert('已刪除所有對戰記錄');
         });
 
         // ============================================================
@@ -3566,7 +3622,8 @@
             myDeckManageList.innerHTML = html;
 
             myDeckManageList.querySelectorAll('.edit').forEach(btn => {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
                     const oldName = this.dataset.name;
                     const newName = prompt('修改牌組名稱：', oldName);
                     if (newName && newName.trim() && newName.trim() !== oldName) {
@@ -3584,7 +3641,8 @@
             });
 
             myDeckManageList.querySelectorAll('.delete').forEach(btn => {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
                     const name = this.dataset.name;
                     const hasBattles = battles.some(b => b.myTeam === name);
                     let msg = `確定要刪除牌組「${name}」嗎？`;
@@ -3629,7 +3687,8 @@
             oppDeckManageList.innerHTML = html;
 
             oppDeckManageList.querySelectorAll('.edit').forEach(btn => {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
                     const oldName = this.dataset.name;
                     const newName = prompt('修改對手牌組名稱：', oldName);
                     if (newName && newName.trim() && newName.trim() !== oldName) {
@@ -3647,7 +3706,8 @@
             });
 
             oppDeckManageList.querySelectorAll('.delete').forEach(btn => {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
                     const name = this.dataset.name;
                     const hasBattles = battles.some(b => b.opponentDeck === name);
                     let msg = `確定要刪除對手牌組「${name}」嗎？`;
@@ -3720,6 +3780,211 @@
                     loadDataFromStorage();
                     renderEventManageList();
                 });
+            });
+        }
+
+        // ============================================================
+        // 拖曳排序函數 - 整行可拖曳
+        // ============================================================
+        function initDragSort(containerId, dataArray, updateCallback) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            const oldRows = container.querySelectorAll('.deck-manage-row');
+            oldRows.forEach(row => {
+                row.removeEventListener('mousedown', handleMouseDown);
+                row.removeEventListener('touchstart', handleTouchStart);
+            });
+
+            function handleMouseDown(e) {
+                if (e.target.closest('.edit') || e.target.closest('.delete')) return;
+                e.preventDefault();
+                const row = this;
+                const startIndex = parseInt(row.dataset.index);
+
+                const clone = row.cloneNode(true);
+                clone.style.position = 'fixed';
+                clone.style.pointerEvents = 'none';
+                clone.style.opacity = '0.7';
+                clone.style.width = row.offsetWidth + 'px';
+                clone.style.zIndex = '9999';
+                clone.style.transform = 'scale(1.05)';
+                clone.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+                clone.style.borderRadius = '8px';
+                clone.style.background = 'white';
+                clone.style.padding = '0.08rem 0.2rem';
+                document.body.appendChild(clone);
+
+                row.classList.add('dragging');
+                let currentIndex = startIndex;
+
+                function onMouseMove(e) {
+                    clone.style.left = (e.clientX - clone.offsetWidth / 2) + 'px';
+                    clone.style.top = (e.clientY - clone.offsetHeight / 2) + 'px';
+
+                    const allRows = container.querySelectorAll('.deck-manage-row');
+                    let targetIndex = -1;
+
+                    allRows.forEach((r, idx) => {
+                        r.classList.remove('drag-over');
+                        const rect = r.getBoundingClientRect();
+                        if (e.clientY >= rect.top && e.clientY <= rect.bottom) {
+                            if (e.clientX >= rect.left - 20 && e.clientX <= rect.right + 20) {
+                                targetIndex = idx;
+                            }
+                        }
+                    });
+
+                    if (targetIndex !== -1 && targetIndex !== currentIndex) {
+                        const item = dataArray.splice(currentIndex, 1)[0];
+                        dataArray.splice(targetIndex, 0, item);
+                        currentIndex = targetIndex;
+                        updateCallback();
+
+                        if (containerId === 'myDeckManageList') {
+                            renderMyDeckManageList();
+                        } else if (containerId === 'oppDeckManageList') {
+                            renderOppDeckManageList();
+                        }
+
+                        const newRows = container.querySelectorAll('.deck-manage-row');
+                        newRows.forEach((r, idx) => {
+                            if (idx === targetIndex) {
+                                r.classList.add('drag-over');
+                            }
+                            if (idx === currentIndex) {
+                                r.classList.add('dragging');
+                            }
+                        });
+                    }
+                }
+
+                function onMouseUp() {
+                    document.removeEventListener('mousemove', onMouseMove);
+                    document.removeEventListener('mouseup', onMouseUp);
+                    if (clone && clone.parentNode) {
+                        document.body.removeChild(clone);
+                    }
+                    container.querySelectorAll('.deck-manage-row').forEach(r => {
+                        r.classList.remove('dragging', 'drag-over');
+                    });
+                    updateCallback();
+                }
+
+                document.addEventListener('mousemove', onMouseMove);
+                document.addEventListener('mouseup', onMouseUp);
+            }
+
+            function handleTouchStart(e) {
+                if (e.target.closest('.edit') || e.target.closest('.delete')) return;
+                const touch = e.touches[0];
+                const row = this;
+                const startIndex = parseInt(row.dataset.index);
+
+                let longPressTimer = setTimeout(() => {
+                    if (navigator.vibrate) navigator.vibrate(15);
+
+                    const clone = row.cloneNode(true);
+                    clone.style.position = 'fixed';
+                    clone.style.pointerEvents = 'none';
+                    clone.style.opacity = '0.7';
+                    clone.style.width = row.offsetWidth + 'px';
+                    clone.style.zIndex = '9999';
+                    clone.style.transform = 'scale(1.05)';
+                    clone.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+                    clone.style.borderRadius = '8px';
+                    clone.style.background = 'white';
+                    clone.style.padding = '0.08rem 0.2rem';
+                    document.body.appendChild(clone);
+
+                    row.classList.add('dragging');
+                    let currentIndex = startIndex;
+                    let isDragging = true;
+
+                    function onTouchMove(e) {
+                        e.preventDefault();
+                        if (!isDragging) return;
+                        const t = e.touches[0];
+
+                        clone.style.left = (t.clientX - clone.offsetWidth / 2) + 'px';
+                        clone.style.top = (t.clientY - clone.offsetHeight / 2) + 'px';
+
+                        const allRows = container.querySelectorAll('.deck-manage-row');
+                        let targetIndex = -1;
+
+                        allRows.forEach((r, idx) => {
+                            r.classList.remove('drag-over');
+                            const rect = r.getBoundingClientRect();
+                            if (t.clientY >= rect.top && t.clientY <= rect.bottom) {
+                                if (t.clientX >= rect.left - 30 && t.clientX <= rect.right + 30) {
+                                    targetIndex = idx;
+                                }
+                            }
+                        });
+
+                        if (targetIndex !== -1 && targetIndex !== currentIndex) {
+                            const item = dataArray.splice(currentIndex, 1)[0];
+                            dataArray.splice(targetIndex, 0, item);
+                            currentIndex = targetIndex;
+                            updateCallback();
+
+                            if (containerId === 'myDeckManageList') {
+                                renderMyDeckManageList();
+                            } else if (containerId === 'oppDeckManageList') {
+                                renderOppDeckManageList();
+                            }
+
+                            const newRows = container.querySelectorAll('.deck-manage-row');
+                            newRows.forEach((r, idx) => {
+                                if (idx === targetIndex) {
+                                    r.classList.add('drag-over');
+                                }
+                                if (idx === currentIndex) {
+                                    r.classList.add('dragging');
+                                }
+                            });
+                        }
+                    }
+
+                    function onTouchEnd() {
+                        isDragging = false;
+                        document.removeEventListener('touchmove', onTouchMove);
+                        document.removeEventListener('touchend', onTouchEnd);
+                        document.removeEventListener('touchcancel', onTouchEnd);
+                        if (clone && clone.parentNode) {
+                            document.body.removeChild(clone);
+                        }
+                        container.querySelectorAll('.deck-manage-row').forEach(r => {
+                            r.classList.remove('dragging', 'drag-over');
+                        });
+                        updateCallback();
+                    }
+
+                    document.addEventListener('touchmove', onTouchMove, { passive: false });
+                    document.addEventListener('touchend', onTouchEnd);
+                    document.addEventListener('touchcancel', onTouchEnd);
+
+                }, 400);
+
+                function onTouchMoveCancel(e) {
+                    clearTimeout(longPressTimer);
+                    document.removeEventListener('touchmove', onTouchMoveCancel);
+                }
+                document.addEventListener('touchmove', onTouchMoveCancel, { passive: true });
+
+                function onTouchEndCancel(e) {
+                    clearTimeout(longPressTimer);
+                    document.removeEventListener('touchend', onTouchEndCancel);
+                    document.removeEventListener('touchmove', onTouchMoveCancel);
+                }
+                document.addEventListener('touchend', onTouchEndCancel);
+                document.addEventListener('touchcancel', onTouchEndCancel);
+            }
+
+            const rows = container.querySelectorAll('.deck-manage-row');
+            rows.forEach(row => {
+                row.addEventListener('mousedown', handleMouseDown);
+                row.addEventListener('touchstart', handleTouchStart, { passive: true });
             });
         }
 
@@ -3936,6 +4201,8 @@
                     const tags = stringToTags(b.tag);
                     const tagHtml = tags.length > 0 ? tags.map(t =>
                         `<span class="tag-tag">#${t}</span>`).join('') : '';
+                    // 分享圖片的備註簡短顯示
+                    const noteShort = b.note ? `<div class="share-note">📝 ${b.note}</div>` : '';
                     battlesHtml += `
                             <div class="share-battle-item">
                                 <span class="result-badge ${resultClass}">${resultText}</span>
@@ -3943,6 +4210,7 @@
                                 ${turnText ? `<span class="turn-tag ${turnClass}">${turnText}</span>` : ''}
                                 <span>${b.myTeam} vs ${b.opponentDeck}</span>
                                 ${tagHtml}
+                                ${noteShort}
                             </div>
                         `;
                 });
@@ -4108,51 +4376,7 @@
         });
 
         // ============================================================
-        // 新增牌組（主介面）
-        // ============================================================
-        addDeckBtn.addEventListener('click', function() {
-            newDeckName.value = '';
-            addDeckModal.classList.add('active');
-            setTimeout(() => newDeckName.focus(), 100);
-        });
-
-        cancelDeckBtn.addEventListener('click', function() {
-            addDeckModal.classList.remove('active');
-            newDeckName.value = '';
-        });
-
-        confirmDeckBtn.addEventListener('click', function() {
-            const name = newDeckName.value.trim();
-            if (!name) { alert('請輸入牌組名稱'); return; }
-            if (myDecks.includes(name)) { alert('這個牌組已經存在了'); return; }
-            if (addMyDeck(name)) {
-                loadDataFromStorage();
-                myDeckSelector.value = name;
-                updateCurrentDeckIndicator();
-                newDeckName.value = '';
-                addDeckModal.classList.remove('active');
-                refreshUI();
-            } else {
-                alert('新增牌組失敗');
-            }
-        });
-
-        newDeckName.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') { e.preventDefault();
-                confirmDeckBtn.click(); }
-            if (e.key === 'Escape') { addDeckModal.classList.remove('active');
-                newDeckName.value = ''; }
-        });
-
-        addDeckModal.addEventListener('click', function(e) {
-            if (e.target === this) {
-                this.classList.remove('active');
-                newDeckName.value = '';
-            }
-        });
-
-        // ============================================================
-        // 顯示全部記錄
+        // 顯示全部記錄 - 打開時確保顯示最新數據
         // ============================================================
         showAllBtn.addEventListener('click', function() {
             filterYear = '';
@@ -4164,6 +4388,7 @@
             filterTagSelect.value = '';
             filterDeckSelect.value = '';
             updateMonthOptions();
+            loadDataFromStorage();
             renderAllRecords();
             allRecordsModal.classList.add('active');
         });
