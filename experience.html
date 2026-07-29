@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>獲獎 · 個人網頁</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <button class="hamburger" id="hamburger" aria-label="選單">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links-left" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="teaching.html">Teaching</a>
+            <a href="publications.html">Publications</a>
+            <a href="experience.html" class="active">Experience</a>
+            <a href="gallery.html">Gallery</a>
+        </div>
+        <div class="nav-right">
+            <a href="home_chin.html">中文</a>
+        </div>
+    </nav>
+    <div class="container">
+        <section>
+            <h2 class="section-title">🏆 Awards</h2>
+            <ul class="list-section">
+                <li><strong>🏅 Best Oral Presentation Award</strong> <span class="award-org">ICEMT · 2022</span></li>
+                <li><strong>🏅 Gold Award</strong> <span class="award-org">24th Moscow International Salon of Inventions and Innovative Technology 《ARCHIMEDES》 · 2021</span></li>
+                <li><strong>🏅 Third Prize</strong> <span class="award-org">6th China International College Students' 'Internet+' Innovation and Entrepreneurship Competition · 2020</span></li>
+                <li><strong>🏅 First Prize and Practical Value Award</strong> <span class="award-org">Pan-Pearl River Delta Region Universities IT Project Competition · 2018-2020</span></li>
+            </ul>
+        </section>
+        <section>
+            <h2 class="section-title">📈 Exchanges & Volunteer Work</h2>
+            <ul class="list-section">
+                <li><strong>🌟 Boao Forum for Asia (BFA)</strong> <span class="award-org">Boao, Hainan · 2023</span></li>
+                <li><strong>✈️ Smart Objects and Applications</strong> <span class="award-org">University of Bologna, Italy · 2019 and 2022</span></li>
+                <li><strong>✈️ CS Summer Research</strong> <span class="award-org">UCLA, USA · 2017</span></li>
+            </ul>
+        </section>
+        <hr class="divider">
+        <footer>
+            <span>© 2026 Ka Ian</span>
+            <span><a href="experience.html" class="back-top" aria-label="回到頂端">↑</a></span>
+        </footer>
+    </div>
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navLinks.classList.toggle('open');
+        });
+        document.querySelectorAll('.nav-links-left a').forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('open');
+            });
+        });
+    </script>
+</body>
+</html>

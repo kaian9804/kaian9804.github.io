@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Ka Ian | Personal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar" role="navigation">
+        <button class="hamburger" id="hamburger" aria-label="選單">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links-left" id="navLinks">
+            <a href="index.html"  class="active">Home</a>
+            <a href="teaching.html">Teaching</a>
+            <a href="publications.html">Publications</a>
+            <a href="experience.html">Experience</a>
+            <a href="gallery.html">Gallery</a>
+        </div>
+        <div class="nav-right">
+            <a href="index.html">English</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section id="home">
+            <div class="home-wrapper">
+                <div class="home-text">
+                    <div class="home-greeting">
+                        Ka Ian CHAN 陳嘉欣 <small>｜ 電腦・教育</small>
+                    </div>
+                    <p class="home-desc">
+                        PhD, MSc and BSc (MPU)
+                    </p>
+                    <p class="home-desc">
+                        陳嘉欣博士於澳門理工大學取得博士學位。她曾獲澳門教育暨青年局及澳門律師公會頒發獎學金。她的跨學科研究主要聚焦於<strong>教育科技</strong>與<strong>資訊行為</strong>。
+                    </p>
+                    <div class="contact-icons">
+                        <span class="contact-label">📍 澳門</span>
+                        <div class="icons-row">
+                            <a href="mailto:kaian9804@gmail.com" target="_blank" aria-label="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/kaian9804" target="_blank" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://github.com/kaian9804" target="_blank" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="home-photo">
+                    <img src="icon.png" alt="icon">
+                </div>
+            </div>
+            <hr class="divider">
+        </section>
+
+        <section id="news">
+            <h2 class="section-title">📰 最新消息</h2>
+            <ul class="list-section">
+                <li>
+                    <span class="news-date">2026.07.06</span>
+                    <span class="news-title">通過博士論文答辯</span>
+                    <span class="news-desc">Presenting the oral defence in MPU A117 at 15:00-17:30</span>
+                </li>
+                <li>
+                    <span class="news-date">2026.03.23</span>
+                    <span class="news-title">期刊論文獲發表於《Applied Sciences》</span>
+                    <span class="news-desc">The paper proposes machine learning models for academic track selection and student performance predictions.</span>
+                </li>
+                <li>
+                    <span class="news-date">2026.03.16</span>
+                    <span class="news-title">期刊論文獲發表於《Multimodal Technologies and Interaction》</span>
+                    <span class="news-desc">The paper is about designing academic visualisations for parents and students.</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Contact Information 區塊 -->
+        <div class="contact-info-section">
+            <h2 class="section-title">📬 聯繫方式n</h2>
+            <div class="contact-info-grid">
+                <div class="info-item">
+                    <span class="info-icon"><i class="fas fa-envelope"></i></span>
+                    <span class="info-label">電郵</span>
+                    <span class="info-value"><a href="mailto:kaian9804@gmail.com">kaian9804@gmail.com</a></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon"><i class="fab fa-linkedin-in"></i></span>
+                    <span class="info-label">領英</span>
+                    <span class="info-value"><a href="https://www.linkedin.com/in/kaian9804" target="_blank">linkedin.com/in/kaian9804</a></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon"><i class="fas fa-phone"></i></span>
+                    <span class="info-label">電話</span>
+                    <span class="info-value"><a href="tel:+886912345678">+853 6246 0103</a></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon"><i class="fab fa-github"></i></span>
+                    <span class="info-label">GitHub</span>
+                    <span class="info-value"><a href="https://github.com/kaian9804" target="_blank">github.com/kaian9804</a></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon"><i class="fas fa-map-marker-alt"></i></span>
+                    <span class="info-label">學校</span>
+                    <span class="info-value">Faculty of Applied Sciences, Macao Polytechnic University</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon"><i class="fas fa-globe"></i></span>
+                    <span class="info-label">網頁</span>
+                    <span class="info-value"><a href="https://kaian9804.github.io/" target="_blank">https://kaian9804.github.io/</a></span>
+                </div>
+            </div>
+        </div>
+
+        <hr class="divider" style="margin-top: 0.5rem;">
+        <footer>
+            <span>© 2026 Ka Ian · Last Modified: Monday, 27 Jul 2026</span>
+            <span><a href="index.html" class="back-top" aria-label="回到頂端">↑</a></span>
+        </footer>
+    </div>
+
+    <script>
+        // 漢堡選單切換
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navLinks.classList.toggle('open');
+        });
+
+        document.querySelectorAll('.nav-links-left a').forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // 導航欄平滑滾動
+        (function() {
+            const navLinks2 = document.querySelectorAll('.nav-links-left a');
+            navLinks2.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = href;
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            const navHeight = document.querySelector('.navbar').offsetHeight;
+                            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight - 10;
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
+                            navLinks2.forEach(l => l.classList.remove('active'));
+                            this.classList.add('active');
+                        }
+                    }
+                });
+            });
+
+            function updateActiveOnScroll() {
+                const sections = document.querySelectorAll('section');
+                const navLinks2 = document.querySelectorAll('.nav-links-left a');
+                let currentSectionId = '';
+                const navHeight = document.querySelector('.navbar').offsetHeight;
+
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= navHeight + 20 && rect.bottom >= navHeight + 20) {
+                        currentSectionId = section.getAttribute('id');
+                    }
+                });
+
+                navLinks2.forEach(link => {
+                    link.classList.remove('active');
+                    const href = link.getAttribute('href');
+                    if (href === '#' + currentSectionId) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            let ticking = false;
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        updateActiveOnScroll();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+
+            setTimeout(updateActiveOnScroll, 100);
+        })();
+    </script>
+</body>
+</html>
