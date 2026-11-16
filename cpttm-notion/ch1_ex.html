@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>CM674 Chapter 1 實作練習</title>
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      line-height: 1.6;
+      color: #334155;
+      background-color: #f8fafc;
+      margin: 0;
+      padding: 40px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 48px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+    }
+    h1 {
+      color: #0f172a;
+      font-size: 32px;
+      margin-bottom: 8px;
+      border-bottom: 3px solid #2563eb;
+      padding-bottom: 12px;
+    }
+    h2 {
+      color: #1e293b;
+      font-size: 24px;
+      margin-top: 36px;
+      margin-bottom: 16px;
+      border-left: 5px solid #2563eb;
+      padding-left: 12px;
+    }
+    h3 {
+      color: #334155;
+      font-size: 20px;
+      margin-top: 24px;
+      margin-bottom: 12px;
+    }
+    p, li {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    ul, ol {
+      padding-left: 24px;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 14px 16px;
+      font-size: 18px;
+      text-align: left;
+    }
+    th {
+      background-color: #f1f5f9;
+      color: #0f172a;
+    }
+    blockquote {
+      background: #f8fafc;
+      border-left: 4px solid #2563eb;
+      margin: 16px 0;
+      padding: 16px 20px;
+      font-family: monospace;
+      font-size: 17px;
+      color: #1e293b;
+      border-radius: 0 8px 8px 0;
+    }
+    .badge {
+      display: inline-block;
+      background: #eff6ff;
+      color: #2563eb;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="badge">CM674 應用人工智能技術 - 課堂練習</div>
+  <h1>Chapter 1 課堂實操練習指南</h1>
+  <p style="font-size: 20px; font-weight: 500; color: #64748b;">主題：打造「個人智慧筆記與本週行程」</p>
+
+  <h2>📌 練習目標</h2>
+  <p>讓學員從零開始熟悉 Notion 的基本介面、工作區（Workspace）建立、頁面階層（Page & Sub-page）、萬物皆區塊（Blocks）邏輯，以及運用 Markdown 快捷語法和基本的協作分享功能。</p>
+
+  <h2>🛠️ 第一部分：功能要求與目標成果</h2>
+  <table>
+    <tr>
+      <th style="width: 25%;">項目</th>
+      <th>內容說明</th>
+    </tr>
+    <tr>
+      <td><strong>要完成的功能</strong></td>
+      <td>
+        1. 建立一個具備個人化外觀的主頁面。<br>
+        2. 運用「區塊（Blocks）」與「斜線指令（/）」建立結構化文字與清單。<br>
+        3. 運用「摺疊清單（Toggle）」收納內容，並使用分隔線與拖拉排版。<br>
+        4. 設定頁面共用權限或發佈網頁。
+      </td>
+    </tr>
+    <tr>
+      <td><strong>目標成果</strong></td>
+      <td>學員最終需產出一份名為<strong>「我的第一本 Notion 筆記」</strong>的頁面，包含個人圖示、封面、目錄結構、本週待辦清單，以及段落排版。</td>
+    </tr>
+  </table>
+
+  <h2>✍️ 第二部分：所需輸入文字與示範內容</h2>
+  <p>請在 Notion 頁面中輸入或參考以下文字內容進行排版練習：</p>
+
+  <h3>【頁面標題】</h3>
+  <blockquote>我的第一本 Notion 筆記</blockquote>
+
+  <h3>【內文區塊 1：自我介紹與學習目標】</h3>
+  <blockquote>
+    歡迎來到 CM674 應用人工智能技術課程！<br>
+    這是我的第一個 Notion 工作區。我希望透過這門課學會如何將零散的工作和筆記有系統地管理起來，告別傳統檔案版本混亂的痛點。
+  </blockquote>
+
+  <h3>【內文區塊 2：本週待辦清單 (To-Do)】</h3>
+  <blockquote>
+    • 星期一暫時未有安排<br>
+    • 星期二晚上 CPTTM 上課<br>
+    • 星期三早上要開會（線上會議）<br>
+    • 星期四下午去取快遞<br>
+    • 星期五晚上與家人吃晚餐<br>
+    • 星期六暫時未有安排<br>
+    • 星期日參與活動
+  </blockquote>
+
+  <h3>【內文區塊 3：摺疊筆記內容 (Toggle)】</h3>
+  <blockquote>
+    💡 關於 Notion 的三大核心優勢（點開查看）<br>
+    &nbsp;&nbsp;• 萬物皆區塊（Blocks），排版極具彈性<br>
+    &nbsp;&nbsp;• 支援 Markdown 快捷語法與斜線指令<br>
+    &nbsp;&nbsp;• All-in-One 整合筆記、任務與知識庫
+  </blockquote>
+
+  <h2>🧭 第三部分：學生實操步驟</h2>
+  <ol>
+    <li><strong>建立新頁面與外觀裝飾：</strong>點擊左側 <code>+ New Page</code>，輸入標題，新增 Emoji 圖示與精美封面。</li>
+    <li><strong>運用斜線指令：</strong>輸入 <code>/h1</code> 建立大標題，並貼上學習目標，輸入 <code>---</code> 建立水平分隔線。</li>
+    <li><strong>製作待辦清單與折疊清單：</strong>輸入 <code>/to-do</code> 填入本週行程；輸入 <code>/toggle</code> 收納 Notion 優勢內容。練習按住抓手（<code>⠿</code>）拖拉調整項目順序。</li>
+    <li><strong>分享與網頁發佈：</strong>點擊右上角 <code>Share</code> 設定協作者權限為「可以評論」，並切換至 Publish 發佈為公開網頁。</li>
+  </ol>
+</div>
+
+</body>
+</html>

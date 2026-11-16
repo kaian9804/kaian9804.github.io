@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 3 課堂實操練習：專案管理與任務追蹤系統</title>
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --text-heading: #1e293b;
+            --border-color: #e2e8f0;
+            --code-bg: #1e293b;
+            --code-text: #e2e8f0;
+            --accent-red: #ef4444;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-main);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: var(--bg-color);
+        }
+
+        header {
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--text-heading);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 12px;
+            font-size: 28px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: var(--text-heading);
+            margin-top: 0;
+            font-size: 20px;
+            border-left: 4px solid var(--primary);
+            padding-left: 12px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 15px;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--text-heading);
+            font-weight: 600;
+        }
+
+        ul, ol {
+            padding-left: 24px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: monospace;
+            background-color: #fee2e2;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .tip-box {
+            background-color: #fef2f2;
+            border-left: 4px solid var(--accent-red);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 15px;
+        }
+
+        .tip-box p {
+            margin: 0;
+            color: #991b1b;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #64748b;
+            font-size: 14px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🎯 Chapter 3 課堂實操練習：專案管理與任務追蹤系統</h1>
+    </header>
+    
+    <div class="card">
+        <h2>📌 練習目標</h2>
+        <p style="margin-top: 15px;">學習如何在 Notion 中建立多資料庫關聯（Relation），建構「專案（Projects）」與「任務（Tasks）」的主從架構。並透過看板檢視（Board View）與狀態設定，實現高效的個人或團隊任務視覺化追蹤。</p>
+    </div>
+
+    <div class="card">
+        <h2>🛠️ 第一部分：功能要求</h2>
+        <ul style="margin-top: 15px;">
+            <li>建立兩個獨立資料庫：<strong>「專案主表」</strong>與<strong>「任務清單」</strong>。</li>
+            <li>運用<strong>Relation（關聯關係）</strong>將兩者進行雙向串聯。</li>
+            <li>為任務資料庫設定<strong>Status（狀態）</strong>與<strong>Priority（優先級）</strong>屬性。</li>
+            <li>新增<strong>「看板檢視（Board View）」</strong>，按任務狀態（未開始、進行中、已完成）進行拖拉管理。</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>✍️ 第二部分：所需輸入的範例資料</h2>
+        
+        <p style="margin-top: 15px; font-weight: bold; color: var(--text-heading);">【資料庫一：專案主表】</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>專案名稱</th>
+                    <th>負責人</th>
+                    <th>目標期限</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Notion課程優化</td><td>Ian</td><td>2026-11-16</td></tr>
+                <tr><td>澳門文創AI應用研究</td><td>Ian</td><td>2026-12-05</td></tr>
+                <tr><td>AI教學科研</td><td>Rex</td><td>2026-12-15</td></tr>
+                <tr><td>機器學習課程</td><td>Ian</td><td>2026-12-30</td></tr>
+            </tbody>
+        </table>
+
+        <p style="margin-top: 25px; font-weight: bold; color: var(--text-heading);">【資料庫二：任務清單】</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>任務名稱</th>
+                    <th>所屬專案</th>
+                    <th>狀態</th>
+                    <th>優先級</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>撰寫Chapter3投影片</td><td>CPTTM Notion 課程優化</td><td>進行中</td><td>高</td></tr>
+                <tr><td>製作Chapter3實操網頁</td><td>CPTTM Notion 課程優化</td><td>未開始</td><td>高</td></tr>
+                <tr><td>收集澳門文創店鋪數據</td><td>澳門文創AI應用研究</td><td>已完成</td><td>中</td></tr>
+                <tr><td>測試Notion AI自動摘要功能</td><td>澳門文創 AI 應用研究</td><td>進行中</td><td>中</td></tr>
+                <tr><td>撰寫AI教論文大綱</td><td>AI教學科研</td><td>進行中</td><td>高</td></tr>
+                <tr><td>完成機器學習作業</td><td>機器學習課程</td><td>未開始</td><td>高</td></tr>
+                <tr><td>思考機器學習報告主題</td><td>機器學習課程</td><td>已完成</td><td>中</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>🧭 第三部分：學員實操步驟</h2>
+        
+        <h3 style="color: var(--text-heading); margin-top: 20px;">Step 1：建立專案與任務資料庫</h3>
+        <ol>
+            <li>開新頁面，輸入 <span class="highlight">/table</span> 建立第一個內命名為「專案主表」的資料庫，並輸入上方 2 筆專案資料。</li>
+            <li>在下方再建立第二個資料庫命名為「任務清單」，並輸入 4 筆任務資料。</li>
+        </ol>
+
+        <h3 style="color: var(--text-heading); margin-top: 20px;">Step 2：設定關聯（Relation）屬性</h3>
+        <ol>
+            <li>在「任務清單」資料庫中，點擊 <span class="highlight">+ Add property</span>，選擇<strong>Relation</strong>。</li>
+            <li>選擇連結至「專案主表」資料庫，開啟雙向關聯（Show on 專案主表），點擊<strong>Add relation</strong>。</li>
+            <li>將各任務對應勾選正確的所屬專案。</li>
+        </ol>
+
+        <h3 style="color: var(--text-heading); margin-top: 20px;">Step 3：設定狀態與優先級屬性</h3>
+        <ol>
+            <li>在「任務清單」中將「狀態」欄位屬性改為<strong>Status</strong>包含未開始、進行中、已完成）。</li>
+            <li>將「優先級」欄位屬性改為<strong>Select</strong>（選項：高、中、低）。</li>
+        </ol>
+
+        <h3 style="color: var(--text-heading); margin-top: 20px;">Step 4：建立看板檢視（Board View）</h3>
+        <ol>
+            <li>點擊「任務清單」上方的 <span class="highlight">+</span> 號新增檢視，選擇<strong>Board（看板）</strong>。</li>
+            <li>將 Group by 設定為<strong>Status（狀態）</strong>。</li>
+            <li>嘗試直接拖拉卡片在不同狀態欄位間移動，體驗視覺化專案追蹤的便利性！</li>
+        </ol>
+    </div>
+
+    <div class="card">
+        <h2>💡 小提醒</h2>
+        <div class="tip-box">
+            <p>在建立專案管理系統時，切記「專案是大的方向，任務是具體的行動」。先釐清兩者的關聯，再透過看板檢視來追蹤進度，就能讓團隊協作井然有序！</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>CM674 應用人工智能技術 - 使用 Notion 提高辦公效率 | 導師：Ian | CPTTM 數碼匯點</p>
+    </footer>
+
+</body>
+</html>

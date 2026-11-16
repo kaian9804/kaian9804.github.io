@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 2 課堂實操練習：圖書資料庫與關聯設定</title>
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --text-heading: #1e293b;
+            --border-color: #e2e8f0;
+            --code-bg: #1e293b;
+            --code-text: #e2e8f0;
+            --accent-red: #ef4444;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-main);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: var(--bg-color);
+        }
+
+        header {
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--text-heading);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 12px;
+            font-size: 28px;
+            margin-top: 0;
+        }
+
+        h2 {
+            color: var(--text-heading);
+            margin-top: 0;
+            font-size: 20px;
+            border-left: 4px solid var(--primary);
+            padding-left: 12px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 15px;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--text-heading);
+            font-weight: 600;
+        }
+
+        ul, ol {
+            padding-left: 24px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            color: var(--accent-red);
+            font-weight: bold;
+            font-family: monospace;
+            background-color: #fee2e2;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .tip-box {
+            background-color: #fef2f2;
+            border-left: 4px solid var(--accent-red);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 15px;
+        }
+
+        .tip-box p {
+            margin: 0;
+            color: #991b1b;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #64748b;
+            font-size: 14px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>📚 Chapter 2 課堂實操練習：圖書資料庫與關聯設定</h1>
+    </header>
+    
+    <div class="card">
+        <h2>📌 練習目標</h2>
+        <p style="margin-top: 15px;">學習如何在 Notion 中建立普通表格，並將其一鍵轉換為強大的<strong>資料庫（Database）</strong>。透過設定屬性（Properties）、篩選器（Filter）、排序（Sort）以及建立多資料庫之間的<strong>關聯（Relation）</strong>，打造個人或團隊的數位圖書管理系統。</p>
+    </div>
+
+    <div class="card">
+        <h2>🛠️ 第一部分：功能要求</h2>
+        <ul style="margin-top: 15px;">
+            <li>建立一個全頁表格（Full-page table）或內嵌表格（In-line table）。</li>
+            <li>將提供的 8 本圖書資料準確輸入表格中。</li>
+            <li>將表格轉換成資料庫（Turn into database）。</li>
+            <li>為資料庫欄位設定正確的屬性類型（如多選標籤、數字等）。</li>
+            <li>設定進階篩選條件與排序，快速檢索圖書。</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>✍️ 第二部分：所需輸入的範例資料</h2>
+        <p style="margin-top: 15px;">請在你的 Notion 表格中輸入以下 8 本書的資料：</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>圖書名稱</th>
+                    <th>作者</th>
+                    <th>出版社</th>
+                    <th>語言</th>
+                    <th>類型</th>
+                    <th>頁數</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>解憂雜貨店</td><td>東野圭吾</td><td>獨步文化</td><td>繁體中文</td><td>小說/懸疑</td><td>320</td></tr>
+                <tr><td>原子習慣</td><td>James Clear</td><td>方智出版社</td><td>繁體中文</td><td>心理/自我成長</td><td>336</td></tr>
+                <tr><td>沙丘</td><td>Frank Herbert</td><td>大家出版</td><td>繁體中文</td><td>科幻</td><td>672</td></tr>
+                <tr><td>人類大歷史</td><td>東野圭吾</td><td>天下文化</td><td>繁體中文</td><td>歷史/科普</td><td>464</td></tr>
+                <tr><td>挪威的森林</td><td>村上春樹</td><td>獨步文化</td><td>繁體中文</td><td>文學小說</td><td>532</td></tr>
+                <tr><td>思考的藝術</td><td>James Clear</td><td>方智出版社</td><td>繁體中文</td><td>心理/自我成長</td><td>288</td></tr>
+                <tr><td>基地</td><td>Frank Herbert</td><td>大家出版</td><td>繁體中文</td><td>科幻</td><td>512</td></tr>
+                <tr><td>1Q84</td><td>村上春樹</td><td>天下文化</td><td>繁體中文</td><td>魔幻現實主義</td><td>928</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>🧭 第三部分：學生實操步驟</h2>
+        
+        <h3 style="color: var(--text-heading); margin-top: 20px;">Step 1：建立表格並轉換為資料庫</h3>
+        <ol>
+            <li>開新頁面，輸入 <span class="highlight">/table</span> 建立一個內嵌表格。</li>
+            <li>將上述 8 本書的資料完整填入表格中。</li>
+            <li>點擊表格左上角的選單（或點選區塊左側的 <span class="highlight">⠿</span> 抓手），選擇 **「轉換成資料庫 (Turn into database)」**。</li>
+        </ol>
+
+        <h3 style="color: var(--text-heading); margin-top: 20px;">Step 2：設定欄位屬性（Properties）</h3>
+        <ol>
+            <li>將「出版社」與「類型」欄位的屬性類型改為<strong>「多選 (Multi-select)」</strong>。</li>
+            <li>將「頁數」欄位的屬性類型改為<strong>「數字 (# 號碼)」</strong>。</li>
+        </ol>
+
+        <h3 style="color: var(--text-heading); margin-top: 20px;">Step 3：設定篩選與排序（Filter & Sort）</h3>
+        <ol>
+            <li>點擊資料庫右上角的<strong>Filter（篩選）</strong>，設定條件：「頁數 > 500」，觀察畫面如何自動過濾書籍。</li>
+            <li>點擊<strong>Sort（排序）</strong>，設定「頁數」由大到小（降序排序）。</li>
+        </ol>
+
+        <h3 style="color: var(--text-heading); margin-top: 20px;">Step 4：建立出版社關聯資料庫（Relation）</h3>
+        <ol>
+            <li>新建第二個資料庫命名為「出版社」，並輸入各出版社的簡介。</li>
+            <li>在「我的圖書館」資料庫中新增一個屬性，選擇<strong>「關聯關係 (Relation)」</strong>，並與「出版社」資料庫進行雙向連接。</li>
+        </ol>
+    </div>
+
+    <div class="card">
+        <h2>💡 小提醒</h2>
+        <div class="tip-box">
+            <p>初學Notion資料庫時，不需要一開始就建立太複雜的關聯。先掌握「表格轉資料庫」與「屬性設定」的基本邏輯，就能輕鬆管理生活與工作中的各類數據！</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>CM674 應用人工智能技術 - 使用 Notion 提高辦公效率 | 導師：Ian | CPTTM 數碼匯點</p>
+    </footer>
+
+</body>
+</html>

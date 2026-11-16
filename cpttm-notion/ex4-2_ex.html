@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 4-2 課堂實操練習：AI 屬性與資料庫自動化工作流</title>
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --text-heading: #1e293b;
+            --border-color: #e2e8f0;
+            --code-bg: #1e293b;
+            --code-text: #e2e8f0;
+            --accent-red: #ef4444;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-main);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: var(--bg-color);
+        }
+        header { margin-bottom: 30px; }
+        h1 { color: var(--text-heading); border-bottom: 3px solid var(--primary); padding-bottom: 12px; font-size: 28px; margin-top: 0; }
+        h2 { color: var(--text-heading); margin-top: 0; font-size: 20px; border-left: 4px solid var(--primary); padding-left: 12px; }
+        .card { background: var(--card-bg); border-radius: 12px; padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); border: 1px solid var(--border-color); }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 15px; }
+        th, td { border: 1px solid var(--border-color); padding: 12px 16px; text-align: left; }
+        th { background-color: #f1f5f9; color: var(--text-heading); font-weight: 600; }
+        ul, ol { padding-left: 24px; margin: 10px 0; }
+        li { margin-bottom: 8px; }
+        .highlight { color: var(--accent-red); font-weight: bold; font-family: monospace; background-color: #fee2e2; padding: 2px 6px; border-radius: 4px; }
+        .tip-box { background-color: #fef2f2; border-left: 4px solid var(--accent-red); padding: 16px 20px; border-radius: 0 8px 8px 0; margin-top: 15px; }
+        .tip-box p { margin: 0; color: #991b1b; font-weight: bold; }
+        footer { text-align: center; margin-top: 50px; color: #64748b; font-size: 14px; border-top: 1px solid var(--border-color); padding-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>⚡ Chapter 4-2 課堂實操練習：AI 屬性與資料庫自動化工作流</h1>
+    </header>
+    
+    <div class="card">
+        <h2>📌 練習目標</h2>
+        <p style="margin-top: 15px;">學習如何在 Notion 資料庫中設定 <strong>AI 屬性（AI Summary & Custom Fill）</strong> 自動分析數據，並設定 <strong>自動化規則（Automations）</strong> 實現狀態變更時自動填入日期的高效工作流。</p>
+    </div>
+
+    <div class="card">
+        <h2>🛠️ 第一部分：功能要求</h2>
+        <ul style="margin-top: 15px;">
+            <li>建立一個「口袋咖啡廳與探店心得」資料庫，並輸入下方 Sample 數據。</li>
+            <li>新增<strong>AI Summary</strong>屬性，讓 AI 自動為每篇探店心得產生精煉摘要。</li>
+            <li>新增<strong>AI Custom Fill</strong>屬性，設定自訂提示詞自動分析店家風格（文青/網紅/安靜等）。</li>
+            <li>設定資料庫<strong>Automations（自動化）</strong>：當造訪狀態改為「已朝聖」時，自動將打卡日期填入當下時間。</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>✍️ 第二部分：所需輸入的 Sample 數據</h2>
+        <p style="margin-top: 15px;">請在你的 Notion 表格中輸入以下 3 筆範例資料：</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>咖啡廳名稱</th>
+                    <th>探店心得與筆記描述</th>
+                    <th>造訪狀態</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>角落时光咖啡</td>
+                    <td>隱身在老宅巷弄裡的一家手沖咖啡館，木質調裝潢非常溫馨，老闆對豆子的烘焙很有講究，拿鐵帶有淡淡的花香，環境安靜很適合帶筆電去工作或看書。</td>
+                    <td>想去</td>
+                </tr>
+                <tr>
+                    <td>喵星人手作甜點</td>
+                    <td>店內有四隻超可愛的布偶貓隨處走動，招牌草莓千層蛋糕甜而不膩，不過假日人潮真的非常多，限時兩小時且稍微有點吵雜，適合喜歡貓咪和拍照的朋友。</td>
+                    <td>想去</td>
+                </tr>
+                <tr>
+                    <td>Minimalist Lab</td>
+                    <td>全白色系的極簡工業風裝潢，採光非常好怎麼拍都好看。他們的特調西西里咖啡口感清爽，店員態度也很親切，已經回訪過好幾次了！</td>
+                    <td>已朝聖</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>🧭 第三部分：學員詳細實操步驟</h2>
+        
+        <h3 style="color: var(--text-heading); margin-top: 20px;">Step 1：建立 AI 摘要屬性</h3>
+        <ol>
+            <li>將上述表格轉為 Notion 資料庫。</li>
+            <li>點擊右上角 <span class="highlight">+ Add property</span>，選擇AI類別中的AI Summary。</li>
+            <li>將來源欄位指向「探店心得與筆記描述」，觀察 AI 如何自動生成一行精簡摘要。</li>
+        </ol>
+
+        <h3 style="color: var(--text-heading); margin-top: 20px;">Step 2：設定自訂 AI 分析屬性（Custom Prompt）</h3>
+        <ol>
+            <li>再點擊 <span class="highlight">+ Add property</span>，選擇<strong>AI</strong>類別中的<strong>AI Custom Fill</strong>。</li>
+            <li>輸入自訂指令：<code style="background: #e2e8f0; padding: 2px 6px; border-radius: 4px;">「請用兩個字形容這家店的風格特色（例如：溫馨、熱鬧、極簡）」</code>。</li>
+            <li>執行後檢視 AI 自動標註的風格分類結果。</li>
+        </ol>
+
+        <h3 style="color: var(--text-heading); margin-top: 20px;">Step 3：設定資料庫自動化（Automations）</h3>
+        <ol>
+            <li>在資料庫右上角點擊閃電圖標<strong>⚡ Automations</strong>。</li>
+            <li>設定觸發條件（Trigger）：當<strong>造訪狀態</strong>變更為<strong>已朝聖</strong>時。</li>
+            <li>設定執行動作（Action）：自動將<strong>打卡日期</strong>屬性填入<strong>Today（今天）<strong>。</li>
+            <li>儲存設定後，嘗試將第一筆資料的狀態改為「已朝聖」，驗證日期是否自動填入！</li>
+        </ol>
+    </div>
+
+    <div class="card">
+        <h2>💡 小提醒</h2>
+        <div class="tip-box">
+            <p>將 AI 屬性應用在生活中的興趣收藏（如美食、書籍、電影清單），不僅實用好玩，更能深刻體會 AI 自動化如何幫我們整理生活瑣事！</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>CM674 應用人工智能技術 - 使用 Notion 提高辦公效率 | 導師：Ian | CPTTM 數碼匯點</p>
+    </footer>
+
+</body>
+</html>

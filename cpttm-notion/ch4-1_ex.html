@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 4-1 課堂實操練習：運用 Notion AI 處理長篇逐字稿</title>
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #1d4ed8;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --text-heading: #1e293b;
+            --border-color: #e2e8f0;
+            --code-bg: #1e293b;
+            --code-text: #e2e8f0;
+            --accent-red: #ef4444;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text-main);
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: var(--bg-color);
+        }
+        header { margin-bottom: 30px; }
+        h1 { color: var(--text-heading); border-bottom: 3px solid var(--primary); padding-bottom: 12px; font-size: 28px; margin-top: 0; }
+        h2 { color: var(--text-heading); margin-top: 0; font-size: 20px; border-left: 4px solid var(--primary); padding-left: 12px; }
+        .card { background: var(--card-bg); border-radius: 12px; padding: 28px; margin-bottom: 24px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); border: 1px solid var(--border-color); }
+        ul, ol { padding-left: 24px; margin: 10px 0; }
+        li { margin-bottom: 8px; }
+        .highlight { color: var(--accent-red); font-weight: bold; font-family: monospace; background-color: #fee2e2; padding: 2px 6px; border-radius: 4px; }
+        .sample-box { background: #f1f5f9; padding: 18px; border-radius: 8px; font-family: monospace; font-size: 13px; border-left: 4px solid var(--primary); margin: 15px 0; white-space: pre-line; max-height: 250px; overflow-y: auto; }
+        .tip-box { background-color: #fef2f2; border-left: 4px solid var(--accent-red); padding: 16px 20px; border-radius: 0 8px 8px 0; margin-top: 15px; }
+        .tip-box p { margin: 0; color: #991b1b; font-weight: bold; }
+        footer { text-align: center; margin-top: 50px; color: #64748b; font-size: 14px; border-top: 1px solid var(--border-color); padding-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🤖 Chapter 4-1 課堂實操練習：運用 Notion AI 處理長篇逐字稿</h1>
+    </header>
+    
+    <div class="card">
+        <h2>📌 練習目標</h2>
+        <p style="margin-top: 15px;">面對職場與日常生活中常見的「長篇純文字逐字稿（無說話者標記）」，學習如何利用 Notion AI 的快捷指令與自訂提示詞，在 3 秒內將雜亂無章的語音記錄轉化為結構清晰、重點明確的專業文檔。</p>
+    </div>
+
+    <div class="card">
+        <h2>🛠️ 第一部分：功能要求</h2>
+        <ul style="margin-top: 15px;">
+            <li>學會在 Notion 內透過空白鍵（Space）或斜線指令（<span class="highlight">/ai</span>）呼叫 AI 助理。</li>
+            <li><strong>練習一</strong>：將 10 分鐘科技公司例會逐字稿轉化為「專業會議紀要與待辦清單」。</li>
+            <li><strong>練習二</strong>：將 10 分鐘數學課逐字稿萃取出「核心知識點與回家作業清單」。</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>✍️ 第二部分：所需輸入的練習文本</h2>
+        
+        <p style="margin-top: 15px; font-weight: bold; color: var(--text-heading);">【文本一：模擬科技公司 10 分鐘例會逐字稿】</p>
+        <div class="sample-box">(收音開始，背景有些許鍵盤敲擊聲與雜音)
+喂喂聽到嗎好大家早啊那我們準時開始今天這個例會主要主要是講一下上週那個 App 改版的上線狀況還有接下來這兩週的衝刺計劃。
+嗯上週上線之後其實前三天數據還算平穩但是伺服器那邊在禮拜三晚上大約九點多有出現一次短暫的 500 錯誤，工程部那邊後來查是因為快取沒清乾淨，大約十五分鐘內就緊急修復了，不過客服那邊確實收到大概二十多宗用戶回報說登入轉圈圈。
+對這件事情客服這邊要檢討一下，下次如果再有這種突發狀況，公告要發得更快一點，不要讓用戶在群組一直問才反應過來。好啦好落實就好，那這次伺服器報錯的日誌記錄等下會後由維運組整理一份報告發到 Slack 頻道上給大家存檔。
+好那除了伺服器問題，產品本身的數據怎麼樣？下載量有達到預期嗎？
+下載量的話，因為我們上週有跟幾個KOL合作推廣，前兩天的自然增長還不錯，新增用戶大概突破五千人了，不過次日留存率稍微有一點掉下來，從原本的百分之四十掉到百分之三十五左右。
+百分之三十五？這個跌幅有點多耶，你有看是哪個環節卡住嗎？
+有，我們看漏斗分析發現，很多用戶在完成手機號碼註冊之後，到了填寫個人興趣標籤那個頁面就直接關掉 App 了，可能那個步驟有點冗長，總共有八個選項要點。
+了解，那這個要列為優先優化項目。這樣吧，UI/UX 這邊這兩天重新評估一下，看能不能把興趣標籤改成「可以略過」或者直接縮減到三個以內。這部分由 A 負責，下週一之前交出新的設計稿原型。
+收到，我這週末就會把它改好。
+好，那設計稿出來之後，前端這塊大概需要多久時間上線？
+如果只是改 UI 介面的話，前端這邊大概三天可以搞定，連同測試的話，預計下週四可以推送到測試環境（Staging）讓大家驗收。
+好，那前端進度就抓下週四。接下來是市場推廣的部分，第二波的行銷活動預算已經申請下來了嘛？
+財務部那邊昨天剛批准，預算大概是五萬塊，我們打算主力放在 IG 跟小紅書的短影音投放。文案部分我已經寫好了，等下會把草稿丟到共用文件夾，大家有空幫忙看一下有沒有什麼錯別字或者需要修改的地方。
+好，文件連結記得貼在群組。那關於市場活動的素材，設計組這邊支援得及嗎？
+可以的，行銷要的圖和短影音封面我們這週五下班前一定可以交齊。
+好，那這部分就這樣定下來。大家還有沒有其他要補充的？沒有的話我們快速過一下這週的待辦清單：第一，維運組今天下班前交出伺服器 500 錯誤的排查報告；第二，UI 同學下週一交出註冊頁面簡化版設計稿；第三，前端下週四完成測試環境推送；第四，市場部把行銷文案草稿放到共用文件夾並在 Friday 收集反饋。
+沒問題，那就先這樣散會，大家各自去忙吧。</div>
+
+        <p style="margin-top: 25px; font-weight: bold; color: var(--text-heading);">【文本二：模擬 10 分鐘小學數學課逐字稿】</p>
+        <div class="sample-box">(課堂環境音，有翻書聲與粉筆擦黑板的聲音)
+好請大家翻到課本第六十五頁，我們今天要講新的單元叫做「分數的加減法與應用題」。
+大家先看黑板上這個圖形，老師畫了一個圓形，把它平均分成四份。如果老師塗了其中的三份，那用分數來表示的話是多少？
+四分之三！
+答對了，非常棒，是四分之三。那如果老師再把其中的兩份拿走，或者是加上去呢？我們今天要學的就是分母一樣的時候，分子到底要怎麼進行加減。
+好，大家注意看黑板上的第一個例題：「小明有一條彩帶，長度是八分之五公尺，他又去買了一條一樣材質的彩帶，長度是八分之二公尺。請問這兩條彩帶接在一起總共是多少公尺？」
+有沒有人可以告訴我，這題的算式應該要怎麼列？
+老師我知道！用八分之五加上八分之二！
+很好，請坐。那八分之五加上八分之二，答案是多少？直接把分母相加嗎？
+不是！分母不能相加！分母保持不變，只要把分子相加就好！
+沒錯！這點超級重要，請大家把螢光筆拿出來，把「同分母相加減時，分母維持不變，只把分子相加減」這句話給它畫起來。考試的時候很多人會把分母也跟著加起來，那個是錯的哦。
+好，所以這一題的計算過程就是分母維持八，分子五加二等於七，所以答案是八分之七公尺。
+大家有沒有問題？沒有的話我們看隔壁的練習題第二題。
+「媽媽買了一個大披薩，哥哥吃了八分之三個，弟弟吃了八分之一個，請問兄弟兩人總共吃了這個披薩的多少？」
+給你們兩分鐘時間，在筆記本上把算式寫出來，等一下老師要抽人回答。
+(台下一陣沙沙的寫字聲與討論聲)
+好，時間到。坐靠窗那排的某某同學，你來回答看看這題怎麼算？
+嗯……就是八分之三加上八分之一個，然後分母一樣是八，分子三加一等於四，所以是八分之四個。
+非常好！那八分之四還可以怎麼化簡？
+可以約分！變成二分之一！
+太棒了，掌聲鼓勵。記得以後算完分數如果可以約分的話，盡量把它約到最簡分數，這樣分數才會拿得更高。
+好，最後五分鐘我們來做一個隨堂小測驗。請大家把課本闔起來，翻到習題本第七十頁，把上面那一大題的 1 到 5 小題寫完。這五題是今天的回家作業，如果課堂上寫不完的話就帶回家當功課，明天早上早自習的時候交給數學小老師收齊送到辦公室來。
+下課時間快到了，大家收拾一下桌面，不要忘記帶水壺跟聯絡簿。好，下課！</div>
+    </div>
+
+    <div class="card">
+        <h2>🧭 第三部分：學員詳細實操步驟</h2>
+        
+        <h3 style="color: var(--text-heading); margin-top: 20px;">Step 1：處理會議逐字稿（練習一）</h3>
+        <ol>
+            <li>將<strong>文本一</strong>貼到 Notion 頁面中，下方開一行新空白。</li>
+            <li>按下空白鍵或輸入 <span class="highlight">/ai</span> 呼叫 Notion AI。</li>
+            <li>輸入指令：<code style="background: #e2e8f0; padding: 2px 6px; border-radius: 4px;">「請將這段無說話者標記的會議逐字稿，整理成專業的會議紀要。內容需包含：1. 討論核心摘要（3行以內） 2. 決議事項與負責人列表 3. 具體的待辦清單 (To-Do List)」</code></li>
+        </ol>
+
+        <h3 style="color: var(--text-heading); margin-top: 20px;">Step 2：處理課堂逐字稿（練習二）</h3>
+        <ol>
+            <li>在另一個頁面貼上<strong>文本二</strong>。</li>
+            <li>透過 Notion AI 輸入指令：<code style="background: #e2e8f0; padding: 2px 6px; border-radius: 4px;">「請閱讀這段課堂錄音逐字稿，幫我整理出：1. 本堂課的核心教學概念（重點公式與注意事項） 2. 課堂中提到的兩個範例題目與解答過程 3. 今天的回家作業內容」</code></li>
+        </ol>
+    </div>
+
+    <div class="card">
+        <h2>💡 小提醒</h2>
+        <div class="tip-box">
+            <p>面對雜亂的語音逐字稿時，透過給予 AI 明確的結構化指令（例如要求指定編號與欄位），就能瞬间將資訊轉化為高價值的知識資產！</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>CM674 應用人工智能技術 - 使用 Notion 提高辦公效率 | 導師：Ian | CPTTM 數碼匯點</p>
+    </footer>
+
+</body>
+</html>
