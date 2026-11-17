@@ -1,225 +1,211 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notion 課程與實操練習中心</title>
-    <style>
-        :root {
-            --primary: #3b82f6;
-            --primary-light: #eff6ff;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #334155;
-            --text-heading: #1e293b;
-            --border-color: #e2e8f0;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-main);
-            background-color: var(--bg-color);
-            margin: 0;
-            padding: 40px 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            color: var(--text-heading);
-            font-size: 26px;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        /* 圓角大卡片風格 */
-        .content-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 35px 40px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
-            border: 1px solid var(--border-color);
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-        }
-
-        .card-header h2 {
-            margin: 0;
-            font-size: 22px;
-            color: var(--text-heading);
-        }
-
-        /* 課程項目列 */
-        .item-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 18px 0;
-            border-bottom: 1px solid #f1f5f9;
-        }
-
-        .item-row:last-child {
-            border-bottom: none;
-        }
-
-        .item-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        /* 色彩標籤指示條 */
-        .color-tag {
-            width: 10px;
-            height: 26px;
-            border-radius: 4px;
-        }
-
-        .tag-blue { background-color: #3b82f6; }
-        .tag-green { background-color: #10b981; }
-        .tag-yellow { background-color: #f59e0b; }
-        .tag-purple { background-color: #8b5cf6; }
-        .tag-red { background-color: #ef4444; }
-
-        .item-title {
-            font-weight: 600;
-            font-size: 16px;
-            color: var(--text-heading);
-        }
-
-        .item-desc {
-            font-size: 13px;
-            color: #64748b;
-            margin-top: 3px;
-        }
-
-        /* 練習題按鈕 */
-        .btn-exercise {
-            background-color: var(--primary-light);
-            color: var(--primary);
-            border: 1px solid #bfdbfe;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-
-        .btn-exercise:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        /* 專屬 Footer 樣式 */
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            padding-top: 25px;
-            border-top: 1px solid var(--border-color);
-            color: #64748b;
-            font-size: 14px;
-        }
-
-        footer p {
-            margin: 5px 0;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Ka Ian | Personal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+    <nav class="navbar" role="navigation">
+        <button class="hamburger" id="hamburger" aria-label="選單">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links-left" id="navLinks">
+            <a href="index.html"  class="active">Home</a>
+            <a href="teaching.html">Teaching</a>
+            <a href="publications.html">Publications</a>
+            <a href="experience.html">Experience</a>
+            <a href="gallery.html">Gallery</a>
+        </div>
+        <div class="nav-right">
+            <a href="home_chin.html">中文</a>
+        </div>
+    </nav>
 
     <div class="container">
-        <h1>📚 CM674 應用人工智能技術 - 使用 Notion 提高辦公效率</h1>
-
-        <div class="content-card">
-            <div class="card-header">
-                <span>📂</span>
-                <h2>CM674 課程實作練習</h2>
-                <p>實作練習以當前課堂需要的為準，有機會按實際情況進行修改</p>
-            </div>
-
-            <!-- Chapter 1 -->
-            <div class="item-row">
-                <div class="item-info">
-                    <div class="color-tag tag-blue"></div>
-                    <div>
-                        <div class="item-title">Chapter 1：Notion 基礎架構與筆記心法</div>
-                        <div class="item-desc">區塊概念、斜線指令與個人工作區排版</div>
+        <section id="home">
+            <div class="home-wrapper">
+                <div class="home-text">
+                    <div class="home-greeting">
+                        Ka Ian CHAN 陳嘉欣<small>｜ Computing・Education</small>
+                    </div>
+                    <p class="home-desc">
+                        PhD, MSc and BSc (MPU)
+                    </p>
+                    <p class="home-desc">
+                        Dr. Ka Ian CHAN received her PhD from Macao Polytechnic University. She was awarded scholarships by the DSEDJ and the Macau Lawyers Association. Her interdisciplinary research focuses on <strong>educational technologies</strong> and <strong>information behaviour</strong>.
+                    </p>
+                    <div class="contact-icons">
+                        <span class="contact-label">📍 Macao</span>
+                        <div class="icons-row">
+                            <a href="mailto:kaian9804@gmail.com" target="_blank" aria-label="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/kaian9804" target="_blank" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://github.com/kaian9804" target="_blank" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <a href="ch1_ex.html" target="_blank" class="btn-exercise">💻 進入實操練習</a>
-            </div>
-
-            <!-- Chapter 2 -->
-            <div class="item-row">
-                <div class="item-info">
-                    <div class="color-tag tag-green"></div>
-                    <div>
-                        <div class="item-title">Chapter 2：表格與資料庫（Tables & Databases）</div>
-                        <div class="item-desc">普通表格轉資料庫、屬性設定與關聯建立</div>
-                    </div>
+                <div class="home-photo">
+                    <img src="icon.png" alt="個人照片">
                 </div>
-                <a href="ch2_ex.html" target="_blank" class="btn-exercise">💻 進入實操練習</a>
             </div>
+            <hr class="divider">
+        </section>
 
-            <!-- Chapter 3 -->
-            <div class="item-row">
-                <div class="item-info">
-                    <div class="color-tag tag-yellow"></div>
-                    <div>
-                        <div class="item-title">Chapter 3：專案管理系統與任務追蹤</div>
-                        <div class="item-desc">主從架構關聯、看板檢視（Kanban Board）與進度追蹤</div>
-                    </div>
-                </div>
-                <a href="ch3_ex.html" target="_blank" class="btn-exercise">💻 進入實操練習</a>
-            </div>
+        <section id="news">
+            <h2 class="section-title">📰 Recent News &amp; Activities</h2>
+            <ul class="list-section">
+                <li>
+                    <span class="news-date">2026.11.01</span>
+                    <span class="news-title">Passed the "Generative AI Application Engineer Certification (Elementary)" Examination</span>
+                </li>
+                <li>
+                    <span class="news-date">2026.07.06</span>
+                    <span class="news-title">Successfully passed the PhD oral defences</span>
+                    <span class="news-desc">Presenting the oral defence in MPU A117 at 15:00-17:30</span>
+                </li>
+                <li>
+                    <span class="news-date">2026.03.23</span>
+                    <span class="news-title">Paper accepted in the journal Applied Sciences</span>
+                    <span class="news-desc">The paper proposes machine learning models for academic track selection and student performance predictions.</span>
+                </li>
+                <li>
+                    <span class="news-date">2026.03.16</span>
+                    <span class="news-title">Paper accepted in the journal Multimodal Technologies and Interaction</span>
+                    <span class="news-desc">The paper is about designing academic visualisations for parents and students.</span>
+                </li>
+            </ul>
+        </section>
 
-            <!-- Chapter 4-1 -->
-            <div class="item-row">
-                <div class="item-info">
-                    <div class="color-tag tag-purple"></div>
-                    <div>
-                        <div class="item-title">Chapter 4-1：Notion AI 智慧寫作與長文摘要</div>
-                        <div class="item-desc">長篇逐字稿處理、會議紀要自動生成與結構化寫作</div>
-                    </div>
+        <!-- Contact Information 區塊 -->
+        <div class="contact-info-section">
+            <h2 class="section-title">📬 Contact Information</h2>
+            <div class="contact-info-grid">
+                <div class="info-item">
+                    <span class="info-icon"><i class="fas fa-envelope"></i></span>
+                    <span class="info-label">Email</span>
+                    <span class="info-value"><a href="mailto:kaian9804@gmail.com">kaian9804@gmail.com</a></span>
                 </div>
-                <a href="ch4-1_ex.html" target="_blank" class="btn-exercise">💻 進入實操練習</a>
-            </div>
-
-            <!-- Chapter 4-2 -->
-            <div class="item-row">
-                <div class="item-info">
-                    <div class="color-tag tag-red"></div>
-                    <div>
-                        <div class="item-title">Chapter 4-2：AI 屬性與資料庫自動化工作流</div>
-                        <div class="item-desc">AI Summary、情感分析自訂提示詞與狀態自動化規則</div>
-                    </div>
+                <div class="info-item">
+                    <span class="info-icon"><i class="fab fa-linkedin-in"></i></span>
+                    <span class="info-label">LinkedIn</span>
+                    <span class="info-value"><a href="https://www.linkedin.com/in/kaian9804" target="_blank">linkedin.com/in/kaian9804</a></span>
                 </div>
-                <a href="ch4-2_ex.html" target="_blank" class="btn-exercise">💻 進入實操練習</a>
+                <div class="info-item">
+                    <span class="info-icon"><i class="fas fa-phone"></i></span>
+                    <span class="info-label">Phone</span>
+                    <span class="info-value"><a href="tel:+886912345678">+853 6246 0103</a></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon"><i class="fab fa-github"></i></span>
+                    <span class="info-label">GitHub</span>
+                    <span class="info-value"><a href="https://github.com/kaian9804" target="_blank">github.com/kaian9804</a></span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon"><i class="fas fa-map-marker-alt"></i></span>
+                    <span class="info-label">Faculty</span>
+                    <span class="info-value">Faculty of Applied Sciences, Macao Polytechnic University</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon"><i class="fas fa-globe"></i></span>
+                    <span class="info-label">Website</span>
+                    <span class="info-value"><a href="https://kaian9804.github.io/" target="_blank">https://kaian9804.github.io/</a></span>
+                </div>
             </div>
         </div>
 
-        <!-- 專屬 Footer 區塊 -->
+        <hr class="divider" style="margin-top: 0.5rem;">
         <footer>
-            <p><strong>CM674 應用人工智能技術 - 使用 Notion 提高辦公效率</strong></p>
-            <p>© 2026 <a href="http://kaian9804.github.io/">Ka Ian<a> · Last Modified: Monday, 17 Nov 2026</p>
+            <span>© 2026 Ka Ian · Last Modified: Monday, 30 Jul 2026</span>
+            <span><a href="index.html" class="back-top" aria-label="回到頂端">↑</a></span>
         </footer>
     </div>
 
+    <script>
+        // 漢堡選單切換
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navLinks.classList.toggle('open');
+        });
+
+        document.querySelectorAll('.nav-links-left a').forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // 導航欄平滑滾動
+        (function() {
+            const navLinks2 = document.querySelectorAll('.nav-links-left a');
+            navLinks2.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = href;
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            const navHeight = document.querySelector('.navbar').offsetHeight;
+                            const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight - 10;
+                            window.scrollTo({
+                                top: targetPosition,
+                                behavior: 'smooth'
+                            });
+                            navLinks2.forEach(l => l.classList.remove('active'));
+                            this.classList.add('active');
+                        }
+                    }
+                });
+            });
+
+            function updateActiveOnScroll() {
+                const sections = document.querySelectorAll('section');
+                const navLinks2 = document.querySelectorAll('.nav-links-left a');
+                let currentSectionId = '';
+                const navHeight = document.querySelector('.navbar').offsetHeight;
+
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= navHeight + 20 && rect.bottom >= navHeight + 20) {
+                        currentSectionId = section.getAttribute('id');
+                    }
+                });
+
+                navLinks2.forEach(link => {
+                    link.classList.remove('active');
+                    const href = link.getAttribute('href');
+                    if (href === '#' + currentSectionId) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            let ticking = false;
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        updateActiveOnScroll();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+
+            setTimeout(updateActiveOnScroll, 100);
+        })();
+    </script>
 </body>
 </html>
